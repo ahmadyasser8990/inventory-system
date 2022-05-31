@@ -232,6 +232,68 @@ return [
     'total_amount_return_secure' =>'اجمالي المبالغ في مرتجعات الامانه',
     'total_items_return_secure' =>'اجمالي القطع في سندات مرتجعات الامانه',
 
+    //Purchase Report
+    'total_amount_purchase'=>'اجمالي مبالغ المشتريات',
+    'total_items_purchase'=>'اجمالي القطع المشتريه',
+    'sold_items'=>'القطع المباعه',
+    'remain_items'=>'القطع الباقية',
+
+    //Offer Doc Report
+    'all_date' => 'جميع البيانات',
+    'total_items_avaliable' => 'اجمالي القطع المعروضة (القائمه)',
+    'total_invoice_offer' => 'اجمالي فواتير العرض',
+    'total_items_sold' => 'اجمالي القطع المعروضة (المباعه)',
+
+
+    //Exchange Bond Report
+    'expenses_Imports_report' => 'تقرير المصاريف والواردات',
+    'expenses_report' => 'تقرير الصرف',
+    'import_report' => 'تقرير الوارد',
+
+    //Debit Movements
+    'total_purchases'=>'اجمالي المشتريات',
+    'total_expenses'=>'اجمالي المصاريف',
+    'total_fixedAssets'=>'اجمالي اصول ثابته',
+    'totaly'=>'اجمالي',
+    'purchase_no'=>'رقم السند',
+    'purchase_date'=>'التاريخ',
+    'purchase_price'=>'السعر',
+    'expense_no'=>'رقم السند',
+    'expense_date'=>'التاريخ',
+    'expense_price'=>'السعر',
+    'fixedAsset_no'=>'رقم السند',
+    'fixedAssets'=>'اصول ثابتة',
+    'fixedAsset_date'=>'التاريخ',
+    'fixedAsset_price'=>'التاريخ',
+    'debit_movement'=>'حركة مدينة (عليه)',
+
+    //Credit Movements
+    'otherCredit'=>'ايرادات اخرى',
+    'otherCredit_no'=>'رقم السند',
+    'otherCredit_date'=>'التاريخ',
+    'otherCredit_price'=>'السعر',
+    'sale_date'=>'التاريخ',
+    'total_otherCredit'=>'اجمالي الايرادات الاخرى',
+    'credit_movement'=>'حركات دائنه (له)',
+
+    //Clients Movements
+    'client_balance'=>'ارصدة العملاء',
+    'all_balances'=>'جميع الارصدة',
+    'credit_amounts'=>'المبالغ الدائنة (له)',
+    'debit_amounts'=>'المبالغ المدينة (عليه)',
+    'total_payment_required'=>'اجمالي المبالغ المطلوبه',
+    'search_by_clientNo_or_ClientName'=>'البحث برقم االعميل او اسم العميل',
+    'payment_paid'=>'اجمالي المبالغ المسدده',
+    'amounts_reqiured'=>'المبلغ المطلوب',
+    'amounts_paid'=>'المبلغ المسدد',
+    'last_amount'=>'المبلغ الاخير',
+    'data'=>'البيانات',
+
+    //Clients Balance
+    'user_name'=>'اسم المستخدم',
+    'operation'=>'العملية',
+    'invoice_type'=>'نوع الفاتورة',
+
 
     // dasboard
     'actions' => 'الاكشنات',

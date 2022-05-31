@@ -240,9 +240,67 @@ return [
     'total_items_return_secure' =>'Total Items Return Secure',
 
     //Purchase Report
-    'total_amount_purchase'=>'',
-    'total_items_purchase'=>'',
+    'total_amount_purchase'=>'Total Amount Purchase',
+    'total_items_purchase'=>'Total Items Purchase',
+    'sold_items'=>'Sold Items',
+    'remain_items'=>'Remain Items',
 
+    //Offer Doc Report
+    'all_date' => 'All Data',
+    'total_items_avaliable' => 'Total Offer Items (avaliable)',
+    'total_invoice_offer' => 'Total Offer Invoices',
+    'total_items_sold' => 'Total Offer Items (Sold)',
+
+    //Exchange Bond Report
+    'expenses_Imports_report' => 'Expenses and Import Reports',
+    'expenses_report' => 'Expenses Report',
+    'import_report' => 'Import Report',
+
+    //Debit Movements
+    'total_purchases'=>'Total Purchases',
+    'total_expenses'=>'Total Expenses',
+    'total_fixedAssets'=>'Total Fixed Assets',
+    'totaly'=>'Totaly',
+    'purchase_no'=>'Purchase No',
+    'purchase_date'=>'Purchase Date',
+    'purchase_price'=>'Purchase Price',
+    'expense_no'=>'Expense No',
+    'expense_date'=>'Expense Date',
+    'expense_price'=>'Expense Price',
+    'fixedAsset_no'=>'Fixed Asset No',
+    'fixedAssets'=>'Fixed Assets',
+    'fixedAsset_date'=>'Fixed Asset Date',
+    'fixedAsset_price'=>'Fixed Asset Price',
+    'debit_movement'=>'Debit Movement',
+
+    //Credit Movements
+    'otherCredit'=>'Other Credit',
+    'otherCredit_no'=>'Other Credit No',
+    'otherCredit_date'=>'Other Credit Date',
+    'otherCredit_price'=>'Other Credit Price',
+    'sale_date'=>'Sale Date',
+    'total_otherCredit'=>'Total Other Credit',
+    'credit_movement'=>'Credit Movement',
+
+    //Clients Movements
+    'client_balance'=>'Client Balance',
+    'all_balances'=>'All Balances',
+    'credit_amounts'=>'Credit Amounts',
+    'debit_amounts'=>'Debit Amounts',
+    'total_payment_required'=>'Total Payments Required',
+    'search_by_clientNo_or_ClientName'=>'Search by client ID or client name',
+    'payment_paid'=>'Payment Paid',
+    'amounts_reqiured'=>'Amount Reqiured',
+    'amounts_paid'=>'Amount Paid',
+    'last_amount'=>'Last Amount',
+    'data'=>'Clients Data',
+
+    //Clients Balance
+    'user_name'=>'User Name',
+    'operation'=>'Operation',
+    'invoice_type'=>'Invoice Type',
+    ''=>'',
+    ''=>'',
 
     //dashboard
     'actions' => 'Actions',
@@ -483,6 +541,7 @@ return [
 
 
     //Sales
+    'sale_type' => 'Sale Type',
     'profit'=> 'Profit',
     'add' => 'Add',
     'create' => 'Create',

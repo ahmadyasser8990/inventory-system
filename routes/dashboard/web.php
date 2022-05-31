@@ -119,9 +119,24 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
         //Purchase Reports
         Route::resource('purchase-report', 'PurchaseReportController');
 
+        //Purchase Reports
+        Route::resource('offer-doc-report', 'OfferDocumentReportController');
 
+        //Capital Items Reports
+        Route::resource('capital-items-report', 'CapitalItemsReportController');
 
+        //Exchange Bond Reports
+        Route::resource('exchange-bond-report', 'ExchangeBondReportController');
 
+    //Movements
+        //Debit Movement
+        Route::resource('debit-movement', 'DebitMovementController');
+        //Credit Movement
+        Route::resource('credit-movement', 'CreditMovementController');
+        //Client Balance
+        Route::resource('client-balance', 'ClientBalanceController');
+        //Daily Movement
+        Route::resource('daily-movement', 'DailyMovementController');
     });
 });
 

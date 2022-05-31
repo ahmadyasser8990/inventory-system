@@ -72,7 +72,7 @@
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="{{route('dashboard.sales.index')}}">@lang('site.sale_invoices')</a>
+                                        <a style="background: #8796af94;" href="{{route('dashboard.sales.index')}}">@lang('site.sale_invoices')</a>
                                     </li>
                                     <li>
                                         <a href="{{route('dashboard.return-sales.index')}}"> @lang('site.return_sale') </a>
@@ -183,13 +183,13 @@
                                         <a href="{{route('dashboard.purchase-report.index')}}">@lang('site.purchases_report') </a>
                                     </li>
                                     <li>
-                                        <a href="pie-graphs.html">@lang('site.offer_document_report') </a>
+                                        <a href="{{route('dashboard.offer-doc-report.index')}}">@lang('site.offer_document_report') </a>
                                     </li>
                                     <li>
-                                        <a href="radial-chart.html">@lang('site.capital_items_report')</a>
+                                        <a href="{{route('dashboard.capital-items-report.index')}}">@lang('site.capital_items_report')</a>
                                     </li>
                                     <li>
-                                        <a href="radial-chart2.html">@lang('site.exchange_bond_report')</a>
+                                        <a href="{{route('dashboard.exchange-bond-report.index')}}">@lang('site.exchange_bond_report')</a>
                                     </li>
                                 </ul>
                             </div>
@@ -202,20 +202,19 @@
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="account-settings122.html">@lang('site.daily_movement')</a>
+                                        <a href="{{route('dashboard.debit-movement.index')}}">@lang('site.debit_movement')</a>
                                     </li>
                                     <li>
-                                        <a href="blog12333.html">@lang('site.customer_balances')</a>
+                                        <a href="{{route('dashboard.credit-movement.index')}}">@lang('site.credit_movement')</a>
+
                                     </li>
                                     <li>
-                                        <a href="blog12333323.html">@lang('site.customer_traffic')</a>
+                                        <a href="{{route('dashboard.client-balance.index')}}">@lang('site.client_balance')</a>
                                     </li>
                                     <li>
-                                        <a href="cards1221.html">@lang('site.total_fund_movement')</a>
+                                        <a href="{{route('dashboard.daily-movement.index')}}">@lang('site.daily_movement')</a>
                                     </li>
-                                    <li>
-                                        <a href="datepickers2344.html">@lang('site.detailed_box_movement')</a>
-                                    </li>
+
 
                                 </ul>
                             </div>
@@ -400,10 +399,32 @@
                                         <div class="card-header">
                                             <div class="card-title">@lang('site.invoice_info')</div>
                                             <div class="card-sub-title">
-                                                <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
-                                                    <div class="form-group">
-                                                        <label for="">@lang('site.invoice_date')</label>
-                                                        <input type="text" class="form-control form-control-sm pickdate"  name="invoice_date">
+                                                <div class="row gutters">
+                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                        <div class="form-group">
+                                                            <label for="">@lang('site.invoice_date')</label>
+                                                            <input type="text" class="form-control form-control-sm pickdate"  name="invoice_date">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                        <div class="form-group">
+                                                            <label for="">@lang('site.payment_method')</label>
+                                                            <select name="" id="" class="form-control form-control-sm">
+                                                                <option value="">choose...</option>
+                                                                <option value="1">@lang('site.cash')</option>
+                                                                <option value="2">@lang('site.masterCard')</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                        <div class="form-group">
+                                                            <label for="">@lang('site.sale_type')</label>
+                                                            <select name="" id="" class="form-control form-control-sm">
+                                                                <option value="">choose...</option>
+                                                                <option value="1">Order</option>
+                                                                <option value="2">Cash</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

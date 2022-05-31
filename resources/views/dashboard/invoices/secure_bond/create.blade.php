@@ -183,13 +183,13 @@
                                         <a href="{{route('dashboard.purchase-report.index')}}">@lang('site.purchases_report') </a>
                                     </li>
                                     <li>
-                                        <a href="pie-graphs.html">@lang('site.offer_document_report') </a>
+                                        <a href="{{route('dashboard.offer-doc-report.index')}}">@lang('site.offer_document_report') </a>
                                     </li>
                                     <li>
-                                        <a href="radial-chart.html">@lang('site.capital_items_report')</a>
+                                        <a href="{{route('dashboard.capital-items-report.index')}}">@lang('site.capital_items_report')</a>
                                     </li>
                                     <li>
-                                        <a href="radial-chart2.html">@lang('site.exchange_bond_report')</a>
+                                        <a href="{{route('dashboard.exchange-bond-report.index')}}">@lang('site.exchange_bond_report')</a>
                                     </li>
                                 </ul>
                             </div>
@@ -202,20 +202,19 @@
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="account-settings122.html">@lang('site.daily_movement')</a>
+                                        <a href="{{route('dashboard.debit-movement.index')}}">@lang('site.debit_movement')</a>
                                     </li>
                                     <li>
-                                        <a href="blog12333.html">@lang('site.customer_balances')</a>
+                                        <a href="{{route('dashboard.credit-movement.index')}}">@lang('site.credit_movement')</a>
+
                                     </li>
                                     <li>
-                                        <a href="blog12333323.html">@lang('site.customer_traffic')</a>
+                                        <a href="{{route('dashboard.client-balance.index')}}">@lang('site.client_balance')</a>
                                     </li>
                                     <li>
-                                        <a href="cards1221.html">@lang('site.total_fund_movement')</a>
+                                        <a href="{{route('dashboard.daily-movement.index')}}">@lang('site.daily_movement')</a>
                                     </li>
-                                    <li>
-                                        <a href="datepickers2344.html">@lang('site.detailed_box_movement')</a>
-                                    </li>
+
 
                                 </ul>
                             </div>
