@@ -47,11 +47,14 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
         Route::post('/reload/products','SaleController@showProducts')->name('show.products');
         Route::post('/update/color-purity','SaleController@updateColorAndPurity')->name('update.color_purity');
         Route::post('/summary/invoice','SaleController@summaryInvoice')->name('summary.invoice');
+
         //Return Sales
         Route::resource('return-sales', 'ReturnSaleController');
 
         //Purchase Invoices
         Route::resource('purchase', 'PurchaseController');
+        //Purchase Invoices
+        Route::resource('return-purchase', 'ReturnPurchaseController');
 
         //Secure Bond Invoices
         Route::resource('secure-bonds', 'SecureBondController');

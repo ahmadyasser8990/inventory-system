@@ -80,7 +80,7 @@
                                         <a href="{{route('dashboard.purchase.index')}}">@lang('site.purchase_bill')</a>
                                     </li>
                                     <li>
-                                        <a href="return-purchase.html"> @lang('site.return_purchase') </a>
+                                        <a href="{{route('dashboard.return-purchase.index')}}"> @lang('site.return_purchase') </a>
                                     </li>
                                     <li>
                                         <a href="{{route('dashboard.secure-bonds.index')}}">@lang('site.security_bond') </a>

@@ -13,7 +13,6 @@
 
 @endsection
 @section('content')
-
     <div class="page-wrapper pinned">
         <div id="body"></div>
         <!-- Sidebar wrapper start -->
@@ -72,15 +71,15 @@
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a style="background: #8796af94;" href="{{route('dashboard.sales.index')}}">@lang('site.sale_invoices')</a>
+                                        <a href="{{route('dashboard.sales.index')}}">@lang('site.sale_invoices')</a>
                                     </li>
                                     <li>
                                         <a href="{{route('dashboard.return-sales.index')}}"> @lang('site.return_sale') </a>
                                     </li>
-                                    <li>
+                                    <li >
                                         <a href="{{route('dashboard.purchase.index')}}">@lang('site.purchase_bill')</a>
                                     </li>
-                                    <li>
+                                    <li class="active">
                                         <a href="{{route('dashboard.return-purchase.index')}}"> @lang('site.return_purchase') </a>
                                     </li>
                                     <li>
@@ -229,8 +228,8 @@
         </nav>
         <!-- Sidebar wrapper end -->
 
-         <!-- Page content start  -->
-         <div class="page-content">
+        <!-- Page content start  -->
+        <div class="page-content">
 
             <!-- Header start -->
             <header class="header">
@@ -372,13 +371,12 @@
                 </div>
             </header>
             <!-- Header end -->
-
             <!-- Page header start -->
             <div class="page-header">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}">@lang('site.dashboard')</a></li>
-                    <li class="breadcrumb-item"><a href="{{route('dashboard.sales.index')}}">@lang('site.sale_invoices')</a></li>
-                    <li class="breadcrumb-item active">@lang('site.sale_bill')</li>
+                    <li class="breadcrumb-item"><a href="{{route('dashboard.return-purchase.index')}}">@lang('site.return_purchase')</a></li>
+                    <li class="breadcrumb-item active">@lang('site.new_returnPurchase')</li>
                 </ol>
             </div>
             <!-- Page header end -->
@@ -389,9 +387,9 @@
                 <div class="fixedBodyScroll">
                     <!-- Content wrapper start -->
                     <div class="content-wrapper">
-                        <form action="{{route('dashboard.sales.store')}}" method="POST">
+                        {{-- <form action="{{route('dashboard.sales.store')}}" method="POST">
                             {{ csrf_field() }}
-                            {{ method_field('post')}}
+                            {{ method_field('post')}} --}}
 
                             <div class="row gutters">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -408,40 +406,14 @@
                                                     </div>
                                                     <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
                                                         <div class="form-group">
-                                                            <label for="">@lang('site.payment_method')</label>
-                                                            <select name="" id="" class="form-control form-control-sm">
-                                                                <option value="">choose...</option>
-                                                                <option value="1">@lang('site.cash')</option>
-                                                                <option value="2">@lang('site.masterCard')</option>
-                                                            </select>
+                                                            <label for="">@lang('site.purchase_bill')</label>
+                                                            <input class="form-control form-control-sm"  type="number" value="" placeholder="@lang('site.purchase_bill')">
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
                                                         <div class="form-group">
-                                                            <label for="">@lang('site.sale_type')</label>
-                                                            <select name="" id="" class="form-control form-control-sm">
-                                                                <option value="">choose...</option>
-                                                                <option value="1">Order</option>
-                                                                <option value="2">Cash</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
-                                                        <div class="form-group">
-                                                            <label for="">@lang('site.client_name')</label>
-                                                            <input class="form-control form-control-sm name" name="client_name"  type="text" value="" placeholder="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
-                                                        <div class="form-group">
-                                                            <label for="">@lang('site.phone_no')</label>
-                                                            <input class="form-control form-control-sm phone" name="phone" type="text"  placeholder="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
-                                                        <div class="form-group">
-                                                            <label for="">@lang('site.tax_no')</label>
-                                                            <input class="form-control form-control-sm tax_no" name="tax_no" type="text"  placeholder="">
+                                                            <label for="">@lang('site.purchase_type')</label>
+                                                            <input class="form-control form-control-sm"  type="text" value="" placeholder="@lang('site.purchase_type')">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -456,81 +428,39 @@
                                                         <input class="form-control form-control-sm" type="text" readonly placeholder="120">
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
-                                                    <div class="form-group">
-                                                        <label for="">@lang('site.client_no')</label>
-                                                        <select name="client_no" type="text" id="client_no" class="form-control form-control-sm selectpicker client_no"  data-live-search="true">
-                                                            @foreach ($clients as $client)
-                                                                <option
-                                                                    data-tax_no="{{ $client->tax_no }}"
-                                                                    data-phone="{{ $client->phone }}"
-                                                                    data-name="{{ $client->name }}"
-                                                                    value="{{ $client->id }}">
-                                                                    {{$client->name}} -  {{$client->id}}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
                                                 <div class="col-xl-4 col-lg col-md-4 col-sm-4 col-12">
                                                     <div class="form-group">
-                                                        <label for="">@lang('site.client_name')</label>
-                                                        <input class="form-control form-control-sm name" name="client_name" readonly type="text" value="" placeholder="">
+                                                        <label for="">@lang('site.supplier_name')</label>
+                                                        <input class="form-control form-control-sm"  type="text" value="" placeholder="">
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
                                                     <div class="form-group">
                                                         <label for="">@lang('site.phone_no')</label>
-                                                        <input class="form-control form-control-sm phone" name="phone" type="text" readonly placeholder="">
+                                                        <input class="form-control form-control-sm"  type="text"  placeholder="">
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
                                                     <div class="form-group">
                                                         <label for="">@lang('site.tax_no')</label>
-                                                        <input class="form-control form-control-sm tax_no" name="tax_no" type="text" readonly placeholder="">
+                                                        <input class="form-control form-control-sm " type="text"  placeholder="">
                                                     </div>
                                                 </div>
                                             </div>
-
                                             <div class="row gutters">
                                                 <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
                                                     <div class="form-group">
                                                         <label for="">@lang('site.item_no')</label>
                                                         <select name="get_ids"  type="number" id="get_ids" class="form-control form-control-sm selectpicker get_ids"  data-live-search="true">
                                                             <option value=""></option>
-                                                            @foreach ($products as $product)
-                                                                <option
-                                                                    data-id="{{$product->id}}"
-                                                                    data-category_id="{{ $product->category->name }}"
-                                                                    data-supplier_id="{{ $product->supplier->name }}"
-                                                                    data-extra_no="{{ $product->extra_no }}"
-                                                                    data-item_type="{{ $product->item_type }}"
-                                                                    data-gold="{{ $product->gold }}"
-                                                                    data-dimaond_1="{{ $product->dimaond_1 }}"
-                                                                    data-dimaond_2="{{ $product->dimaond_2 }}"
-                                                                    data-dimaond_3="{{ $product->dimaond_3 }}"
-                                                                    data-dimaond_4="{{ $product->dimaond_4 }}"
-                                                                    data-dimaond_5="{{ $product->dimaond_5 }}"
-                                                                    data-baguette="{{ $product->baguette }}"
-                                                                    data-marquis="{{ $product->marquis }}"
-                                                                    data-big_stone="{{ $product->big_stone }}"
-                                                                    data-princess="{{ $product->princess }}"
-                                                                    data-colored="{{ $product->colored }}"
-                                                                    data-color="{{ $product->color }}"
-                                                                    data-purity="{{ $product->purity }}"
-                                                                    data-description="{{ $product->description }}"
-                                                                    data-purchase_price="{{ $product->purchase_price }}"
-                                                                    data-sale_price="{{ $product->sale_price }}"
-                                                                    data-status="{{ $product->status }}"
-                                                                    value="{{ $product->id }}">
-                                                                    {{$product->id}} -  G.W {{$product->gold}} - {{$product->category->name}}
-                                                                </option>
-                                                            @endforeach
+                                                            <option value="">1001 - Ring</option>
+                                                            <option value="">1002 - Ring</option>
+                                                            <option value="">1003 - Ring</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
-
+                                            <hr>
                                             <div class="row gutters">
                                                 <div class="table-responsive">
                                                     <table class="table table-bordered table-light table-sm" id="invoice_details">
@@ -540,48 +470,49 @@
                                                                 <th>@lang('site.select')</th>
                                                                 <th>@lang('site.item_no')</th>
                                                                 <th>@lang('site.extra_no')</th>
-                                                                <th>@lang('site.description')</th>
+                                                                <th>@lang('site.design_no')</th>
                                                                 <th>@lang('site.category_type')</th>
-                                                                <th>@lang('site.purity')</th>
-                                                                <th>@lang('site.color')</th>
+                                                                <th>@lang('site.description')</th>
                                                                 <th>@lang('site.gold')</th>
-                                                                <th>@lang('site.dimaond_1')</th>
-                                                                <th>@lang('site.dimaond_2')</th>
-                                                                <th>@lang('site.dimaond_3')</th>
-                                                                <th>@lang('site.dimaond_4')</th>
-                                                                <th>@lang('site.dimaond_5')</th>
+                                                                <th>@lang('site.dimaond')</th>
                                                                 <th>@lang('site.baguette')</th>
-                                                                <th>@lang('site.princess')</th>
-                                                                <th>@lang('site.marquis')</th>
-                                                                <th>@lang('site.big_stone')</th>
                                                                 <th>@lang('site.colored')</th>
                                                                 <!-- <th> الماس 4 </th> -->
-                                                                <th>@lang('site.sale_price')</th>
+                                                                <th>@lang('site.cost')</th>
+                                                                <th>@lang('site.purchase_bill')</th>
                                                                 <th>@lang('site.action')</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr class="cloning_row" id="0">
-
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td><input type="checkbox"></td>
+                                                                <td>1001</td>
+                                                                <td>54822100</td>
+                                                                <td>btf01011sdf</td>
+                                                                <td>Ring</td>
+                                                                <td>Ring gold and diamond</td>
+                                                                <td>2.03</td>
+                                                                <td>0.23</td>
+                                                                <td>0.12</td>
+                                                                <td>0.00</td>
+                                                                <td>1500</td>
+                                                                <td>Purchase invoice<span>3</span></td>
+                                                                <td>
+                                                                    <a class="btn btn-sm btn-danger"><i class="icon-remove_circle"></i></a>
+                                                                </td>
                                                             </tr>
                                                         </tbody>
 
                                                         <tfoot>
                                                             <tr>
                                                                 <td colspan="2">Total</td>
-                                                                <td colspan="6"><label for="" class="text-bold text-danger count_item">0</label></td>
-                                                                <td><label for="" class="text-bold text-danger total_gold">0.00</label></td>
-                                                                <td><label for="" class="text-bold text-danger total_dimaond_1">0.00</label></td>
-                                                                <td><label for="" class="text-bold text-danger total_dimaond_2">0.00</label></td>
-                                                                <td><label for="" class="text-bold text-danger total_dimaond_3">0.00</label></td>
-                                                                <td><label for="" class="text-bold text-danger total_dimaond_4">0.00</label></td>
-                                                                <td><label for="" class="text-bold text-danger total_dimaond_5">0.00</label></td>
-                                                                <td><label for="" class="text-bold text-danger total_baguette">0.00</label></td>
-                                                                <td><label for="" class="text-bold text-danger total_princess">0.00</label></td>
-                                                                <td><label for="" class="text-bold text-danger total_marquis">0.00</label></td>
-                                                                <td><label for="" class="text-bold text-danger total_bigStone">0.00</label></td>
-                                                                <td><label for="" class="text-bold text-danger total_colored">0.00</label></td>
-                                                                <td><label for="" class="text-bold text-danger total_price">0.00</label></td>
+                                                                <td colspan="5"><label for="" class="text-bold text-danger count_item">1</label></td>
+                                                                <td><label for="" class="text-bold text-danger ">2.03</label></td>
+                                                                <td><label for="" class="text-bold text-danger ">0.23</label></td>
+                                                                <td><label for="" class="text-bold text-danger ">0.12</label></td>
+                                                                <td><label for="" class="text-bold text-danger ">0.00</label></td>
+                                                                <td><label for="" class="text-bold text-danger ">1500</label></td>
                                                             </tr>
                                                         </tfoot>
                                                     </table>
@@ -625,390 +556,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="row gutters">
-                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                                <div class="form-inline">
-                                                                    <!-- Checkbox item_include_tax -->
-                                                                    <div class="form-check custom-control custom-radio mb-2 mr-sm-2">
-                                                                        <input type="checkbox" class="custom-control-input" id="checkbox_item_include_tax">
-                                                                        <label class="custom-control-label" for="checkbox_item_include_tax">@lang('site.item_include_tax')</label>
-                                                                    </div>
-                                                                    <!-- Checkbox tax -->
-                                                                    <div class="form-check custom-control custom-radio mb-2 mr-sm-2">
-                                                                        <input type="checkbox" class="custom-control-input" id="checkbox_tax">
-                                                                        <label class="custom-control-label" for="checkbox_tax">@lang('site.tax')</label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row gutters">
                                                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
-                                                                <div class="form-group">
-                                                                    <label>@lang('site.total_price')</label>
-                                                                    <input type="number" step="0.01" name="sub_total" id="sub_total" readonly class="form-control sub_total">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
-                                                                <div class="form-group">
-                                                                    <label for="">@lang('site.total_descount')</label>
-                                                                    <div class="input-group">
-                                                                        <div class="input-group-prepend">
-                                                                            <select name="discount_type" id="discount_type" class="form-control discount_type">
-                                                                                <option value="fixed">SAR</option>
-                                                                                <option value="percentage">%</option>
-                                                                            </select>
-                                                                        </div>
-                                                                        <input type="number" step="0.01"  name="discount_value" id="discount_value" value="0.00" class="form-control discount_value" placeholder="Number">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                                                                <div class="form-group">
-                                                                    <label>@lang('site.tax_amount')</label>
-                                                                    <input type="number" name="vat_value" id="vat_value" readonly class="form-control vat_value ">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                                                                 <div class="form-group">
                                                                     <label>@lang('site.final_total')</label>
                                                                     <input type="number" step="0.01" name="final_total" id="final_total" readonly value="" class="form-control final_total ">
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="accordion-container">
-                                            <div class="accordion-header" id="withIconTwo">
-                                                <a  href="" class="collapsed" data-toggle="collapse" data-target="#collapseWithIconTwo" aria-expanded="false" aria-controls="collapseWithIconTwo">
-                                                    <i class="icon icon-tag1"></i>Sale Price Auto show
-                                                </a>
-                                            </div>
-
-                                            <div id="collapseWithIconTwo" class="collapse" aria-labelledby="withIconTwo" data-parent="#withIconsAccordion">
-                                                <div class="accordion-body">
-                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                        <!-- button salePrice_byWeight -->
-                                                        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#weight">@lang('site.salePrice_byWeight')</button>
-                                                        <div id="weight" class="collapse">
-                                                            <div class="card h-100" >
-                                                                <div class="card-header">
-                                                                    <div class="card-title">Wieghts</div>
-                                                                </div>
-                                                                <div class="card-body" >
-                                                                    <div class="row gutters">
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.gold_price')</label>
-                                                                                <input type="number" step="0.01" name="gold_price" placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.gold_total')</label>
-                                                                                <input type="number" step="0.01" name="gold_total" readonly placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.dimaond1_price')</label>
-                                                                                <input type="number" step="0.01" name="dimaond1_price" placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.dimaond1_total')</label>
-                                                                                <input type="number" step="0.01" name="dimaond1_total" readonly placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.baguette_price')</label>
-                                                                                <input type="number" step="0.01" name="baguette_price" placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.baguette_total')</label>
-                                                                                <input type="number" step="0.01" name="baguette_total" readonly placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.marquis_price')</label>
-                                                                                <input type="number" step="0.01" name="marquis_price" placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.marquis_total')</label>
-                                                                                <input type="number" step="0.01" name="marquis_total" readonly placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.princess_price')</label>
-                                                                                <input type="number" step="0.01" name="princess_price" placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.princess_total')</label>
-                                                                                <input type="number" step="0.01" name="princess_total" readonly placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.colored_price')</label>
-                                                                                <input type="number" step="0.01" name="colored_price" placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.colored_total')</label>
-                                                                                <input type="number" step="0.01" name="colored_total" readonly placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row gutters">
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.big_stone_price')</label>
-                                                                                <input type="number" step="0.01" name="big_stone_price" placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.big_stone_total')</label>
-                                                                                <input type="number" step="0.01" name="big_stone_total" readonly placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.dimaond2_price')</label>
-                                                                                <input type="number" step="0.01" name="dimaond2_price" placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.dimaond2_total')</label>
-                                                                                <input type="number" step="0.01" name="dimaond2_total" readonly placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.dimaond3_price')</label>
-                                                                                <input type="number" step="0.01" name="dimaond3_price" placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.dimaond3_total')</label>
-                                                                                <input type="number" step="0.01" name="dimaond3_total" readonly placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.dimaond4_price')</label>
-                                                                                <input type="number" step="0.01" name="dimaond4_price" placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.dimaond4_total')</label>
-                                                                                <input type="number" step="0.01" name="dimaond4_total" readonly placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.dimaond5_price')</label>
-                                                                                <input type="number" step="0.01" name="dimaond5_price" placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.dimaond5_total')</label>
-                                                                                <input type="number" step="0.01" name="dimaond5_total" readonly placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="card-footer">
-                                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-
-                                                                        <div class="text-right">
-                                                                            <button type="button" id="" name="edit" class="btn btn-success">Edit to All Items</button>
-                                                                            <button type="button" id="" class="btn btn-danger">Edit to the selected Item Only</button>
-
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- button sale_price_byCost -->
-                                                        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#cost">@lang('site.sale_price_byCost')</button>
-                                                        <div id="cost" class="collapse">
-                                                            <div class="card h-100">
-                                                                <div class="card-header">
-                                                                    <div class="card-title">Sale Price by Cost</div>
-                                                                </div>
-                                                                <div class="card-body">
-                                                                    <div class="row gutters">
-                                                                        <div class="col-xl-4 col-lglg-4 col-md-4 col-sm-4 col-12">
-                                                                            <div class="form-group">
-                                                                                <div class="input-group">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <select class="form-control">
-                                                                                            <option value="">Select</option>
-                                                                                            <option value="fixed">SAR</option>
-                                                                                            <option value="percentage">%</option>
-                                                                                            <option value="multiple">Multiple</option>
-                                                                                        </select>
-
-                                                                                    </div>
-                                                                                    <input type="number"  class="form-control " placeholder="Number">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-
-                                                                        <div class="text-right">
-                                                                            <button type="button" id="edit_all_products_purchase" name="edit" class="btn btn-success">Edit to All Items</button>
-                                                                            <button type="button" id="edit_selected_products_purchase" class="btn btn-danger">Edit to the selected Item Only</button>
-
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <!-- button salePrice_manualy -->
-                                                        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#manualy">@lang('site.salePrice_manualy')</button>
-                                                        <div id="manualy" class="collapse">
-                                                            <div class="card h-100">
-                                                                <div class="card-header">
-                                                                    <div class="card-title">Sale Price Manualy</div>
-                                                                </div>
-                                                                <div class="card-body">
-                                                                    <div class="row gutters">
-                                                                        <div class="col-xl-4 col-lglg-4 col-md-4 col-sm-4 col-12">
-                                                                            <div class="form-group">
-                                                                                <div class="input-group">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <select class="form-control">
-                                                                                            <option value="">Select</option>
-                                                                                            <option value="fixed">SAR</option>
-                                                                                        </select>
-
-                                                                                    </div>
-                                                                                    <input type="number"  class="form-control " placeholder="Number">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-
-                                                                        <div class="text-right">
-                                                                            <button type="button" id="edit_all_products_purchase" name="edit" class="btn btn-success">Edit to All Items</button>
-                                                                            <button type="button" id="edit_selected_products_purchase" class="btn btn-danger">Edit to the selected Item Only</button>
-
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-container">
-                                            <div class="accordion-header" id="withIconThree">
-                                                <a  href="" class="collapsed" data-toggle="collapse" data-target="#collapseWithIconThree" aria-expanded="false" aria-controls="collapseWithIconThree">
-                                                    (<span class="text-danger">Delete this part</span>)<i class="icon icon-triangle"></i>Account Method price By Sale Price
-                                                </a>
-                                            </div>
-                                            <div id="collapseWithIconThree" class="collapse" aria-labelledby="withIconThree" data-parent="#withIconsAccordion">
-                                                <div class="accordion-body">
-
-                                                    <div class="card h-100">
-                                                        <div class="card-header">
-                                                            <div class="card-title">Sale Prices</div>
-                                                        </div>
-                                                        <div class="card-body">
-                                                            <div class="row gutters">
-                                                                <div class="col-xl-4 col-lglg-4 col-md-4 col-sm-4 col-12">
-                                                                    <div class="form-group">
-                                                                        <div class="input-group">
-                                                                            <div class="input-group-prepend">
-                                                                                <select name="edit_salePrice" id="edit_salePrice" class="form-control edit_salePrice">
-                                                                                    <option value="">Select</option>
-                                                                                    <option value="fixed">SAR</option>
-                                                                                    <option value="percentage">%</option>
-                                                                                </select>
-
-                                                                            </div>
-                                                                            <input type="number" name="sale_value" id="sale_value" class="form-control sale_value" placeholder="Number">
-                                                                        </div>
-                                                                        <div id="edit_salePrice_error" class="text-danger text-left mt-2"></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-
-                                                                <div class="text-right">
-                                                                    <button type="button" id="edit_all_products_purchase" name="edit" class="btn btn-success">Edit to All Items</button>
-                                                                    <button type="button" id="edit_selected_products_purchase" class="btn btn-danger">Edit to the selected Item Only</button>
-
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-container">
-                                            <div class="accordion-header" id="withIconFour">
-                                                <a  href="" class="collapsed" data-toggle="collapse" data-target="#collapseWithIconFour" aria-expanded="false" aria-controls="collapseWithIconFour">
-                                                    <i class="icon icon-triangle"></i>Change Color and Purity
-                                                </a>
-                                            </div>
-                                            <div id="collapseWithIconFour" class="collapse" aria-labelledby="withIconFour" data-parent="#withIconsAccordion">
-                                                <div class="accordion-body">
-                                                    <div class="card h-100">
-                                                        <div class="card-header">
-                                                            <div class="card-title">Change Purity and Color</div>
-                                                        </div>
-                                                        <div class="card-body">
-                                                            <div class="row gutters">
-                                                                <div class="col-xl-4 col-lglg-4 col-md-4 col-sm-4    col-12">
-                                                                    <div class="form-group">
-                                                                        <label for=""> @lang('site.color') </label>
-                                                                        <input type="text" name="color" class="form-control" id="color">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xl-4 col-lglg-4 col-md-4 col-sm-4 col-12">
-                                                                    <div class="form-group">
-                                                                        <label for=""> @lang('site.purity') </label>
-                                                                        <input type="text" name="purity" class="form-control" id="purity">
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                            <div id="edit_color_purity" class="text-danger text-left mt-2"></div>
-                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-
-                                                                <div class="text-right">
-                                                                    <button type="button" id="edit_all_items_purity" name="edit" class="btn btn-success">Edit to All Items</button>
-                                                                    <button type="button" id="edit_selected_purity" class="btn btn-danger">Edit to the selected Item Only</button>
-
-                                                                </div>
-
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1020,30 +572,18 @@
                                 <!-- Row end -->
                             </div>
                             <div class="row gutters pt-2">
-                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
-
-                                    <div class="form-group">
-                                        <label for="">@lang('site.user_name')</label>
-                                        <select name="" id="" class="form-control form-control-sm">
-                                            <option value="">choose...</option>
-                                            <option value="1">Ahmed</option>
-                                            <option value="2">Yaser</option>
-                                        </select>
-                                    </div>
-
-                                </div>
                                 {{-- important --}}
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
                                     <div class="text-right">
-                                        <a href="{{route('dashboard.sales.index')}}" class="btn btn-dark">@lang('site.close')</a>
+                                        <a href="{{route('dashboard.purchase.index')}}" class="btn btn-dark">@lang('site.close')</a>
                                         {{-- <a href="#" class="btn btn-danger">@lang('site.draft_invoice')</a> --}}
                                         <button type="submit" id="make_invoice" class="btn btn-success disabled">@lang('site.invoice')</button>
                                     </div>
 
                                 </div>
                             </div>
-                        </form>
+                        {{-- </form> --}}
                     </div>
                 </div>
             </div>
@@ -1052,20 +592,19 @@
         </div>
         <!-- Page content end -->
     </div>
-
 @endsection
+
 
 @section('scripts')
 
-    <!-- Bootstrap Select JS -->
-    <script src="{{ asset('dashboard_files/vendor/bs-select/bs-select.min.js')}}"></script>
-    <script src="{{ asset('dashboard_files/js/pickadate/picker.js') }}"></script>
-    <script src="{{ asset('dashboard_files/js/pickadate/picker.date.js') }}"></script>
+<!-- Bootstrap Select JS -->
+<script src="{{ asset('dashboard_files/vendor/bs-select/bs-select.min.js')}}"></script>
+<script src="{{ asset('dashboard_files/js/pickadate/picker.js') }}"></script>
+<script src="{{ asset('dashboard_files/js/pickadate/picker.date.js') }}"></script>
 
-    @if(config('app.locale') == 'ar')
-        <script src="{{ asset('dashboard_files/js/pickadate/ar.js') }}"></script>
-    @endif
-
+@if(config('app.locale') == 'ar')
+    <script src="{{ asset('dashboard_files/js/pickadate/ar.js') }}"></script>
+@endif
     <script>
         $(document).ready(function(){
 

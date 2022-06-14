@@ -4,8 +4,6 @@
 @section('content')
 
     <div class="page-wrapper">
-
-
         <!-- Sidebar wrapper start -->
         <nav id="sidebar" class="sidebar-wrapper">
             <!-- Sidebar brand start  -->
@@ -26,7 +24,7 @@
                 <div class="sidebar-menu">
                     <ul>
                         <li class="header-menu">@lang('site.general')</li>
-                        <li class="sidebar-dropdown ">
+                        <li class="sidebar-dropdown">
                             <a href="#">
                                 <i class="icon-devices_other"></i>
                                 <span class="menu-text">@lang('site.dashboard')</span>
@@ -34,7 +32,7 @@
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="{{route('dashboard.index')}}">@lang('site.main_page') </a>
+                                        <a href="{{route('dashboard.index')}}">@lang('site.dashboard') </a>
                                     </li>
                                     <li>
                                         <a href="{{route('dashboard.salesSummary.index')}}">@lang('site.sales_summary')</a>
@@ -48,13 +46,13 @@
                                 <span class="menu-text">@lang('site.messages')</span>
                             </a>
                         </li>
-                        <li>
+                        <li >
                             <a href="{{route('dashboard.clients.index')}}">
                                 <i class="icon-documents"></i>
                                 <span class="menu-text">@lang('site.folders')</span>
                             </a>
                         </li>
-                        <li class="sidebar-dropdown">
+                        <li class="sidebar-dropdown active">
                             <a href="#">
                                 <i class="icon-dollar-sign"></i>
                                 <span class="menu-text">@lang('site.bills')</span>
@@ -70,7 +68,7 @@
                                     <li>
                                         <a href="{{route('dashboard.purchase.index')}}">@lang('site.purchase_bill')</a>
                                     </li>
-                                    <li>
+                                    <li class="active">
                                         <a href="{{route('dashboard.return-purchase.index')}}"> @lang('site.return_purchase') </a>
                                     </li>
                                     <li>
@@ -141,7 +139,7 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="sidebar-dropdown active">
+                        <li class="sidebar-dropdown">
                             <a href="#">
                                 <i class="icon-line-graph"></i>
                                 <span class="menu-text">@lang('site.reports')</span>
@@ -151,14 +149,14 @@
                                     <li>
                                         <a href="{{route('dashboard.items-report.index')}}">@lang('site.items_report')</a>
                                     </li>
-                                    <li >
-                                        <a  href="{{route('dashboard.customer-statment.index')}}">@lang('site.Customer_account_statement')</a>
+                                    <li>
+                                        <a href="{{route('dashboard.customer-statment.index')}}">@lang('site.Customer_account_statement')</a>
                                     </li>
                                     <li>
-                                        <a  href="{{route('dashboard.delegates-commissions-report.index')}}">@lang('site.delegates_commissions_report')</a>
+                                        <a href="{{route('dashboard.delegates-commissions-report.index')}}">@lang('site.delegates_commissions_report')</a>
                                     </li>
-                                    <li class="active" >
-                                        <a style="background: #8796af94;" href="{{route('dashboard.sales-report.index')}}">@lang('site.sales_report')</a>
+                                    <li>
+                                        <a href="{{route('dashboard.sales-report.index')}}">@lang('site.sales_report')</a>
                                     </li>
                                     <li>
                                         <a href="{{route('dashboard.return-sale-report.index')}}">@lang('site.sales_return_report') </a>
@@ -218,7 +216,6 @@
             <!-- Sidebar content end -->
         </nav>
         <!-- Sidebar wrapper end -->
-
         <!-- Page content start  -->
         <div class="page-content">
 
@@ -362,249 +359,78 @@
                 </div>
             </header>
             <!-- Header end -->
-
             <!-- Page header start -->
             <div class="page-header">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item">@lang('site.dashboard')</li>
-                    <li class="breadcrumb-item active">@lang('site.sales_report')</li>
+                    <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}">@lang('site.dashboard')</a></li>
+                    <li class="breadcrumb-item active">@lang('site.return_purchase')</li>
                 </ol>
             </div>
             <!-- Page header end -->
-
             <!-- Main container start -->
             <div class="main-container fixed-height">
-
                 <!-- Setting vertical scroll start -->
                 <div class="fixedBodyScroll">
 
                     <!-- Content wrapper start -->
                     <div class="content-wrapper">
-
-                        <!-- Row start -->
-                        <div class="row gutters">
-                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-6">
-                                <div class="info-tiles">
-                                    <div class="info-icon">
-                                        <i class="icon-dns"></i>
-                                    </div>
-                                    <div class="stats-detail">
-                                        <h3>14500 ريال</h3>
-                                        <p>@lang('site.total_payments')</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-6">
-                                <div class="info-tiles">
-                                    <div class="info-icon secondary">
-                                        <i class="icon-dns"></i>
-                                    </div>
-                                    <div class="stats-detail">
-                                        <h3>14500 ريال</h3>
-                                        <p>@lang('site.total_taxNo')</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-6">
-                                <div class="info-tiles">
-                                    <div class="info-icon">
-                                        <i class="icon-dns"></i>
-                                    </div>
-                                    <div class="stats-detail">
-                                        <h3>14500 ريال</h3>
-                                        <p>@lang('site.total_invoices')</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-6">
-                                <div class="info-tiles">
-                                    <div class="info-icon secondary">
-                                        <i class="icon-dns"></i>
-                                    </div>
-                                    <div class="stats-detail">
-                                        <h3>14500 ريال</h3>
-                                        <p>@lang('site.total_clients')</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-6">
-                                <div class="info-tiles">
-                                    <div class="info-icon">
-                                        <i class="icon-dns"></i>
-                                    </div>
-                                    <div class="stats-detail">
-                                        <h3>14500 ريال</h3>
-                                        <p>@lang('site.items_sell')</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-6">
-                                <div class="info-tiles">
-                                    <div class="info-icon secondary">
-                                        <i class="icon-dns"></i>
-                                    </div>
-                                    <div class="stats-detail">
-                                        <h3>14500 ريال</h3>
-                                        <p>@lang('site.total_profit')</p>
-                                    </div>
+                        <div class="row grutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="text-left mb-3">
+                                    <!-- Button add new sale -->
+                                    <a href="{{route('dashboard.return-purchase.create')}}" class="btn btn-primary">@lang('site.new_returnPurchase')</a>
                                 </div>
                             </div>
                         </div>
-                        <!-- Row ends -->
-                        <!-- Row starts -->
-                        <div class="row gutters">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <div class="card-title">@lang('site.sales_report')</div>
-                                    </div>
-                                    <hr>
-                                    <div class="card-body pt-0" >
-                                        <div class="raw">
-                                            <p>@lang('site.reports')</p>
-                                        </div>
-
-                                        <div class="raw">
-                                            <!-- Checkbox general report -->
-                                            <div class="form-inline">
-                                                <div class="form-check custom-control custom-radio mb-2 mr-sm-2">
-                                                    <input type="checkbox" class="custom-control-input" id="checkbox_general_report">
-                                                    <label class="custom-control-label" for="checkbox_general_report">@lang('site.general_report')</label>
-                                                </div>
-
-                                                <!-- Checkbox private_report -->
-                                                <div class="form-check custom-control custom-radio mb-2 mr-sm-2">
-                                                    <input type="checkbox" class="custom-control-input" id="checkbox_private_report">
-                                                    <label class="custom-control-label" for="checkbox_private_report">@lang('site.private_report')</label>
-                                                </div>
-                                                <input type="number" class="form-control mb-2 mr-sm-2" id="" placeholder="@lang('site.client_no')">
-                                                <input type="number" class="form-control mb-2 mr-sm-2" id="" placeholder="@lang('site.client_name')">
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="raw">
-
-                                            <div class="form-inline">
-                                                <!-- Checkbox statment_with_detials -->
-                                                <div class="form-check custom-control custom-radio mb-2 mr-sm-2">
-                                                    <input type="checkbox" class="custom-control-input" id="checkbox_statment_with_detials">
-                                                    <label class="custom-control-label" for="checkbox_statment_with_detials">@lang('site.statment_with_detials')</label>
-                                                </div>
-                                                <!-- Checkbox general_statment -->
-                                                <div class="form-check custom-control custom-radio mb-2 mr-sm-2">
-                                                    <input type="checkbox" class="custom-control-input" id="checkbox_general_statment">
-                                                    <label class="custom-control-label" for="checkbox_general_statment">@lang('site.general_statment')</label>
-                                                </div>
-                                                <!-- Checkbox statment_with_tax -->
-                                                <div class="form-check custom-control custom-radio mb-2 mr-sm-2">
-                                                    <input type="checkbox" class="custom-control-input" id="checkbox_statment_with_tax">
-                                                    <label class="custom-control-label" for="checkbox_statment_with_tax">@lang('site.statment_with_tax')</label>
-                                                </div>
-                                                <!-- Checkbox general_statment_with_items -->
-                                                <div class="form-check custom-control custom-radio mb-2 mr-sm-2">
-                                                    <input type="checkbox" class="custom-control-input" id="checkbox_general_statment_with_items">
-                                                    <label class="custom-control-label" for="checkbox_general_statment_with_items">@lang('site.general_statment_with_items')</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="raw">
-                                            <p>@lang('site.choose_invoices')</p>
-                                        </div>
-
-                                        <!-- Checkbox invoice_no -->
-                                        <div class="form-inline">
-                                            <div class="form-check custom-control custom-radio mb-2 mr-sm-2">
-                                                <input class="custom-control-input" type="checkbox" id="checkbox_invoice_no">
-                                                <label class="custom-control-label" for="checkbox_invoice_no">
-                                                     @lang('site.invoice_no')
-                                                </label>
-                                                <input type="number" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="@lang('site.invoice_no')">
-                                            </div>
-                                            <!-- Checkbox select_invoice_seprate -->
-                                            <div class="form-check custom-control custom-radio mb-2 mr-sm-2">
-                                                <input class="custom-control-input" type="checkbox" id="checkbox_select_invoice_seprate">
-                                                <label class="custom-control-label" for="checkbox_select_invoice_seprate">
-                                                     @lang('site.select_invoice_seprate')
-                                                </label>
-                                                <textarea name="" id="" class="form-control mb-2 mr-sm-2"  cols="50" rows="2">
-
-                                                </textarea>
-                                            </div>
-                                        </div>
-                                        <div class="form-inline">
-                                            <!-- Checkbox select_invoice_between_invoice_no -->
-                                            <div class="form-check custom-control custom-radio mb-2 mr-sm-2">
-                                                <input class="custom-control-input" type="checkbox" id="checkbox_select_invoice_between_invoice_no">
-                                                <label class="custom-control-label" for="checkbox_select_invoice_between_invoice_no">
-                                                    @lang('site.select_invoice_between_invoice_no')
-                                                </label>
-                                            </div>
-                                            <label class="mb-2 mr-2" for="inlineFormCustomSelectPref">@lang('site.from')</label>
-                                            <input type="number" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="@lang('site.invoice_no')">
-                                            <label class="mb-2 mr-2" for="inlineFormCustomSelectPref">@lang('site.to')</label>
-                                            <input type="number" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="@lang('site.invoice_no')">
-                                        </div>
-                                        <hr>
-
-                                        <div class="raw">
-                                            <p>@lang('site.select_date')</p>
-                                        </div>
-
-                                        <div class="form-inline">
-                                            <!-- Checkbox select_invoice_between_date -->
-                                            <div class="form-check custom-control custom-radio mb-2 mr-sm-2">
-                                                <input class="custom-control-input" type="checkbox" id="checkbox_select_invoice_between_date">
-                                                <label class="custom-control-label" for="checkbox_select_invoice_between_date">
-                                                    @lang('site.select_invoice_between_date')
-                                                </label>
-                                            </div>
-                                            <label class="mb-2 mr-2" for="inlineFormCustomSelectPref">@lang('site.from')</label>
-                                            <input type="date" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="@lang('site.date')">
-                                            <label class="mb-2 mr-2" for="inlineFormCustomSelectPref">@lang('site.to')</label>
-                                            <input type="date" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="@lang('site.date')">
-                                        </div>
-
-
-                                        <!-- Checkbox current month -->
-                                        <div class="form-inline">
-                                            <div class="form-check custom-control custom-radio mb-2 mr-sm-2">
-                                                <input class="custom-control-input" type="checkbox" id="checkbox_current_month_statment">
-                                                <label class="custom-control-label" for="checkbox_current_month_statment">
-                                                     @lang('site.current_month_statment')
-                                                </label>
-                                            </div>
-                                        </div>
-
-                                        <!-- Checkbox last 3 month -->
-                                        <div class="form-inline">
-                                            <div class="form-check custom-control custom-radio mb-2 mr-sm-2">
-                                                <input class="custom-control-input" type="checkbox" id="checkbox_last_3_month_statment">
-                                                <label class="custom-control-label" for="checkbox_last_3_month_statment">
-                                                     @lang('site.last_3_month_statment')
-                                                </label>
-                                            </div>
-                                        </div>
-
-                                        <!-- Checkbox last 6 month -->
-                                        <div class="form-inline">
-                                            <div class="form-check custom-control custom-radio mb-2 mr-sm-2">
-                                                <input class="custom-control-input" type="checkbox" id="checkbox_last_6_month_statment">
-                                                <label class="custom-control-label" for="checkbox_last_6_month_statment">
-                                                     @lang('site.last_6_month_statment')
-                                                </label>
-                                            </div>
-                                        </div>
-
-                                        <div class="row gutters pt-2">
-                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                <div class="text-right">
-                                                    <a href="#" class="btn btn-primary mb-3">@lang('site.print')</a>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-light table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>@lang('site.bill_no')</th>
+                                                <th>@lang('site.purchase_type')</th>
+                                                <th>@lang('site.supplier_name')</th>
+                                                <th>@lang('site.total_products')</th>
+                                                <th>@lang('site.final_total')</th>
+                                                <th>@lang('site.purchase_bill')</th>
+                                                <th class="text-center">@lang('site.action')</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>125</td>
+                                                <td>Order</td>
+                                                <td>Mohammed</td>
+                                                <td>25</td>
+                                                <td>125000</td>
+                                                <td>12</td>
+                                                <td>
+                                                    <div class="task-list">
+                                                        <div class="task-block" style="justify-content: center; flex-direction: row; padding: 0; border-bottom: 0">
+                                                            <ul class="task-actions">
+                                                                <li>
+                                                                    <a href="#" class="star" data-toggle="tooltip" data-placement="top" title="@lang('site.delete')">
+                                                                        <i class="icon-delete"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#" class="star" data-toggle="tooltip" data-placement="top" title="@lang('site.show')">
+                                                                        <i class="icon-eye"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#" class="star" data-toggle="tooltip" data-placement="top"  title="@lang('site.edit')">
+                                                                        <i class="icon-edit"></i>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -617,11 +443,7 @@
 
             </div>
             <!-- Main container end -->
-
         </div>
-        <!-- Page content end -->
-
-
     </div>
 
 @endsection
