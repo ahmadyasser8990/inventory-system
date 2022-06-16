@@ -419,15 +419,20 @@
                                                             <div class="task-block" style="justify-content: center;flex-direction: row; padding: 0; border-bottom: 0">
                                                                 <ul class="task-actions">
                                                                     <li>
+                                                                        <a href="#" class="star" data-toggle="tooltip" data-placement="top" title="@lang('site.delete')">
+                                                                            <i class="icon-delete"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
                                                                         <a href="{{route('dashboard.return-sales.show', $return_sale->id)}}" class="star" data-toggle="tooltip" data-placement="top" title="معاينه">
                                                                             <i class="icon-eye"></i>
                                                                         </a>
                                                                     </li>
-                                                                    {{-- <li>
-                                                                        <a href="invoice.html" class="star" data-toggle="tooltip" data-placement="top" title="'طباعه'">
-                                                                            <i class="icon-print"></i>
+                                                                    <li>
+                                                                        <a href="#" class="star" data-toggle="tooltip" data-placement="top"  title="@lang('site.edit')">
+                                                                            <i class="icon-edit"></i>
                                                                         </a>
-                                                                    </li> --}}
+                                                                    </li>
                                                                 </ul>
                                                             </div>
                                                         </div>
