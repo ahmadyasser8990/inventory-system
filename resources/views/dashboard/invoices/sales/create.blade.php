@@ -426,6 +426,24 @@
                                                             </select>
                                                         </div>
                                                     </div>
+                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                        <div class="form-group">
+                                                            <label for="">@lang('site.name')</label>
+                                                            <input type="text" class="form-control form-control-sm "  name="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                        <div class="form-group">
+                                                            <label for="">@lang('site.phone')</label>
+                                                            <input type="text" class="form-control form-control-sm "  name="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                        <div class="form-group">
+                                                            <label for="">@lang('site.tax_no')</label>
+                                                            <input type="text" class="form-control form-control-sm "  name="">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -607,6 +625,22 @@
                                                             </div>
                                                         </div>
                                                         <div class="row gutters">
+                                                            <div class="form-inline">
+                                                                <div class="form-check mb-2">
+                                                                    <input class="form-check-input mb-2 mr-sm-2" type="checkbox" value="" id="defaultCheck1">
+                                                                    <label class="form-check-label mb-2 mr-sm-2" for="defaultCheck1">
+                                                                        @lang('site.includeTax')
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check mb-2">
+                                                                    <input class="form-check-input mb-2 mr-sm-2" type="checkbox" value="" id="defaultCheck1">
+                                                                    <label class="form-check-label mb-2 mr-sm-2" for="defaultCheck1">
+                                                                        @lang('site.notiIncludeTax')
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row gutters">
                                                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                 <div class="form-group">
                                                                     <label>@lang('site.total_price')</label>
@@ -648,212 +682,410 @@
                                         <div class="accordion-container">
                                             <div class="accordion-header" id="withIconTwo">
                                                 <a  href="" class="collapsed" data-toggle="collapse" data-target="#collapseWithIconTwo" aria-expanded="false" aria-controls="collapseWithIconTwo">
-                                                    <i class="icon icon-tag1"></i>Sale Price Auto show by Weights
+                                                    <i class="icon icon-tag1"></i>Sale Price Auto show
                                                 </a>
                                             </div>
                                             <div id="collapseWithIconTwo" class="collapse" aria-labelledby="withIconTwo" data-parent="#withIconsAccordion">
                                                 <div class="accordion-body">
                                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                        <div class="card h-100" >
-                                                            <div class="card-header">
-                                                                <div class="card-title">Wieghts</div>
-                                                            </div>
-                                                            <div class="card-body" >
-                                                                <div class="row gutters">
-                                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                        <div class="form-group">
-                                                                            <label>@lang('site.gold_price')</label>
-                                                                            <input type="number" step="0.01" name="gold_price" placeholder="0.00" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                        <div class="form-group">
-                                                                            <label>@lang('site.gold_total')</label>
-                                                                            <input type="number" step="0.01" name="gold_total" readonly placeholder="0.00" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                        <div class="form-group">
-                                                                            <label>@lang('site.dimaond1_price')</label>
-                                                                            <input type="number" step="0.01" name="dimaond1_price" placeholder="0.00" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                        <div class="form-group">
-                                                                            <label>@lang('site.dimaond1_total')</label>
-                                                                            <input type="number" step="0.01" name="dimaond1_total" readonly placeholder="0.00" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                        <div class="form-group">
-                                                                            <label>@lang('site.baguette_price')</label>
-                                                                            <input type="number" step="0.01" name="baguette_price" placeholder="0.00" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                        <div class="form-group">
-                                                                            <label>@lang('site.baguette_total')</label>
-                                                                            <input type="number" step="0.01" name="baguette_total" readonly placeholder="0.00" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                        <div class="form-group">
-                                                                            <label>@lang('site.marquis_price')</label>
-                                                                            <input type="number" step="0.01" name="marquis_price" placeholder="0.00" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                        <div class="form-group">
-                                                                            <label>@lang('site.marquis_total')</label>
-                                                                            <input type="number" step="0.01" name="marquis_total" readonly placeholder="0.00" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                        <div class="form-group">
-                                                                            <label>@lang('site.princess_price')</label>
-                                                                            <input type="number" step="0.01" name="princess_price" placeholder="0.00" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                        <div class="form-group">
-                                                                            <label>@lang('site.princess_total')</label>
-                                                                            <input type="number" step="0.01" name="princess_total" readonly placeholder="0.00" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                        <div class="form-group">
-                                                                            <label>@lang('site.colored_price')</label>
-                                                                            <input type="number" step="0.01" name="colored_price" placeholder="0.00" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                        <div class="form-group">
-                                                                            <label>@lang('site.colored_total')</label>
-                                                                            <input type="number" step="0.01" name="colored_total" readonly placeholder="0.00" class="form-control">
-                                                                        </div>
-                                                                    </div>
+
+                                                            <!--Accordion wrapper-->
+                                                        <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+                                                            <!-- Accordion card Fixed, Percentage, and multiple the Cost -->
+                                                            <div class="card">
+
+                                                                <!-- Card header -->
+                                                                <div class="card-header" role="tab" id="headingOne1">
+                                                                <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
+                                                                    aria-controls="collapseOne1">
+                                                                    <h5 class="mb-0">
+                                                                        Sale Prices (by Fixed, Percentage, and multiple the Cost) <i class="fas fa-angle-down rotate-icon"></i>
+                                                                    </h5>
+                                                                </a>
                                                                 </div>
-                                                                <div class="row gutters">
-                                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                        <div class="form-group">
-                                                                            <label>@lang('site.big_stone_price')</label>
-                                                                            <input type="number" step="0.01" name="big_stone_price" placeholder="0.00" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                        <div class="form-group">
-                                                                            <label>@lang('site.big_stone_total')</label>
-                                                                            <input type="number" step="0.01" name="big_stone_total" readonly placeholder="0.00" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                        <div class="form-group">
-                                                                            <label>@lang('site.dimaond2_price')</label>
-                                                                            <input type="number" step="0.01" name="dimaond2_price" placeholder="0.00" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                        <div class="form-group">
-                                                                            <label>@lang('site.dimaond2_total')</label>
-                                                                            <input type="number" step="0.01" name="dimaond2_total" readonly placeholder="0.00" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                        <div class="form-group">
-                                                                            <label>@lang('site.dimaond3_price')</label>
-                                                                            <input type="number" step="0.01" name="dimaond3_price" placeholder="0.00" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                        <div class="form-group">
-                                                                            <label>@lang('site.dimaond3_total')</label>
-                                                                            <input type="number" step="0.01" name="dimaond3_total" readonly placeholder="0.00" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                        <div class="form-group">
-                                                                            <label>@lang('site.dimaond4_price')</label>
-                                                                            <input type="number" step="0.01" name="dimaond4_price" placeholder="0.00" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                        <div class="form-group">
-                                                                            <label>@lang('site.dimaond4_total')</label>
-                                                                            <input type="number" step="0.01" name="dimaond4_total" readonly placeholder="0.00" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                        <div class="form-group">
-                                                                            <label>@lang('site.dimaond5_price')</label>
-                                                                            <input type="number" step="0.01" name="dimaond5_price" placeholder="0.00" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                        <div class="form-group">
-                                                                            <label>@lang('site.dimaond5_total')</label>
-                                                                            <input type="number" step="0.01" name="dimaond5_total" readonly placeholder="0.00" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="card-footer">
-                                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
-                                                                    <div class="text-right">
-                                                                        <button type="button" id="" name="edit" class="btn btn-success">Edit to All Items</button>
-                                                                        <button type="button" id="" class="btn btn-danger">Edit to the selected Item Only</button>
+                                                                <!-- Card body -->
+                                                                <div id="collapseOne1" class="collapse" role="tabpanel" aria-labelledby="headingOne1"
+                                                                data-parent="#accordionEx">
+                                                                    <div class="card-body">
 
-                                                                    </div>
+                                                                        <div class="row gutters">
+                                                                            <div class="col-xl-4 col-lglg-4 col-md-4 col-sm-4 col-12">
+                                                                                <div class="form-group">
+                                                                                    <div class="input-group">
+                                                                                        <div class="input-group-prepend">
+                                                                                            <select name="edit_salePrice" id="edit_salePrice" class="form-control edit_salePrice">
+                                                                                                <option value="">Select</option>
+                                                                                                <option value="multiple">multiple</option>
+                                                                                                <option value="fixed">SAR</option>
+                                                                                                <option value="percentage">%</option>
+                                                                                            </select>
 
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-container">
-                                            <div class="accordion-header" id="withIconThree">
-                                                <a  href="" class="collapsed" data-toggle="collapse" data-target="#collapseWithIconThree" aria-expanded="false" aria-controls="collapseWithIconThree">
-                                                    <i class="icon icon-triangle"></i>Account Method price By Sale Price
-                                                </a>
-                                            </div>
-                                            <div id="collapseWithIconThree" class="collapse" aria-labelledby="withIconThree" data-parent="#withIconsAccordion">
-                                                <div class="accordion-body">
+                                                                                        </div>
+                                                                                        <input type="number" name="sale_value" id="sale_value" class="form-control sale_value" placeholder="Number">
+                                                                                    </div>
+                                                                                    <div id="edit_salePrice_error" class="text-danger text-left mt-2"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
-                                                    <div class="card h-100">
-                                                        <div class="card-header">
-                                                            <div class="card-title">Sale Prices</div>
-                                                        </div>
-                                                        <div class="card-body">
-                                                            <div class="row gutters">
-                                                                <div class="col-xl-4 col-lglg-4 col-md-4 col-sm-4 col-12">
-                                                                    <div class="form-group">
-                                                                        <div class="input-group">
-                                                                            <div class="input-group-prepend">
-                                                                                <select name="edit_salePrice" id="edit_salePrice" class="form-control edit_salePrice">
-                                                                                    <option value="">Select</option>
-                                                                                    <option value="fixed">SAR</option>
-                                                                                    <option value="percentage">%</option>
-                                                                                </select>
+                                                                            <div class="text-right">
+                                                                                <button type="button" id="edit_all_products_purchase" name="edit" class="btn btn-success">Edit to All Items</button>
+                                                                                <button type="button" id="edit_selected_products_purchase" class="btn btn-danger">Edit to the selected Item Only</button>
 
                                                                             </div>
-                                                                            <input type="number" name="sale_value" id="sale_value" class="form-control sale_value" placeholder="Number">
+
                                                                         </div>
-                                                                        <div id="edit_salePrice_error" class="text-danger text-left mt-2"></div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <!-- End Accordion card -->
+
+                                                            <!-- Accordion card Auto -->
+                                                            <div class="card">
+
+                                                                <!-- Card header -->
+                                                                <div class="card-header" role="tab" id="headingTwo2">
+                                                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo2"
+                                                                        aria-expanded="false" aria-controls="collapseTwo2">
+                                                                        <h5 class="mb-0">
+                                                                        Sale Price (by Client's Weights) <span class="text-danger">default</span> <i class="fas fa-angle-down rotate-icon"></i>
+                                                                        </h5>
+                                                                    </a>
+                                                                </div>
+
+                                                                <!-- Card body -->
+                                                                <div id="collapseTwo2" class="collapse" role="tabpanel" aria-labelledby="headingTwo2"
+                                                                    data-parent="#accordionEx">
+                                                                    <div class="card-body">
+                                                                        <div class="row gutters">
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.gold_price')</label>
+                                                                                    <input type="number" step="0.01" name="gold_price" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.gold_total')</label>
+                                                                                    <input type="number" step="0.01" name="gold_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.big_stone_price')</label>
+                                                                                    <input type="number" step="0.01" name="big_stone_price" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.big_stone_total')</label>
+                                                                                    <input type="number" step="0.01" name="big_stone_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.baguette_price')</label>
+                                                                                    <input type="number" step="0.01" name="baguette_price" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.baguette_total')</label>
+                                                                                    <input type="number" step="0.01" name="baguette_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row gutters">
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.marquis_price')</label>
+                                                                                    <input type="number" step="0.01" name="marquis_price" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.marquis_total')</label>
+                                                                                    <input type="number" step="0.01" name="marquis_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.princess_price')</label>
+                                                                                    <input type="number" step="0.01" name="princess_price" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.princess_total')</label>
+                                                                                    <input type="number" step="0.01" name="princess_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.colored_price')</label>
+                                                                                    <input type="number" step="0.01" name="colored_price" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.colored_total')</label>
+                                                                                    <input type="number" step="0.01" name="colored_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row gutters">
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond1_price')</label>
+                                                                                    <input type="number" step="0.01" name="dimaond1_price" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond1_total')</label>
+                                                                                    <input type="number" step="0.01" name="dimaond1_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond2_price')</label>
+                                                                                    <input type="number" step="0.01" name="dimaond2_price" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond2_total')</label>
+                                                                                    <input type="number" step="0.01" name="dimaond2_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond3_price')</label>
+                                                                                    <input type="number" step="0.01" name="dimaond3_price" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond3_total')</label>
+                                                                                    <input type="number" step="0.01" name="dimaond3_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row gutters">
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond4_price')</label>
+                                                                                    <input type="number" step="0.01" name="dimaond4_price" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond4_total')</label>
+                                                                                    <input type="number" step="0.01" name="dimaond4_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond5_price')</label>
+                                                                                    <input type="number" step="0.01" name="dimaond5_price" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond5_total')</label>
+                                                                                    <input type="number" step="0.01" name="dimaond5_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="card-footer">
+                                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+                                                                            <div class="text-right">
+                                                                                <button type="button" id="" name="edit" class="btn btn-success">Edit to All Items</button>
+                                                                                <button type="button" id="" class="btn btn-danger">Edit to the selected Item Only</button>
+
+                                                                            </div>
+
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
-                                                                <div class="text-right">
-                                                                    <button type="button" id="edit_all_products_purchase" name="edit" class="btn btn-success">Edit to All Items</button>
-                                                                    <button type="button" id="edit_selected_products_purchase" class="btn btn-danger">Edit to the selected Item Only</button>
+                                                            <!-- Accordion card  Manually-->
+                                                            <div class="card">
 
+                                                                <!-- Card header -->
+                                                                <div class="card-header" role="tab" id="headingThree3">
+                                                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree3"
+                                                                        aria-expanded="false" aria-controls="collapseThree3">
+                                                                        <h5 class="mb-0">
+                                                                        Sale Price Manually (by Client's Weights)<i class="fas fa-angle-down rotate-icon"></i>
+                                                                        </h5>
+                                                                    </a>
                                                                 </div>
 
+                                                                <!-- Card body -->
+                                                                <div id="collapseThree3" class="collapse" role="tabpanel" aria-labelledby="headingThree3"
+                                                                    data-parent="#accordionEx">
+                                                                    <div class="card-body">
+                                                                        <div class="row gutters">
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.gold_price')</label>
+                                                                                    <input type="number" step="0.01" name="gold_price" placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.gold_total')</label>
+                                                                                    <input type="number" step="0.01" name="gold_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.big_stone_price')</label>
+                                                                                    <input type="number" step="0.01" name="big_stone_price" placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.big_stone_total')</label>
+                                                                                    <input type="number" step="0.01" name="big_stone_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.baguette_price')</label>
+                                                                                    <input type="number" step="0.01" name="baguette_price" placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.baguette_total')</label>
+                                                                                    <input type="number" step="0.01" name="baguette_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row gutters">
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.marquis_price')</label>
+                                                                                    <input type="number" step="0.01" name="marquis_price" placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.marquis_total')</label>
+                                                                                    <input type="number" step="0.01" name="marquis_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.princess_price')</label>
+                                                                                    <input type="number" step="0.01" name="princess_price" placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.princess_total')</label>
+                                                                                    <input type="number" step="0.01" name="princess_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.colored_price')</label>
+                                                                                    <input type="number" step="0.01" name="colored_price" placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.colored_total')</label>
+                                                                                    <input type="number" step="0.01" name="colored_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row gutters">
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond1_price')</label>
+                                                                                    <input type="number" step="0.01" name="dimaond1_price" placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond1_total')</label>
+                                                                                    <input type="number" step="0.01" name="dimaond1_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond2_price')</label>
+                                                                                    <input type="number" step="0.01" name="dimaond2_price" placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond2_total')</label>
+                                                                                    <input type="number" step="0.01" name="dimaond2_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond3_price')</label>
+                                                                                    <input type="number" step="0.01" name="dimaond3_price" placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond3_total')</label>
+                                                                                    <input type="number" step="0.01" name="dimaond3_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row gutters">
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond4_price')</label>
+                                                                                    <input type="number" step="0.01" name="dimaond4_price" placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond4_total')</label>
+                                                                                    <input type="number" step="0.01" name="dimaond4_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond5_price')</label>
+                                                                                    <input type="number" step="0.01" name="dimaond5_price" placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond5_total')</label>
+                                                                                    <input type="number" step="0.01" name="dimaond5_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="card-footer">
+                                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+                                                                            <div class="text-right">
+                                                                                <button type="button" id="" name="edit" class="btn btn-success">Edit to All Items</button>
+                                                                                <button type="button" id="" class="btn btn-danger">Edit to the selected Item Only</button>
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -903,10 +1135,27 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Row end -->
+
+                            <!-- Row end -->
+                            <div class="row gutters pt-2">
+
+                                <div class="col-xl-4 col-lglg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-inline">
+                                        <div class="form-group">
+                                            <label for="" class="pl-2"> @lang('site.users') </label>
+
+                                            <select name="" class="form-control" id="">
+                                                <option value="">Ahmed</option>
+                                                <option value="">Nacer</option>
+                                                <option value="">Khaled</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row gutters pt-2">
                                 {{-- important --}}
+
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
                                     <div class="text-right">

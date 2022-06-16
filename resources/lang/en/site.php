@@ -542,6 +542,7 @@ return [
 
     //Sales
     'sale_type' => 'Sale Type',
+    'masterCard' => 'Master Card',
     'profit'=> 'Profit',
     'add' => 'Add',
     'create' => 'Create',
