@@ -414,8 +414,18 @@
                                                         <div class="task-block" style="justify-content: center; flex-direction: row; padding: 0; border-bottom: 0">
                                                             <ul class="task-actions">
                                                                 <li>
+                                                                    <a href="#" class="star" data-toggle="tooltip" data-placement="top" title="@lang('site.delete')">
+                                                                        <i class="icon-delete"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
                                                                     <a href="{{asset('dashboard.purchase.show',)}}" class="star" data-toggle="tooltip" data-placement="top" title="@lang('site.show')">
                                                                         <i class="icon-eye"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#" class="star" data-toggle="tooltip" data-placement="top"  title="@lang('site.edit')">
+                                                                        <i class="icon-edit"></i>
                                                                     </a>
                                                                 </li>
                                                             </ul>

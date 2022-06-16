@@ -521,6 +521,7 @@ return [
 
     // Purchases
     'bill_no' => 'Invoice No',
+    'purchase_type' => 'Purchase Type',
     'phone_no' => ' Phone Number',
     'client_name' => 'Client Name ',
     'item_name' => 'Item Name',
