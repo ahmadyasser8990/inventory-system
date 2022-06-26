@@ -52,7 +52,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
         Route::resource('return-sales', 'ReturnSaleController');
 
         //Purchase Invoices
-        Route::resource('purchase', 'PurchaseController');
+        Route::resource('purchase', 'PurchaseController')->names('purchase');
+        Route::get('/supplier/get-data/{supplier}','PurchaseController@getSupplier');
         //Purchase Invoices
         Route::resource('return-purchase', 'ReturnPurchaseController');
 

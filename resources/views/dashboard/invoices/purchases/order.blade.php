@@ -398,13 +398,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                          
+                                            @foreach($purchases as $purchase)
                                             <tr>
-                                                <td>125</td>
-                                                <td>Mohammed</td>
-                                                <td>Cash</td>
-                                                <td>Order</td>
-                                                <td>150000</td>
-                                                <td>150</td>
+                                                <td>{{$purchase->id}}</td>
+                                                <td>{{$purchase->supplier->name}}</td>
+                                                <td>{{$purchase->payment_method}}</td>
+                                                <td>{{$purchase->purchase_type}}</td>
+                                                <td>{{$purchase->final_total}}</td>
+                                                <td>1</td>
+                                             
                                                 <td>
                                                     <div class="task-list">
                                                         <div class="task-block" style="justify-content: center; flex-direction: row; padding: 0; border-bottom: 0">
@@ -429,6 +432,8 @@
                                                     </div>
                                                 </td>
                                             </tr>
+
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

@@ -242,12 +242,7 @@
                     </a>
                 </div>
                 <div class="header-items">
-                    <!-- Custom search start -->
-                    <!-- <div class="custom-search">
-                        <input type="text" class="search-query" placeholder="Search here ...">
-                        <i class="icon-search1"></i>
-                    </div> -->
-                    <!-- Custom search end -->
+                   
 
                     <!-- Header actions start -->
                     <ul class="header-actions">
@@ -387,12 +382,13 @@
                 <div class="fixedBodyScroll">
                     <!-- Content wrapper start -->
                     <div class="content-wrapper">
-                        {{-- <form action="{{route('dashboard.sales.store')}}" method="POST">
-                            {{ csrf_field() }}
-                            {{ method_field('post')}} --}}
+                       
 
                             <div class="row gutters">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <form action="{{route('dashboard.purchase.store')}}" method="POST" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            {{ method_field('post')}} 
                                     <div class="card" id="customer_details">
                                         <div class="card-header">
                                             <div class="card-title">@lang('site.invoice_info')</div>
@@ -401,45 +397,54 @@
                                                     <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
                                                         <div class="form-group">
                                                             <label for="">@lang('site.invoice_date')</label>
-                                                            <input type="text" class="form-control form-control-sm pickdate"  name="invoice_date">
+                                                            <input type="text" class="form-control form-control-sm pickdate"  name="invoice_date" required value="{{old('invoice_date')}}" required>
+                                                            @error('invoice_date')
+                                                              <div class="text-danger">{{$message}}</div>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
                                                         <div class="form-group">
                                                             <label for="">@lang('site.payment_method')</label>
-                                                            <select name="" id="" class="form-control form-control-sm">
+                                                            <select name="payment_method" id="" class="form-control form-control-sm required">
                                                                 <option value="">choose...</option>
-                                                                <option value="1">@lang('site.cash')</option>
-                                                                <option value="2">@lang('site.masterCard')</option>
+                                                                <option value="cash" >@lang('site.cash')</option>
+                                                                <option value="card" @if(!empty(old('payment_method')) && old('payment_method') == 'card') selected @endif>@lang('site.masterCard')</option>
                                                             </select>
+                                                            @error('payment_method')
+                                                              <div class="text-danger">{{$message}}</div>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
                                                         <div class="form-group">
                                                             <label for="">@lang('site.purchase_type')</label>
-                                                            <select name="" id="" class="form-control form-control-sm">
+                                                            <select name="purchase_type" id="" class="form-control form-control-sm purchase_type required">
                                                                 <option value="">choose...</option>
-                                                                <option value="1">Order</option>
-                                                                <option value="2">Cash</option>
+                                                                <option value="order" @if(!empty(old('purchase_type')) && old('purchase_type') == 'order') selected @endif>Order</option>
+                                                                <option value="cash" @if(!empty(old('purchase_type')) && old('purchase_type') == 'cash') selected @endif>Cash</option>
                                                             </select>
+                                                            @error('purchase_type')
+                                                              <div class="text-danger">{{$message}}</div>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
                                                         <div class="form-group">
                                                             <label for="">@lang('site.supplier_name')</label>
-                                                            <input class="form-control form-control-sm"  type="text" value="" placeholder="">
+                                                            <input class="form-control form-control-sm cash"  type="text" value="" placeholder="" name="supplier_name">
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
                                                         <div class="form-group">
                                                             <label for="">@lang('site.phone_no')</label>
-                                                            <input class="form-control form-control-sm"  type="text"  placeholder="">
+                                                            <input class="form-control form-control-sm cash"  type="text"  placeholder="" name="supplier_phone_no">
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
                                                         <div class="form-group">
                                                             <label for="">@lang('site.tax_no')</label>
-                                                            <input class="form-control form-control-sm " type="text"  placeholder="">
+                                                            <input class="form-control form-control-sm cash" type="text"  placeholder="" name="supplier_tax_no">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -457,39 +462,34 @@
                                                 <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
                                                     <div class="form-group">
                                                         <label for="">@lang('site.supplier_id')</label>
-                                                        <select name="" type="text" id="" class="form-control form-control-sm selectpicker"  data-live-search="true">
+                                                        <select name="supplier_id" type="text" id="supplier_id" class="form-control form-control-sm selectpicker order supplier_id_order">
 
-                                                            <option value="">Nacer</option>
-                                                            <option value="">Mohammed</option>
-
-                                                            {{-- @foreach ($clients as $client)
-                                                                <option
-                                                                    data-tax_no="{{ $client->tax_no }}"
-                                                                    data-phone="{{ $client->phone }}"
-                                                                    data-name="{{ $client->name }}"
-                                                                    value="{{ $client->id }}">
-                                                                    {{$client->name}} -  {{$client->id}}
+                                                            <option value="">Select</option>
+                                                           
+                                                             @foreach ($suppliers as $supplier)
+                                                                <option value="{{$supplier->id}}">
+                                                                {{$supplier->name}}
                                                                 </option>
-                                                            @endforeach --}}
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-4 col-lg col-md-4 col-sm-4 col-12">
                                                     <div class="form-group">
                                                         <label for="">@lang('site.supplier_name')</label>
-                                                        <input class="form-control form-control-sm " name="" readonly type="text" value="" placeholder="">
+                                                        <input class="form-control form-control-sm supplier_name_order order" name="" readonly type="text" value="" placeholder="">
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
                                                     <div class="form-group">
                                                         <label for="">@lang('site.phone_no')</label>
-                                                        <input class="form-control form-control-sm " name="" type="text" readonly placeholder="">
+                                                        <input class="form-control form-control-sm supplier_phone_no_order order" name="" type="text" readonly placeholder="">
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
                                                     <div class="form-group">
                                                         <label for="">@lang('site.tax_no')</label>
-                                                        <input class="form-control form-control-sm" name="" type="text" readonly placeholder="">
+                                                        <input class="form-control form-control-sm supplier_tax_no_order order" name="" type="text" readonly placeholder="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -507,41 +507,54 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label>@lang('site.image')</label>
-                                                            <input type="file" name="image" class="form-control image">
+                                                            <input type="file" name="image" class="form-control image" required >
                                                         </div>
                                                         <div class="form-group">
                                                             <label>@lang('site.sale_price')</label>
-                                                            <input type="number" step="0.01" value="{{ old('sale_price')}}" name="sale_price" class="form-control">
+                                                            <input type="number" step="0.01" value="{{ old('sale_price')}}" name="sale_price" class="form-control"required value>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>@lang('site.category_type')</label>
-                                                            <select name="category_id" class="form-control form-control-lg">
-                                                                <option value="">Ring</option>
-                                                                <option value="">Nic</option>
-                                                                <option value="">Earing</option>
+                                                            <select name="category_id" class="form-control form-control-lg" required>
+                                                                <option value="">Select</option>
+                                                                @foreach($categories as $category)
+                                                                <option value="{{$category->id}}" @if(!empty(old('category_id')) && old('category_id') == $category->id) selected @endif>{{$category->name}}</option>
+                                                                @endforeach
                                                             </select>
+                                                            @error('category_id')
+                                                              <div class="text-danger">{{$message}}</div>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                         <div class="form-group">
                                                             <label>@lang('site.extra_no')</label>
-                                                            <input type="text" name="extra_no" value="{{ old('extra_no')}}" class="form-control">
-                                                            <input type="hidden" name="status" value="avaliable">
+                                                            <input type="text" name="extra_no" value="{{ old('extra_no')}}" class="form-control" required>
+                                                            @error('extra_no')
+                                                              <div class="text-danger">{{$message}}</div>
+                                                            @enderror
                                                         </div>
                                                         <div class="form-group">
                                                             <label>@lang('site.item_type')</label>
-                                                            <select name="item_type" class="form-control form-control-lg">
-                                                                <option value="new" class=""> @lang('site.new')</option>
-                                                                <option value="used" class="">@lang('site.used')</option>
+                                                            <select name="item_type" class="form-control form-control-lg" required>
+                                                                <option value="new" class="" @if(!empty(old('item_type')) && old('item_type') == 'new') selected @endif> @lang('site.new')</option>
+                                                                <option value="used" class="" @if(!empty(old('item_type')) && old('item_type') == 'used') selected @endif>@lang('site.used')</option>
                                                             </select>
+                                                            @error('item_type')
+                                                              <div class="text-danger">{{$message}}</div>
+                                                            @enderror
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="docTitle">@lang('site.supplier')</label>
-                                                            <select name="supplier_id" class="form-control form-control-lg">
-                                                                <option value="">KHALED</option>
-                                                                <option value="">AMMAR</option>
-                                                                <option value="">MOHAMMED</option>
+                                                            <select name="product_supplier" required class="form-control form-control-lg">
+                                                                <option value="">Select</option>
+                                                                @foreach($suppliers as $supplier)
+                                                                <option value="{{$supplier->id}}">{{$supplier->name}}</option>
+                                                                @endforeach
                                                             </select>
+                                                            @error('product_supplier')
+                                                            <div class="text-danger">{{$message}}</div>
+                                                          @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
@@ -552,6 +565,9 @@
                                                         <div class="form-group">
                                                             <label>@lang('site.purchase_price')</label>
                                                             <input type="number" step="0.01" name="purchase_price" value="{{ old('purchase_price')}}" required class="form-control">
+                                                            @error('purchase_price')
+                                                              <div class="text-danger">{{$message}}</div>
+                                                            @enderror
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-form-label">@lang('site.description')</label>
@@ -563,7 +579,10 @@
                                                     <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
                                                         <div class="form-group">
                                                             <label>@lang('site.gold')</label>
-                                                            <input type="number" name="gold" step="0.01" value="{{ old('gold')}}"  class="form-control">
+                                                            <input type="number" name="gold" step="0.01" value="{{ old('gold')}}"  class="form-control" required>
+                                                            @error('gold')
+                                                              <div class="text-danger">{{$message}}</div>
+                                                            @enderror
                                                         </div>
                                                         <div class="form-group">
                                                             <label>@lang('site.marquis')</label>
@@ -620,6 +639,15 @@
                                                         <div class="form-group">
                                                             <label>@lang('site.color')</label>
                                                             <input type="text" name="color"  value="{{ old('color')}}" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
+                                                        <div class="form-group">
+                                                            <label>Qty</label>
+                                                            <input type="text" name="qty"  value="{{ old('qty')}}" class="form-control">
+                                                            @error('qty')
+                                                              <div class="text-danger">{{$message}}</div>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -703,6 +731,7 @@
                                         </div>
                                     </div>
                                 </div>
+</form>
                                 <!-- Row start -->
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="accordion" id="withIconsAccordion">
@@ -753,6 +782,7 @@
                                 </div>
                                 <!-- Row end -->
                             </div>
+                        </form>
                             <div class="row gutters pt-2">
                                 {{-- important --}}
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -1576,6 +1606,41 @@
 
         });
 
+    $('.purchase_type').change(function(){
+        var purchase_type = $(this).val();       
+        if(purchase_type == 'cash'){
+           $('.cash').removeClass('d-none');
+           $('.cash').removeAttr('disabled');
+           $('.cash').attr('required');
+           $('.order').addClass('d-none');
+           $('.order').attr('disabled','disabled');
+           $('.order').removeAttr('required');
+        }else{
+           $('.order').removeClass('d-none');
+           $('.order').removeAttr('disabled');
+           $('.order').attr('required');
+           $('.cash').addClass('d-none');
+           $('.cash').attr('disabled','disabled');
+           $('.cash').removeAttr('required');
+        }
+    })
+    
+    $('.supplier_id_order').change(function(){
+        var supplier_id = $(this).val();       
+        $.ajax({
+                      url : "/dashboard/supplier/get-data/"+supplier_id,
+                      method : "GET",
+                      success:function(data)
+                      {
+                         if(data)
+                         {
+                            $('.supplier_name_order').val(data.name);
+                            $('.supplier_phone_no_order').val(data.phone);
+                            $('.supplier_tax_no_order').val(data.tax_no);
+                         }
+                      }
+        })
+    })
     </script>
 
 @endsection

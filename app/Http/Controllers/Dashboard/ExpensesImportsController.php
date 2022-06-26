@@ -18,7 +18,7 @@ class ExpensesImportsController extends Controller
         $expenseimports = ExpenseImport::when($request->search, function($q) use($request){
 
             return $q->where('name','like', '%' . $request->search . '%')
-            ->orwhere('amount','like', '%' . $request->search . '%')
+            ->orwhere('no','like', '%' . $request->search . '%')
             ->orwhere('type','like', '%' . $request->search . '%');
 
         })->latest()->get();
@@ -47,10 +47,10 @@ class ExpensesImportsController extends Controller
     {
         $request->validate([
 
-            'name' => 'required',
-            'type' => 'required',
-            'amount' => 'required',
-            'note' => 'required',
+            'name' => 'required|max:255',
+            'type' => 'required|max:255',
+            'no' => 'required|max:255|unique:expenseimports',
+          
         ]);
 
         $request_data = $request->all();
@@ -95,11 +95,10 @@ class ExpensesImportsController extends Controller
         $expenseimports = Expenseimport::find($request->id);
 
         $request->validate([
-
-            'name' => 'required',
-            'type' => 'required',
-            'amount' => 'required',
-            'note' => 'required',
+            'name' => 'required|max:255',
+            'type' => 'required|max:255',
+            'no' => 'required|max:255|unique:expenseimports,no,'.$expenseimports->id,
+          
         ]);
 
         $expenseimports->update($request->all());
