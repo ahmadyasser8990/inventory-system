@@ -767,7 +767,7 @@
                                                                                     <input type="number" step="0.01" name="gold_price" readonly placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                            <div  style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.gold_total')</label>
                                                                                     <input type="number" step="0.01" name="gold_total" readonly placeholder="0.00" class="form-control">
@@ -779,7 +779,7 @@
                                                                                     <input type="number" step="0.01" name="big_stone_price" readonly placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.big_stone_total')</label>
                                                                                     <input type="number" step="0.01" name="big_stone_total" readonly placeholder="0.00" class="form-control">
@@ -805,7 +805,7 @@
                                                                                     <input type="number" step="0.01" name="marquis_price" readonly placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.marquis_total')</label>
                                                                                     <input type="number" step="0.01" name="marquis_total" readonly placeholder="0.00" class="form-control">
@@ -817,7 +817,7 @@
                                                                                     <input type="number" step="0.01" name="princess_price" readonly placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.princess_total')</label>
                                                                                     <input type="number" step="0.01" name="princess_total" readonly placeholder="0.00" class="form-control">
@@ -843,7 +843,7 @@
                                                                                     <input type="number" step="0.01" name="dimaond1_price" readonly placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.dimaond1_total')</label>
                                                                                     <input type="number" step="0.01" name="dimaond1_total" readonly placeholder="0.00" class="form-control">
@@ -855,7 +855,7 @@
                                                                                     <input type="number" step="0.01" name="dimaond2_price" readonly placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.dimaond2_total')</label>
                                                                                     <input type="number" step="0.01" name="dimaond2_total" readonly placeholder="0.00" class="form-control">
@@ -881,7 +881,7 @@
                                                                                     <input type="number" step="0.01" name="dimaond4_price" readonly placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                            <div  style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.dimaond4_total')</label>
                                                                                     <input type="number" step="0.01" name="dimaond4_total" readonly placeholder="0.00" class="form-control">
@@ -893,23 +893,12 @@
                                                                                     <input type="number" step="0.01" name="dimaond5_price" readonly placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.dimaond5_total')</label>
                                                                                     <input type="number" step="0.01" name="dimaond5_total" readonly placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="card-footer">
-                                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-
-                                                                            <div class="text-right">
-                                                                                <button type="button" id="" name="edit" class="btn btn-success">Edit to All Items</button>
-                                                                                <button type="button" id="" class="btn btn-danger">Edit to the selected Item Only</button>
-
-                                                                            </div>
-
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -923,7 +912,7 @@
                                                                     <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree3"
                                                                         aria-expanded="false" aria-controls="collapseThree3">
                                                                         <h5 class="mb-0">
-                                                                        Sale Price Manually (by Client's Weights)<i class="fas fa-angle-down rotate-icon"></i>
+                                                                        Sale Price Manually<i class="fas fa-angle-down rotate-icon"></i>
                                                                         </h5>
                                                                     </a>
                                                                 </div>
@@ -939,7 +928,7 @@
                                                                                     <input type="number" step="0.01" name="gold_price" placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.gold_total')</label>
                                                                                     <input type="number" step="0.01" name="gold_total" readonly placeholder="0.00" class="form-control">
@@ -951,7 +940,7 @@
                                                                                     <input type="number" step="0.01" name="big_stone_price" placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.big_stone_total')</label>
                                                                                     <input type="number" step="0.01" name="big_stone_total" readonly placeholder="0.00" class="form-control">
@@ -977,7 +966,7 @@
                                                                                     <input type="number" step="0.01" name="marquis_price" placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.marquis_total')</label>
                                                                                     <input type="number" step="0.01" name="marquis_total" readonly placeholder="0.00" class="form-control">
@@ -989,7 +978,7 @@
                                                                                     <input type="number" step="0.01" name="princess_price" placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.princess_total')</label>
                                                                                     <input type="number" step="0.01" name="princess_total" readonly placeholder="0.00" class="form-control">
@@ -1015,7 +1004,7 @@
                                                                                     <input type="number" step="0.01" name="dimaond1_price" placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.dimaond1_total')</label>
                                                                                     <input type="number" step="0.01" name="dimaond1_total" readonly placeholder="0.00" class="form-control">
@@ -1027,7 +1016,7 @@
                                                                                     <input type="number" step="0.01" name="dimaond2_price" placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.dimaond2_total')</label>
                                                                                     <input type="number" step="0.01" name="dimaond2_total" readonly placeholder="0.00" class="form-control">
@@ -1053,7 +1042,7 @@
                                                                                     <input type="number" step="0.01" name="dimaond4_price" placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.dimaond4_total')</label>
                                                                                     <input type="number" step="0.01" name="dimaond4_total" readonly placeholder="0.00" class="form-control">
@@ -1065,7 +1054,7 @@
                                                                                     <input type="number" step="0.01" name="dimaond5_price" placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.dimaond5_total')</label>
                                                                                     <input type="number" step="0.01" name="dimaond5_total" readonly placeholder="0.00" class="form-control">

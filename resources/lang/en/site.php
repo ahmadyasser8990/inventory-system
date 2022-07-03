@@ -465,6 +465,8 @@ return [
     'invoice_to' => 'Invoice To',
     'company_name' => 'Roae Almasat Almasiah',
     'total_products' => 'Quantity',
+    'includeTax' => 'include Tax',
+    'notiIncludeTax' => 'Not Include Tax',
 
     'gold_total' => 'Gold Amount',
     'dimaond1_total' => 'Dimaond Amount',
