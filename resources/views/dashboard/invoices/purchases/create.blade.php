@@ -386,9 +386,9 @@
 
                             <div class="row gutters">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <form action="{{route('dashboard.purchase.store')}}" method="POST" enctype="multipart/form-data">
+                                <form  id="form" action="{{route('dashboard.purchase.store')}}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
-                            {{ method_field('post')}} 
+                            
                                     <div class="card" id="customer_details">
                                         <div class="card-header">
                                             <div class="card-title">@lang('site.invoice_info')</div>
@@ -498,167 +498,169 @@
                                             <div class="raw">
                                                 <p>Add New Product</p>
                                             </div>
-
-                                            <div class="row gutters">
-                                                <div class="row gutters">
-                                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
-                                                        <div class="user-avatar">
-                                                            <img src="{{asset('uploads/product_images/default.png')}}" class="img-fluid float-center image-preview" alt="Wafi Admin" />
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>@lang('site.image')</label>
-                                                            <input type="file" name="image" class="form-control image" required >
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>@lang('site.sale_price')</label>
-                                                            <input type="number" step="0.01" value="{{ old('sale_price')}}" name="sale_price" class="form-control"required value>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>@lang('site.category_type')</label>
-                                                            <select name="category_id" class="form-control form-control-lg" required>
-                                                                <option value="">Select</option>
-                                                                @foreach($categories as $category)
-                                                                <option value="{{$category->id}}" @if(!empty(old('category_id')) && old('category_id') == $category->id) selected @endif>{{$category->name}}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            @error('category_id')
-                                                              <div class="text-danger">{{$message}}</div>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
-                                                        <div class="form-group">
-                                                            <label>@lang('site.extra_no')</label>
-                                                            <input type="text" name="extra_no" value="{{ old('extra_no')}}" class="form-control" required>
-                                                            @error('extra_no')
-                                                              <div class="text-danger">{{$message}}</div>
-                                                            @enderror
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>@lang('site.item_type')</label>
-                                                            <select name="item_type" class="form-control form-control-lg" required>
-                                                                <option value="new" class="" @if(!empty(old('item_type')) && old('item_type') == 'new') selected @endif> @lang('site.new')</option>
-                                                                <option value="used" class="" @if(!empty(old('item_type')) && old('item_type') == 'used') selected @endif>@lang('site.used')</option>
-                                                            </select>
-                                                            @error('item_type')
-                                                              <div class="text-danger">{{$message}}</div>
-                                                            @enderror
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="docTitle">@lang('site.supplier')</label>
-                                                            <select name="product_supplier" required class="form-control form-control-lg">
-                                                                <option value="">Select</option>
-                                                                @foreach($suppliers as $supplier)
-                                                                <option value="{{$supplier->id}}">{{$supplier->name}}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            @error('product_supplier')
-                                                            <div class="text-danger">{{$message}}</div>
-                                                          @enderror
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
-                                                        <div class="form-group">
-                                                            <label>@lang('site.design_no')</label>
-                                                            <input type="text" name="design_no" value="{{ old('design_no')}}" class="form-control">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>@lang('site.purchase_price')</label>
-                                                            <input type="number" step="0.01" name="purchase_price" value="{{ old('purchase_price')}}" required class="form-control">
-                                                            @error('purchase_price')
-                                                              <div class="text-danger">{{$message}}</div>
-                                                            @enderror
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="col-form-label">@lang('site.description')</label>
-                                                            <textarea class="form-control" name="description" maxlength="140" rows="4"> {{ old('description')}}</textarea>
-                                                            <div class="form-text text-muted"><p id="characterLeft" class="help-block ">140 characters left</p></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12"></div>
-                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                        <div class="form-group">
-                                                            <label>@lang('site.gold')</label>
-                                                            <input type="number" name="gold" step="0.01" value="{{ old('gold')}}"  class="form-control" required>
-                                                            @error('gold')
-                                                              <div class="text-danger">{{$message}}</div>
-                                                            @enderror
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>@lang('site.marquis')</label>
-                                                            <input type="number" name="marquis" step="0.01" value="{{ old('marquis')}}" class="form-control">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>@lang('site.baguette')</label>
-                                                            <input type="number" name="baguette" step="0.01" value="{{ old('baguette')}}"  class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                        <div class="form-group">
-                                                            <label>@lang('site.big_stone')</label>
-                                                            <input type="number" name="big_stone" step="0.01" value="{{ old('big_stone')}}" class="form-control">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>@lang('site.princess')</label>
-                                                            <input type="number" name="princess" step="0.01" value="{{ old('princess')}}" class="form-control">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>@lang('site.colored')</label>
-                                                            <input type="number" name="colored" value="{{ old('colored')}}" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                        <div class="form-group">
-                                                            <label>@lang('site.dimaond_1')</label>
-                                                            <input type="number" name="dimaond_1" step="0.01" value="{{ old('dimaond_1')}}" class="form-control">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>@lang('site.dimaond_2')</label>
-                                                            <input type="number" name="dimaond_2" step="0.01" value="{{ old('dimaond_2')}}" class="form-control">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>@lang('site.dimaond_3')</label>
-                                                            <input type="number" name="dimaond_3" step="0.01" value="{{ old('dimaond_3')}}" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                        <div class="form-group">
-                                                            <label>@lang('site.dimaond_4')</label>
-                                                            <input type="number" name="dimaond_4" step="0.01" value="{{ old('dimaond_4')}}" class="form-control">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>@lang('site.dimaond_5')</label>
-                                                            <input type="number" name="dimaond_5" step="0.01" value="{{ old('dimaond_5')}}" class="form-control">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>@lang('site.purity')</label>
-                                                            <input type="text" name="purity"  value="{{ old('purity')}}" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                        <div class="form-group">
-                                                            <label>@lang('site.color')</label>
-                                                            <input type="text" name="color"  value="{{ old('color')}}" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                        <div class="form-group">
-                                                            <label>Qty</label>
-                                                            <input type="text" name="qty"  value="{{ old('qty')}}" class="form-control">
-                                                            @error('qty')
-                                                              <div class="text-danger">{{$message}}</div>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                        <div class="text-right">
-                                                            <button type="submit" class="btn btn-primary mr-3">@lang('site.add')</button>
-                                                        </div>
-                                                        <div class="text-left">
-                                                            <a class="btn btn-outline-primary mr-3">@lang('site.import_by_excel')</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <div id="products">
+                                            <div class="row gutters product-row">
+<div class="row gutters">
+    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+        <div class="user-avatar">
+            <img src="{{asset('uploads/product_images/default.png')}}" class="img-fluid float-center image-preview" alt="Wafi Admin" />
+        </div>
+        
+        <div class="form-group">
+            <label>@lang('site.image')</label>
+            <input type="file" name="image" id="img" class="form-control image product" required accept="image/*" >
+        </div>
+        <div class="form-group">
+            <label>@lang('site.sale_price')</label>
+            <input type="number" step="0.01" value="{{ old('sale_price')}}" name="sale_price" class="form-control product"required value>
+        </div>
+        <div class="form-group">
+            <label>@lang('site.category_type')</label>
+            <select name="category_id" class="form-control product form-control-lg" required>
+                <option value="">Select</option>
+                @foreach($categories as $category)
+                <option value="{{$category->id}}" @if(!empty(old('category_id')) && old('category_id') == $category->id) selected @endif>{{$category->name}}</option>
+                @endforeach
+            </select>
+            @error('category_id')
+              <div class="text-danger">{{$message}}</div>
+            @enderror
+        </div>
+    </div>
+    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+        <div class="form-group">
+            <label>@lang('site.extra_no')</label>
+            <input type="text" name="extra_no" value="{{ old('extra_no')}}" class="form-control product" required>
+            @error('extra_no')
+              <div class="text-danger">{{$message}}</div>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label>@lang('site.item_type')</label>
+            <select name="item_type" class="form-control product form-control-lg" required>
+                <option value="new" class="" @if(!empty(old('item_type')) && old('item_type') == 'new') selected @endif> @lang('site.new')</option>
+                <option value="used" class="" @if(!empty(old('item_type')) && old('item_type') == 'used') selected @endif>@lang('site.used')</option>
+            </select>
+            @error('item_type')
+              <div class="text-danger">{{$message}}</div>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label for="docTitle">@lang('site.supplier')</label>
+            <select name="product_supplier" required class="form-control product form-control-lg">
+                <option value="">Select</option>
+                @foreach($suppliers as $supplier)
+                <option value="{{$supplier->id}}">{{$supplier->name}}</option>
+                @endforeach
+            </select>
+            @error('product_supplier')
+            <div class="text-danger">{{$message}}</div>
+          @enderror
+        </div>
+    </div>
+    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+        <div class="form-group">
+            <label>@lang('site.design_no')</label>
+            <input type="text" name="design_no" value="{{ old('design_no')}}" class="form-control product">
+        </div>
+        <div class="form-group">
+            <label>@lang('site.purchase_price')</label>
+            <input type="number" step="0.01" name="purchase_price" value="{{ old('purchase_price')}}" required class="form-control product">
+            @error('purchase_price')
+              <div class="text-danger">{{$message}}</div>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label class="col-form-label">@lang('site.description')</label>
+            <textarea class="form-control product" name="description" maxlength="140" rows="4"> {{ old('description')}}</textarea>
+            <div class="form-text text-muted"><p id="characterLeft" class="help-block ">140 characters left</p></div>
+        </div>
+    </div>
+    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12"></div>
+    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
+        <div class="form-group">
+            <label>@lang('site.gold')</label>
+            <input type="number" name="gold" step="0.01" value="{{ old('gold')}}"  class="form-control product" required>
+            @error('gold')
+              <div class="text-danger">{{$message}}</div>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label>@lang('site.marquis')</label>
+            <input type="number" name="marquis" step="0.01" value="{{ old('marquis')}}" class="form-control product">
+        </div>
+        <div class="form-group">
+            <label>@lang('site.baguette')</label>
+            <input type="number" name="baguette" step="0.01" value="{{ old('baguette')}}"  class="form-control product">
+        </div>
+    </div>
+    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
+        <div class="form-group">
+            <label>@lang('site.big_stone')</label>
+            <input type="number" name="big_stone" step="0.01" value="{{ old('big_stone')}}" class="form-control product">
+        </div>
+        <div class="form-group">
+            <label>@lang('site.princess')</label>
+            <input type="number" name="princess" step="0.01" value="{{ old('princess')}}" class="form-control product">
+        </div>
+        <div class="form-group">
+            <label>@lang('site.colored')</label>
+            <input type="number" name="colored" value="{{ old('colored')}}" class="form-control product">
+        </div>
+    </div>
+    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
+        <div class="form-group">
+            <label>@lang('site.dimaond_1')</label>
+            <input type="number" name="dimaond_1" step="0.01" value="{{ old('dimaond_1')}}" class="form-control product">
+        </div>
+        <div class="form-group">
+            <label>@lang('site.dimaond_2')</label>
+            <input type="number" name="dimaond_2" step="0.01" value="{{ old('dimaond_2')}}" class="form-control product">
+        </div>
+        <div class="form-group">
+            <label>@lang('site.dimaond_3')</label>
+            <input type="number" name="dimaond_3" step="0.01" value="{{ old('dimaond_3')}}" class="form-control product">
+        </div>
+    </div>
+    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
+        <div class="form-group">
+            <label>@lang('site.dimaond_4')</label>
+            <input type="number" name="dimaond_4" step="0.01" value="{{ old('dimaond_4')}}" class="form-control product">
+        </div>
+        <div class="form-group">
+            <label>@lang('site.dimaond_5')</label>
+            <input type="number" name="dimaond_5" step="0.01" value="{{ old('dimaond_5')}}" class="form-control product">
+        </div>
+        <div class="form-group">
+            <label>@lang('site.purity')</label>
+            <input type="text" name="purity"  value="{{ old('purity')}}" class="form-control product">
+        </div>
+    </div>
+    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
+        <div class="form-group">
+            <label>@lang('site.color')</label>
+            <input type="text" name="color"  value="{{ old('color')}}" class="form-control product">
+        </div>
+    </div>
+    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
+        <div class="form-group">
+            <label>Qty</label>
+            <input type="number" name="qty"  value="{{ old('qty')}}" class="form-control product">
+            @error('qty')
+              <div class="text-danger">{{$message}}</div>
+            @enderror
+        </div>
+    </div>
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="text-right">
+            <button type="button" class="btn btn-primary mr-3 save-product">@lang('site.add')</button>
+        </div>
+        <!-- <div class="text-left">
+            <a class="btn btn-outline-primary mr-3">@lang('site.import_by_excel')</a>
+        </div> -->
+    </div>
+</div>
+</div>
                                             </div>
                                             <hr>
                                             <div class="row gutters">
@@ -667,8 +669,8 @@
                                                         <thead>
                                                             <tr>
                                                                 <th>#</th>
-                                                                <th>@lang('site.select')</th>
-                                                                <th>@lang('site.item_no')</th>
+                                                                <!-- <th>@lang('site.select')</th> -->
+                                                                <th>Item Type</th>
                                                                 <th>@lang('site.extra_no')</th>
                                                                 <th>@lang('site.design_no')</th>
                                                                 <th>@lang('site.category_type')</th>
@@ -685,30 +687,8 @@
                                                                 <th>@lang('site.action')</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td><input type="checkbox"></td>
-                                                                <td>1001</td>
-                                                                <td>54822100</td>
-                                                                <td>btf01011sdf</td>
-                                                                <td>Ring</td>
-                                                                <td>Ring gold and diamond</td>
-                                                                <td>2.03</td>
-                                                                <td>0.23</td>
-                                                                <td>0.12</td>
-                                                                <td>0.00</td>
-                                                                <td>0.00</td>
-                                                                <td>0.00</td>
-                                                                <td>0.00</td>
-                                                                <td>1500</td>
-                                                                <td>
-                                                                    <span class="badge badge-pill badge-success">Available</span>
-                                                                </td>
-                                                                <td>
-                                                                    <a class="btn btn-sm btn-danger"><i class="icon-remove_circle"></i></a>
-                                                                </td>
-                                                            </tr>
+                                                        <tbody id="product-table">
+                                                            
                                                         </tbody>
 
                                                         <tfoot>
@@ -1640,7 +1620,138 @@
                          }
                       }
         })
-    })
+    });
+
+    $('.save-product').click(function()
+    {       
+        let formData = new FormData();
+
+        formData.append('_token', "{{ csrf_token() }}");
+        
+      
+        if($("#img").val() != ""){
+        formData.append('image', $("#img")[0].files[0]);
+        }
+
+        formData.append('sale_price', $("input[name=sale_price]").val());
+
+        formData.append('category_id', $("select[name=category_id]").val());
+
+        formData.append('extra_no', $("input[name=extra_no]").val());
+
+        formData.append('item_type', $("select[name=item_type]").val());
+
+        formData.append('supplier_id', $("select[name=product_supplier]").val());
+        
+        formData.append('design_no', $("input[name=design_no]").val());
+
+        formData.append('purchase_price', $("input[name=purchase_price]").val());
+
+        formData.append('description', $("textarea[name=description]").val());
+
+        formData.append('gold', $("input[name=gold]").val());
+
+        formData.append('marquis', $("input[name=marquis]").val());
+
+        formData.append('baguette', $("input[name=baguette]").val());
+
+        formData.append('big_stone', $("input[name=big_stone]").val());
+
+        formData.append('princess', $("input[name=princess]").val());
+
+        formData.append('colored', $("input[name=colored]").val());
+
+        formData.append('dimaond_1', $("input[name=dimaond_1]").val());
+
+        formData.append('dimaond_2', $("input[name=dimaond_2]").val());
+
+        formData.append('dimaond_3', $("input[name=dimaond_3]").val());
+
+        formData.append('dimaond_4', $("input[name=dimaond_4]").val());
+
+        formData.append('dimaond_5', $("input[name=dimaond_5]").val());
+
+        formData.append('purity', $("input[name=purity]").val());
+
+        formData.append('color', $("input[name=color]").val());
+
+        formData.append('qty', $("input[name=qty]").val());
+
+
+
+
+        $.ajax({
+        type : "POST",   
+        cache:false,       
+        processData: false,
+        contentType: false,
+        url : "{{route('dashboard.products.store')}}",
+        data : formData,
+        success:function(response){    
+              
+            if(response.success == 1){
+                addProduct(response.data);
+                var msg = new Noty({
+                             text: "product added",
+                             timeout:5000,
+                             type: "success",
+
+                            });
+                msg.show();
+            }else if(response.success == 0){
+                $.each(response.errors, function(index, value)
+                    {
+                    if (value.length !== 0)
+                        {
+                            
+                            var error = new Noty({
+                             text: value,
+                             timeout:5000,
+                             type: "error",
+
+                            });
+                        error.show();
+                            }
+                        });
+            }
+         
+        }        
+    });
+
+    function addProduct(product)
+    {       
+        var html = "<tr>";
+        html += "<td>"+product.id+"</td>";
+        html += "<td>"+product.item_type+"</td>";
+        html += "<td>"+product.extra_no+"</td>";
+        html += "<td>"+product.design_no+"</td>";
+        html += "<td>"+product.category_id+"</td>";
+        html += "<td>"+product.description+"</td>";
+        html += "<td>"+product.gold+"</td>";
+        html += "<td>"+product.dimaond_1+"</td>";
+        html += "<td>"+product.baguette+"</td>";
+        html += "<td>"+product.princess+"</td>";
+        html += "<td>"+product.marquis+"</td>";
+        html += "<td>"+product.big_stone+"</td>";
+        html += "<td>"+product.colored+"</td>";        
+        html += "<td>"+product.purchase_price+"</td>";      
+        html += "<td>"+product.status+"</td>";
+        html += "<td><button class='btn btn-danger delete' type='button'>Delete</button><input type='hidden' value="+product.id+" class='delete_id'></td>";
+        html += "</tr>";
+        $('#product-table').append(html);
+    }
+
+    $(document).on('click','.delete',function(){
+        var confirm = "are you sure ?";
+        if(!confirm){
+            return false;
+        }
+
+        
+
+    });
+
+    });
     </script>
 
 @endsection

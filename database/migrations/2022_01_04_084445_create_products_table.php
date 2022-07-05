@@ -37,7 +37,7 @@ class CreateProductsTable extends Migration
             $table->string('color')->nullable();
             $table->string('purity')->nullable();
             $table->text('description')->nullable();
-            $table->text('status');
+            $table->text('status')->default('available');
             $table->string('image')->default('default.png');
             $table->timestamps();
 

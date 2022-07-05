@@ -28,6 +28,9 @@ class PurchaseController extends Controller
             $purchases = PurchaseCash::get();
             return view('dashboard.invoices.purchases.cash',compact('purchases'));
         }
+
+            $purchases = PurchaseOrder::with('supplier')->get();
+            return view('dashboard.invoices.purchases.order',compact('purchases'));
         
     }
 
@@ -56,6 +59,7 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
+        
       
         $rules = [
             'invoice_date' => 'required',

@@ -27,7 +27,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
 
 
     //products routes
-        Route::resource('products', 'ProductController')->except(['show']);
+        Route::resource('products', 'ProductController')->except(['show'])->names('products');
 
         Route::delete('/deleted-items', 'ProductController@deleteCheckedItem')->name('products.deleteSelected');
         //export products list

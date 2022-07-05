@@ -13,7 +13,7 @@ use App\Supplier;
 use Carbon\Carbon;
 use App\Exports\ProductsExport;
 use Excel;
-
+use Validator;
 
 
 class ProductController extends Controller
@@ -63,19 +63,24 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
+        
+     
+        $validator = validator::make($request->all(),[
             'category_id' => 'required',
             'supplier_id' => 'required',
             'extra_no' => 'required',
             'item_type' => 'required',
             'gold' => 'required',
             'purchase_price' => 'required',
-        ];
+            'image'=>'sometimes|mimes:png,jpg,jpeg'
+        ]);
 
-        $request->validate($rules);
+        if ($validator->fails()) {
+            return response()->json(['success'=>0,'errors' => $validator->errors(),400]);
+        }
         $request_data = $request->all();
 
-        if ($request->image) {
+        if ($request->hasFile('image')) {
 
             Image::make($request->image)
                 ->resize(300, null, function ($constraint) {
@@ -85,11 +90,14 @@ class ProductController extends Controller
 
             $request_data['image'] = $request->image->hashName();
 
-        }//end of if
+        }else{
+            $request_data['image'] = null;
+        }
 
-        Product::create($request_data);
-        session()->flash('success', __('site.added_successfully'));
-        return redirect()->route('dashboard.products.index');
+        $request_data['status'] = 'available';
+        $product = Product::create($request_data);
+        return response()->json(['success'=>1,'data'=>$product]);
+        
     }
 
     /**
