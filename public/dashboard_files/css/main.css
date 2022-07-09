@@ -9118,3 +9118,15 @@ code {
     color: #f77eb9;
     word-break: break-word;
 }
+
+.error {
+    color: red;
+}
+
+.sale-type-cash {
+    display: none;
+}
+
+.sale-type-order  {
+    display: none;
+}

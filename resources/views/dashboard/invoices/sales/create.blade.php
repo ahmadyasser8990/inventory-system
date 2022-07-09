@@ -405,40 +405,50 @@
                                                             <label for="">@lang('site.invoice_date')</label>
                                                             <input type="text" class="form-control form-control-sm pickdate"  name="invoice_date">
                                                         </div>
+                                                        @if($errors->has('invoice_date'))
+                                                            <div class="error">{{ $errors->first('invoice_date') }}</div>
+                                                        @endif
                                                     </div>
                                                     <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
                                                         <div class="form-group">
                                                             <label for="">@lang('site.payment_method')</label>
-                                                            <select name="" id="" class="form-control form-control-sm">
+                                                            <select name="payment_method" id="" class="form-control form-control-sm">
                                                                 <option value="">choose...</option>
                                                                 <option value="1">@lang('site.cash')</option>
                                                                 <option value="2">@lang('site.masterCard')</option>
                                                             </select>
                                                         </div>
+                                                        @if($errors->has('payment_method'))
+                                                            <div class="error">{{ $errors->first('payment_method') }}</div>
+                                                        @endif
                                                     </div>
                                                     <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
                                                         <div class="form-group">
                                                             <label for="">@lang('site.sale_type')</label>
-                                                            <select name="" id="" class="form-control form-control-sm">
+                                                            <select name="sale_type" id="saleType" class="form-control form-control-sm">
                                                                 <option value="">choose...</option>
                                                                 <option value="1">Order</option>
                                                                 <option value="2">Cash</option>
                                                             </select>
                                                         </div>
+                                                        @if($errors->has('sale_type'))
+                                                            <div class="error">{{ $errors->first('sale_type') }}</div>
+                                                        @endif
                                                     </div>
-                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+
+                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12 sale-type-cash">
                                                         <div class="form-group">
                                                             <label for="">@lang('site.name')</label>
                                                             <input type="text" class="form-control form-control-sm "  name="">
                                                         </div>
                                                     </div>
-                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12 sale-type-cash">
                                                         <div class="form-group">
                                                             <label for="">@lang('site.phone')</label>
                                                             <input type="text" class="form-control form-control-sm "  name="">
                                                         </div>
                                                     </div>
-                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12 sale-type-cash">
                                                         <div class="form-group">
                                                             <label for="">@lang('site.tax_no')</label>
                                                             <input type="text" class="form-control form-control-sm "  name="">
@@ -460,6 +470,7 @@
                                                     <div class="form-group">
                                                         <label for="">@lang('site.client_no')</label>
                                                         <select name="client_no" type="text" id="client_no" class="form-control form-control-sm selectpicker client_no"  data-live-search="true">
+                                                            <option value="">choose...</option>
                                                             @foreach ($clients as $client)
                                                                 <option
                                                                     data-tax_no="{{ $client->tax_no }}"
@@ -472,19 +483,20 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-4 col-lg col-md-4 col-sm-4 col-12">
+
+                                                <div class="col-xl-4 col-lg col-md-4 col-sm-4 col-12 sale-type-order">
                                                     <div class="form-group">
                                                         <label for="">@lang('site.client_name')</label>
                                                         <input class="form-control form-control-sm name" name="client_name" readonly type="text" value="" placeholder="">
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12 sale-type-order">
                                                     <div class="form-group">
                                                         <label for="">@lang('site.phone_no')</label>
                                                         <input class="form-control form-control-sm phone" name="phone" type="text" readonly placeholder="">
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12 sale-type-order">
                                                     <div class="form-group">
                                                         <label for="">@lang('site.tax_no')</label>
                                                         <input class="form-control form-control-sm tax_no" name="tax_no" type="text" readonly placeholder="">
@@ -633,8 +645,8 @@
                                                                     </label>
                                                                 </div>
                                                                 <div class="form-check mb-2">
-                                                                    <input class="form-check-input mb-2 mr-sm-2" type="checkbox" value="" id="defaultCheck1">
-                                                                    <label class="form-check-label mb-2 mr-sm-2" for="defaultCheck1">
+                                                                    <input class="form-check-input mb-2 mr-sm-2" type="checkbox" value="" id="defaultCheck2">
+                                                                    <label class="form-check-label mb-2 mr-sm-2" for="defaultCheck2">
                                                                         @lang('site.notiIncludeTax')
                                                                     </label>
                                                                 </div>
@@ -1266,7 +1278,7 @@
                         '<td><label for="" class="marquis" name="marquis['+ numberIncr +']">' + marquis + '</label></td>'+
                         '<td><label for="" class="bigStone" name="big_stone['+ numberIncr +']">' + big_stone + '</label></td>'+
                         '<td><label for="" class="colored" name="colored['+ numberIncr +']">' + colored + '</label></td>'+
-                        '<td><label for="" class="item_price item_priceByPurchase" name="sale_price['+ numberIncr +']">' + $.number(sale_price, 2) +'</label></td>'+
+                        '<td><label for="" class="item_price item_priceByPurchase" name="sale_price['+ numberIncr +']">' + $.number(sale_price, 2) +'</label><input type="hidden" name="sale_price_original_'+ numberIncr +'" id="sale_price_original_'+ numberIncr +'" value="'+ sale_price +'"></td>'+
                         '<td><a class="btn btn-sm btn-danger delegated-btn"><i class="icon-remove_circle"></i></a>' +
                         '</td>'+
                     '</tr>'));
@@ -1359,23 +1371,29 @@
 
             }
 
-            $('body').on('keyup blur', '.discount_type', function () {
-                $('#vat_value').val(calculate_vat());
-                $('#final_total').val(sum_due_total());
-            });
             // هنا القيمه في الخصم اذا كان بالريال يتغير بسعر ثابت اما اذا كان البنسبه فيتغير بالنسبه المئاويه
             $('body').on('keyup blur', '.discount_value', function(){
-                $('#vat_value').val(calculate_vat());
-                $('#final_total').val(sum_due_total());
+                calculateTotal();
             });
 
             let calculate_vat = function () {
+                var defaultCheck1 = $('#defaultCheck1').is(":checked");
+                var defaultCheck2 = $('#defaultCheck2').is(":checked");
                 let sub_totalVal = parseFloat($('.sub_total').val()) || 0;
+                let vatVal = 0;
+                if(defaultCheck1 && defaultCheck2) {
+                    vatVal = sub_totalVal * 0.15;
+                } else if (defaultCheck1) {
+                    vatVal = 0;
+                }
+
                 let discount_type = $('.discount_type').val();
                 let discount_value = parseFloat($('.discount_value').val()) || 0;
                 let discountVal = discount_value != 0 ? discount_type == 'percentage' ? sub_totalVal * (discount_value / 100) : discount_value : 0;
 
-                let vatVal = (sub_totalVal - discountVal) * 0.15;
+                if(!defaultCheck1 && defaultCheck2) {
+                    vatVal = (sub_totalVal - discountVal) * 0.15;
+                }
 
                 return vatVal.toFixed(2);
             }
@@ -1397,15 +1415,33 @@
                 return sum.toFixed(2);
             }
 
+            // Apply tax as per the selected option
+            $('#defaultCheck1,#defaultCheck2').click(function () {
+                calculateTotal();
+            });
+
             //  Count Total sale_prices (class="item_price" and class="total_price")
             function calculateTotal() {
 
                 var price = 0;
+                var priceLessTax = 0;
+                var priceWithTax = 0;
+                var defaultCheck1 = $('#defaultCheck1').is(":checked");
+                var defaultCheck2 = $('#defaultCheck2').is(":checked");
+                var numberIncr = 1;
 
                 $('#invoice_details .item_price').each(function(index) {
-
-
-                    price += parseFloat($(this).html().replace(/,/g, ''));
+                    if(defaultCheck1 && defaultCheck2) {
+                        priceLessTax = 0;
+                        priceWithTax = $('#sale_price_original_'+numberIncr).val();
+                        priceLessTax = (priceWithTax / 1.15);
+                        $(this).html($.number(priceLessTax, 2));
+                        price += parseFloat(priceLessTax);
+                    } else {
+                        price += parseFloat($('#sale_price_original_'+numberIncr).val());
+                        $(this).html($.number($('#sale_price_original_'+numberIncr).val(), 2));
+                    }
+                    numberIncr = numberIncr + 1;
 
                 });//end of product price total_price-input
 
@@ -1414,7 +1450,18 @@
                 $('#vat_value').val(calculate_vat());
                 $('#final_total').val(sum_due_total());
                 $('.total_price_summary').html($.number(price, 2));
-
+                numberIncr = 1;
+                $('.total_item_price').each(function(index) {
+                    if(defaultCheck1 && defaultCheck2) {
+                        priceLessTax = 0;
+                        priceWithTax = $('#total_item_price_original_'+numberIncr).val();
+                        priceLessTax = (priceWithTax / 1.15);
+                        $(this).html($.number(priceLessTax, 2));
+                    } else {
+                        $(this).html($.number($('#total_item_price_original_'+numberIncr).val(), 2));
+                    }
+                    numberIncr = numberIncr + 1;
+                });
                 //check if price > 0
                 if (price > 0) {
 
@@ -1804,7 +1851,7 @@
                             html += '<td><label for="" class="marquis" name="marquis['+ numberIncr +']">' + value.marquis + '</label></td>';
                             html +='<td><label for="" class="bigStone" name="big_stone['+ numberIncr +']">' + value.big_stone + '</label></td>';
                             html +=   '<td><label for="" class="colored" name="colored['+ numberIncr +']">' + value.colored + '</label></td>';
-                            html += '<td><label for="" class="item_price item_priceByPurchase" name="sale_price['+ numberIncr +']">' + $.number(value.sale_price, 2) +'</label></td>';
+                            html += '<td><label for="" class="item_price item_priceByPurchase" name="sale_price['+ numberIncr +']">' + $.number(value.sale_price, 2) +'</label><input type="hidden" name="sale_price_original_'+ numberIncr +'" id="sale_price_original_'+ numberIncr +'" value="'+ value.sale_price +'"></td>';
                             html += '<td><a class="btn btn-sm btn-danger delegated-btn"><i class="icon-remove_circle"></i></a>';
                             html +=  '</tr>';
 
@@ -1938,8 +1985,8 @@
                       success : function(data){
                         if(data.success){
                           var html = null;
+                          var numberIncr = 1;
                           $.each(data.products,function(index,value){
-
                              if(index == 0){
                                 html += '<tr class="addCategory_row" id="0" style="color: red;">';
                                 html += '<td>'+value.category_name+'</td>';
@@ -1947,15 +1994,19 @@
                                 html += '<td class="total_price_summary">'+value.sale_price+'</td>';
                                 html += '</tr>';
                               }else{
+                                if(value.sale_price == null) {
+                                    value.sale_price = 0;
+                                }
                                 html += '<tr>';
                                 html += '<td>'+value.category_name+'</td>';
                                 html += '<td>'+value.qty+'</td>';
-                                html += '<td>'+value.sale_price+'</td>';
+                                html += '<td class="total_item_price">'+ value.sale_price +'</td><input type="hidden" name="total_item_price_original_'+ numberIncr +'" id="total_item_price_original_'+ numberIncr +'" value="'+ value.sale_price +'">';
                                 html += '</tr>';
+                                numberIncr = numberIncr + 1;
                              }
                           });
                           $('#summary').html(html);
-
+                          calculateTotal();
 
                         };
 
@@ -1963,6 +2014,20 @@
                 });
 
             }
+
+            $("#saleType").change(function(){
+                var saleType = $('#saleType').val();
+                if(saleType == '1') {
+                    $(".sale-type-cash").hide();
+                    $(".sale-type-order").show();
+                } else if (saleType == '2') {
+                    $(".sale-type-cash").show();
+                    $(".sale-type-order").hide();
+                } else {
+                    $(".sale-type-cash").hide();
+                    $(".sale-type-order").hide();
+                }
+            });
 
         });
 

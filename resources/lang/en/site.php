@@ -452,7 +452,7 @@ return [
     'sale_bill' => 'Sale Bill',
     'summary_invoice' => 'Summary Invoice',
     'draft_invoice' => 'Draft Invoice',
-    'client_no' => 'Clint Account',
+    'client_no' => 'Client Account',
     'invoice_date' => 'Invoice Date',
     'invoice_info' => 'Invoice Information',
     'summary_invoice' => 'Invoices',
