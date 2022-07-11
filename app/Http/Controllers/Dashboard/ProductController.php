@@ -166,7 +166,15 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        if(request()->ajax())
+        {
+            if($product->delete()){
+                return response()->json(['success'=>1]);
+            }else{
+                return response()->json(['success'=>0]);
+            }
+
+        }
     }
 
     public function exportIntoExcel(){

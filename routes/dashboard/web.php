@@ -47,6 +47,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
         Route::post('/reload/products','SaleController@showProducts')->name('show.products');
         Route::post('/update/color-purity','SaleController@updateColorAndPurity')->name('update.color_purity');
         Route::post('/summary/invoice','SaleController@summaryInvoice')->name('summary.invoice');
+        Route::post('/purchase/summary/invoice','PurchaseController@summaryInvoice')->name('purchase.summary.invoice');
 
         //Return Sales
         Route::resource('return-sales', 'ReturnSaleController');

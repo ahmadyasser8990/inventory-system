@@ -12,6 +12,8 @@ use App\PurchaseOrder;
 use App\PurchaseOrderDetail;
 use App\Product;
 use Intervention\Image\Facades\Image;
+use DB;
+use Validator;
 class PurchaseController extends Controller
 {
     /**
@@ -32,6 +34,37 @@ class PurchaseController extends Controller
             $purchases = PurchaseOrder::with('supplier')->get();
             return view('dashboard.invoices.purchases.order',compact('purchases'));
         
+    }
+
+    public function summaryInvoice(Request $request)
+    {
+        if(!empty($request->ids)){
+            $ids = $request->ids;
+        
+            if(!empty($ids) && is_array($ids)){
+
+                 
+
+                    $products = DB::table('products as p')
+                                ->join('categories as c','c.id','=','p.category_id')
+                                ->whereIn('p.id',$ids)
+                                ->groupBy('c.id')
+                                ->select(
+                                    'c.name as category_name',
+                                    DB::raw('SUM(p.purchase_price) as purchase_price'),
+                                    DB::raw('COUNT(c.id) as qty')
+                                )
+                                ->get();
+                    $firstRow = [
+                                  'category_name'=>"Total", 'purchase_price'=>$products->sum('purchase_price'),
+                                  'qty'=> $products->sum('qty')
+                                ];
+                    $products = $products->toArray();
+                    array_unshift($products,$firstRow);
+
+                       return response()->json(["success"=>"true","products"=>$products]);
+            }
+        }
     }
 
     /**
@@ -66,7 +99,7 @@ class PurchaseController extends Controller
             'payment_method' => 'required',
             'purchase_type' => 'required',
 
-            'category_id' => 'required',
+           
 
             'supplier_id' => 'required_if:purchase_type,order',
 
@@ -74,120 +107,89 @@ class PurchaseController extends Controller
             'supplier_phone_no' => 'required_if:purchase_type,cash',
             'supplier_tax_no' => 'required_if:purchase_type,cash',
  
-            'product_supplier'=>'required',
-
-            'extra_no' => 'required',
-            'item_type' => 'required',
-            'gold' => 'required',
-            'purchase_price' => 'required',
+       
+            'added_product_id'=>'required',
         ];
 
-        $request->validate($rules);
+        // $request->validate($rules,['added_product_id.required'=>'one product is required']);
+
+        $validator = validator::make($request->all(),$rules,['added_product_id.required'=>'one product is required']);
+
+        if ($validator->fails()) {
+            return response()->json(['success'=>0,'errors' => $validator->errors(),400]);
+        }
         $request_data = $request->all();
-        $image= null;
-        if ($request->image) {
+        // $image= null;
+        // if ($request->image) {
 
-            Image::make($request->image)
-                ->resize(300, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                })
-                ->save(public_path('/uploads/product_images/' . $request->image->hashName()));
+        //     Image::make($request->image)
+        //         ->resize(300, null, function ($constraint) {
+        //             $constraint->aspectRatio();
+        //         })
+        //         ->save(public_path('/uploads/product_images/' . $request->image->hashName()));
 
-            $image = $request->image->hashName();
+        //     $image = $request->image->hashName();
 
-        }//end of if
+        // }//end of if
 
         if($request->purchase_type == 'order')
         {
+            $total = 0;
+            foreach($request->added_product_id as $product){
+                $product = Product::findorFail($product);
+                $total += $product->purchase_price;
+            }
             $purchaseOrder =  new PurchaseOrder;
             $purchaseOrder->date = $request->invoice_date;
             $purchaseOrder->purchase_type = $request->purchase_type;
             $purchaseOrder->payment_method = $request->payment_method;
             $purchaseOrder->supplier_id = $request->supplier_id;
-            $purchaseOrder->final_total = $request->purchase_price;
-            $purchaseOrder->save();
+            $purchaseOrder->final_total = $total;
+            $purchaseOrder->save();            
 
-            $product = new Product;
-            $product->image = $image;
-            $product->supplier_id  = $request->product_supplier;
-            $product->sale_price = $request->sale_price;
-            $product->category_id = $request->category_id;
-            $product->extra_no = $request->extra_no;
-            $product->item_type =  $request->item_type;
-            $product->design_no = $request->design_no;
-            $product->purchase_price = $request->purchase_price;
-            $product->description = $request->description;
-            $product->gold = $request->gold;
-            $product->marquis = $request->marquis;
-            $product->baguette = $request->baguette;
-            $product->big_stone = $request->big_stone;
-            $product->princess = $request->princess;
-            $product->colored = $request->colored;
-            $product->dimaond_1 =  $request->dimaond_1;
-            $product->dimaond_2 = $request->dimaond_2;
-            $product->dimaond_3 = $request->dimaond_3;
-            $product->dimaond_4 = $request->dimaond_4;
-            $product->dimaond_5 = $request->dimaond_5;
-            $product->purity = $request->purity;
-            $product->color = $request->color;
-            $product->status = "available";
-            $product->save();
+            foreach($request->added_product_id as $product){
+                $product = Product::findorFail($product);
+                $purchaseOrderDetail = new PurchaseOrderDetail;
+                $purchaseOrderDetail->purchase_order_id = $purchaseOrder->id;
+                $purchaseOrderDetail->product_id = $product->id;
+                $purchaseOrderDetail->save();
+            }
+            
 
-            $purchaseOrderDetail = new PurchaseOrderDetail;
-            $purchaseOrderDetail->purchase_order_id = $purchaseOrder->id;
-            $purchaseOrderDetail->product_id = $product->id;
-            $purchaseOrderDetail->save();
-
-            session()->flash('success', __('site.added_successfully'));
-            return redirect()->route('dashboard.purchase.index',['type'=>'order']);
+           
 
         }else{
+            $total = 0;
+            foreach($request->added_product_id as $product){
+                $product = Product::findorFail($product);
+                $total += $product->purchase_price;
+            }
 
             $purchaseCash =  new PurchaseCash;
             $purchaseCash->date = $request->invoice_date;
             $purchaseCash->purchase_type = $request->purchase_type;
             $purchaseCash->payment_method = $request->payment_method;
-            $purchaseCash->final_total = $request->purchase_price;
+            $purchaseCash->final_total = $total;
             $purchaseCash->supplier_name = $request->supplier_name;
             $purchaseCash->supplier_phone = $request->supplier_phone_no;
             $purchaseCash->supplier_tax_no = $request->supplier_tax_no;
             $purchaseCash->save();
 
-            $product = new Product;
-            $product->image = $image;
-            $product->supplier_id  = $request->product_supplier;
-            $product->sale_price = $request->sale_price;
-            $product->category_id = $request->category_id;
-            $product->extra_no = $request->extra_no;
-            $product->item_type =  $request->item_type;
-            $product->design_no = $request->design_no;
-            $product->purchase_price = $request->purchase_price;
-            $product->description = $request->description;
-            $product->gold = $request->gold;
-            $product->marquis = $request->marquis;
-            $product->baguette = $request->baguette;
-            $product->big_stone = $request->big_stone;
-            $product->princess = $request->princess;
-            $product->colored = $request->colored;
-            $product->dimaond_1 =  $request->dimaond_1;
-            $product->dimaond_2 = $request->dimaond_2;
-            $product->dimaond_3 = $request->dimaond_3;
-            $product->dimaond_4 = $request->dimaond_4;
-            $product->dimaond_5 = $request->dimaond_5;
-            $product->purity = $request->purity;
-            $product->color = $request->color;
-            $product->status = "available";
-            $product->save();
+            
+            foreach($request->added_product_id as $product){
+                $product = Product::findorFail($product);
+                $purchaseCashDetail = new PurchaseCashDetail;
+                $purchaseCashDetail->purchase_cash_id = $purchaseCash->id;
+                $purchaseCashDetail->product_id = $product->id;
+                $purchaseCashDetail->save();
+            }
+            
 
-            $purchaseCashDetail = new PurchaseCashDetail;
-            $purchaseCashDetail->purchase_cash_id = $purchaseCash->id;
-            $purchaseCashDetail->product_id = $product->id;
-            $purchaseCashDetail->save();
-
-            session()->flash('success', __('site.added_successfully'));
-            return redirect()->route('dashboard.purchase.index',['type'=>'cash']);
+           
+            
 
         }
+        return response()->json(['success'=>1,'type'=>$request->purchase_type]);
 
        
     }
