@@ -423,7 +423,7 @@
                                                                     </a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="#" class="star" data-toggle="tooltip" data-placement="top"  title="@lang('site.edit')">
+                                                                    <a href="{{route('dashboard.purchase.edit',['purchase'=>$purchase->id,'type'=>'cash'])}}" class="star" data-toggle="tooltip" data-placement="top"  title="@lang('site.edit')">
                                                                         <i class="icon-edit"></i>
                                                                     </a>
                                                                 </li>

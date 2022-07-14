@@ -23,16 +23,12 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        if(request()->type == 'order'){
-            $purchases = PurchaseOrder::with('supplier')->get();
-            return view('dashboard.invoices.purchases.order',compact('purchases'));
-        }elseif(request()->type == 'cash'){
-            $purchases = PurchaseCash::get();
-            return view('dashboard.invoices.purchases.cash',compact('purchases'));
-        }
-
-            $purchases = PurchaseOrder::with('supplier')->get();
-            return view('dashboard.invoices.purchases.order',compact('purchases'));
+       
+            $purchasesOrders = PurchaseOrder::with('supplier')->paginate(10);
+         
+            $purchasesCashes = PurchaseCash::paginate(10);
+            return view('dashboard.invoices.purchases.order',compact('purchasesOrders','purchasesCashes'));
+;
         
     }
 
@@ -213,9 +209,34 @@ class PurchaseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request,$id)
     {
-        //
+        if($request->type == 'order'){
+            $purchaseOrder = PurchaseOrder::with('supplier')->findorFail($id);
+            $purchaseOrderDetails = PurchaseOrderDetail::where('purchase_order_id',$purchaseOrder->id)->get();
+            $products = [];
+            foreach($purchaseOrderDetails as $purchaseOrderDetail)
+            {
+              $products[] = Product::find($purchaseOrderDetail->product_id);
+            }
+           
+            $categories = Category::all();
+            $suppliers = Supplier::all();
+           
+           return view('dashboard.invoices.purchases.edit_order',compact('categories','suppliers','products','purchaseOrder'));
+        }elseif($request->type == 'cash'){
+            $purchaseCash = PurchaseCash::findorFail($id);
+            $purchaseCashDetails = PurchaseCashDetail::where('purchase_cash_id',$purchaseCash->id)->get();
+            $products = [];
+            foreach($purchaseCashDetails as $purchaseCashDetail)
+            {
+              $products[] = Product::find($purchaseCashDetail->product_id);
+            }
+            $categories = Category::all();
+            $suppliers = Supplier::all();
+            return view('dashboard.invoices.purchases.edit_cash',compact('categories','suppliers','products','purchaseCash'));
+        }
+      
     }
 
     /**
@@ -227,7 +248,70 @@ class PurchaseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       if($request->type=="order"){
+        $total = 0;
+        foreach($request->added_product_id as $product){
+            $product = Product::findorFail($product);
+            $total += $product->purchase_price;
+        }
+        $purchaseOrder =  PurchaseOrder::findorFail($id);
+        $purchaseOrder->date = $request->invoice_date;
+        $purchaseOrder->purchase_type = $request->purchase_type;
+        $purchaseOrder->payment_method = $request->payment_method;
+        $purchaseOrder->supplier_id = $request->supplier_id;
+        $purchaseOrder->final_total = $total;
+        $purchaseOrder->save();            
+
+        $purchaseOrderDetails = PurchaseOrderDetail::where('purchase_order_id',$purchaseOrder->id)->get();
+        if(!empty($purchaseOrderDetails)){
+        foreach($purchaseOrderDetails as $purchaseOrderDetail)
+        {
+            $purchaseOrderDetail->delete();
+        }
+        }
+        foreach($request->added_product_id as $product){
+            $product = Product::findorFail($product);
+            $purchaseOrderDetail = new PurchaseOrderDetail;
+            $purchaseOrderDetail->purchase_order_id = $purchaseOrder->id;
+            $purchaseOrderDetail->product_id = $product->id;
+            $purchaseOrderDetail->save();
+        }
+
+        return response()->json(['success'=>1,'type'=>$request->purchase_type]);
+       }
+       else if($request->type=="cash")
+       {
+        $total = 0;
+        foreach($request->added_product_id as $product){
+            $product = Product::findorFail($product);
+            $total += $product->purchase_price;
+        }
+
+        $purchaseCash =  PurchaseCash::findorFail($id);
+            $purchaseCash->date = $request->invoice_date;
+            $purchaseCash->purchase_type = $request->purchase_type;
+            $purchaseCash->payment_method = $request->payment_method;
+            $purchaseCash->final_total = $total;
+            $purchaseCash->supplier_name = $request->supplier_name;
+            $purchaseCash->supplier_phone = $request->supplier_phone_no;
+            $purchaseCash->supplier_tax_no = $request->supplier_tax_no;
+            $purchaseCash->save();
+
+            $purchaseCashDetails = PurchaseCashDetail::where('purchase_cash_id',$purchaseCash->id)->get();
+            if(!empty($purchaseCashDetails)){
+            foreach($purchaseCashDetails as $purchaseCashDetail)
+            {
+                $purchaseCashDetail->delete();
+            }}
+            foreach($request->added_product_id as $product){
+                $product = Product::findorFail($product);
+                $purchaseCashDetail = new PurchaseCashDetail;
+                $purchaseCashDetail->purchase_cash_id = $purchaseCash->id;
+                $purchaseCashDetail->product_id = $product->id;
+                $purchaseCashDetail->save();
+            }
+            return response()->json(['success'=>1,'type'=>$request->purchase_type]);
+       }
     }
 
     /**
