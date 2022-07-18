@@ -29,7 +29,9 @@ class SaleController extends Controller
         $clients = Client::all();
         $products = Product::where('status','available')->get();
         $prices = Price::all();
-        return view('dashboard.invoices.sales.create', compact('clients','products','prices'));
+        $sale = Sale::latest()->first();
+        $nextSaleId = $sale->id?$sale->id+1:1;
+        return view('dashboard.invoices.sales.create', compact('clients','products','prices','nextSaleId'));
     }
 
     public function updateSalePrice(Request $request)
