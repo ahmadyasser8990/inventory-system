@@ -1275,7 +1275,7 @@
                         '<td><label for="" name="id['+ numberIncr +']">' + item_no + '</label></td>' +
                         '<td><label for="" name="extra_no['+ numberIncr +']">' + extra_no +'</label></td>' +
                         '<td><label for="" name="description['+ numberIncr +']">' + description + '</label></td>'+
-                        '<td><label for="" name="category_name['+ numberIncr +']">' + category_name + '</label></td>'+
+                        '<td><label for="" class="category" name="category_name['+ numberIncr +']">' + category_name + '</label></td>'+
                         '<td><label for="" class="purity" name="purity['+ numberIncr +']">' + purity + '</label></td>'+
                         '<td><label for="" class="color" name="color['+ numberIncr +']">' + color + '</label></td>'+
                         '<td><label for="" class="gold" name="gold['+ numberIncr +']">' + gold + '</label></td>'+
@@ -1628,27 +1628,26 @@
                         counter++;
                     });
                 }
-
+                updateInvoiceDetails();
                 calculateTotal();
             }
 
-            function updateInvoiceDetails(products) {
-                counter = 0;
-                alert(products.length);
-                if(products.length > 0) {
-                    alert("A");
-                }
-                $("#invoice_details tbody tr").each(function() {
-                    //skipping first row as it is part of plugin/sticky header
+            function updateInvoiceDetails() {
+                var category = '';
+                var counter = 0;
+                var categoryValue = 0;
+                $("#summary tr").each(function() {
                     if(counter !=0) {
-
-                        var item_id = $(this).find('.product_ids').val();
-                        var item_purchase_price = 0;
-                        var item_purchase_price = parseFloat($(this).find('.purchase-price').val());
-                        $(this).find('.item_price').html($.number(item_purchase_price, 2));
-                        $('#sale_price_original_'+item_id+'_value').val(item_purchase_price);
+                        category = $(this).find('.group_category').html();
+                        categoryValue = 0;
+                        $("#invoice_details tbody tr").each(function() {
+                            if($(this).find('.category').html() == category) {
+                                categoryValue = categoryValue + parseFloat($(this).find('.item_price').html(),2);
+                            }
+                        });
+                        $("#total_price_"+category).html(categoryValue);
+                        $("#total_price_"+category+"_value").val(categoryValue);
                     }
-
                     counter++;
                 });
             }
@@ -1656,6 +1655,48 @@
             $('body').on('keyup blur', '.discount_value', function(){
                 calculateTotal();
             });
+
+            $('#edit_all_products_purchase').on('click',function(){
+                var counter = 0;
+                $("#invoice_details tbody tr").each(function() {
+                    if(counter != 0) {
+                        updateItemSalesPriceOptional($(this));
+                    }
+                    counter ++;
+                });
+                calculateTotal();
+            });
+
+            $('#edit_selected_products_purchase').on('click',function(){
+                var counter = 0;
+                $("#invoice_details tbody tr").each(function() {
+                    if(counter != 0) {
+                        var $chkbox = $(this).find('input[type="checkbox"]');
+                        var status = $chkbox.prop('checked');
+                        if(status) {
+                            updateItemSalesPriceOptional($(this));
+                        }
+                    }
+                    counter ++;
+                });
+                calculateTotal();
+            });
+
+            function updateItemSalesPriceOptional(thisObj) {
+                var unit = $('#edit_salePrice').val();
+                var price = parseInt($('#sale_value').val());
+                var updatedPrice = parseFloat(thisObj.find('.item_price').html(),2);
+                var item_id = thisObj.find('.product_ids').val();
+                if(unit == 'fixed') {
+                    updatedPrice = price;
+                } else if (unit == 'percentage') {
+                    updatedPrice = parseInt(updatedPrice + parseInt((updatedPrice/100)*price));
+                } else if (unit == 'multiple') {
+                    updatedPrice = parseInt (updatedPrice * price);
+                }
+                thisObj.find('.item_price').html($.number(updatedPrice, 2));
+                $('#sale_price_original_'+item_id+'_value').val($.number(updatedPrice, 2));
+            }
 
             let calculate_vat = function () {
                 var defaultCheck1 = $('#defaultCheck1').is(":checked");
@@ -1975,64 +2016,6 @@
                 $('.tax_no').val(tax_no);
             });
 
-            $('#edit_all_products_purchase').on('click',function(){
-                   var ids = selectedRowId("all");
-                   if(ids == false){
-                       return false;
-                   }
-                   var unit = $('#edit_salePrice');
-                   var price = $('#sale_value');
-                   salePriceValidation(unit,price);
-
-                  $.ajax({
-                      url : "{{route('dashboard.update.sale_price')}}",
-                      method : "POST",
-                      data : {
-                        "_token": "{{ csrf_token() }}",
-                        'ids' : ids,
-                        'unit': unit.val(),
-                        'price' : price.val()
-                      },
-                      success : function(data){
-                        if(data.success){
-                            reloadProducts();
-                            notification.show();
-                            clearPrice(unit,price);
-
-                        }
-                      }
-
-                });
-            });
-
-            $('#edit_selected_products_purchase').on('click',function(){
-                   var ids = selectedRowId("selected");
-                   if(ids == false){
-                       return false;
-                   }
-                   var unit = $('#edit_salePrice');
-                   var price = $('#sale_value');
-                   salePriceValidation(unit,price);
-                  $.ajax({
-                      url : "{{route('dashboard.update.sale_price')}}",
-                      method : "POST",
-                      data : {
-                        "_token": "{{ csrf_token() }}",
-                        'ids' : ids,
-                        'unit': unit.val(),
-                        'price' : price.val()
-                      },
-                      success : function(data){
-
-                        if(data.success){
-                            reloadProducts();
-                            notification.show();
-                            clearPrice(unit,price);
-                        }
-                      }
-                });
-            });
-
             $('#edit_selected_purity').on('click',function(){
                 var ids = selectedRowId("selected");
                    if(ids == false){
@@ -2117,7 +2100,7 @@
                             html += '<td><label for="" name="id['+ numberIncr +']">' + value.id + '</label></td>';
                             html +=  '<td><label for="" name="extra_no['+ numberIncr +']">' + value.extra_no +'</label></td>';
                             html += '<td><label for="" name="description['+ numberIncr +']">' + value.description + '</label></td>';
-                            html +=  '<td><label for="" name="category_name['+ numberIncr +']">' + value.category.name + '</label></td>';
+                            html +=  '<td><label for="" class="category" name="category_name['+ numberIncr +']">' + value.category.name + '</label></td>';
                             html +=  '<td><label for="" class="purity" name="purity['+ numberIncr +']">' + value.purity + '</label></td>';
                             html +=   '<td><label for="" class="color" name="color['+ numberIncr +']">' + value.color + '</label></td>';
                             html +='<td><label for="" class="gold" name="gold['+ numberIncr +']">' + value.gold + '</label></td>';
@@ -2263,12 +2246,12 @@
                         'ids' :  ids
                       },
                       success : function(data){
+                        var html = null;
                         if(data.success){
-                          var html = null;
                           $.each(data.products,function(index,value){
                              if(index == 0){
                                 html += '<tr class="addCategory_row" id="0" style="color: red;">';
-                                html += '<td>'+value.category_name+'</td>';
+                                html += '<td class="group_category">'+value.category_name+'</td>';
                                 html += '<td class="count_item_summary">'+value.qty+'</td>';
                                 html += '<td class="total_price_summary" id="total_price_' + value.category_name + '">'+value.sale_price+'</td><input type="hidden" name="total_price_'+ value.category_name +'_value" id="total_price_'+ value.category_name +'_value" value="'+ value.sale_price +'">';
                                 html += '</tr>';
@@ -2277,17 +2260,21 @@
                                     value.sale_price = 0;
                                 }
                                 html += '<tr>';
-                                html += '<td>'+value.category_name+'</td>';
+                                html += '<td class="group_category">'+value.category_name+'</td>';
                                 html += '<td>'+value.qty+'</td>';
                                 html += '<td class="total_item_price" id="total_price_' + value.category_name + '">'+ value.sale_price +'</td><input type="hidden" name="total_price_'+ value.category_name +'_value" id="total_price_'+ value.category_name +'_value" value="'+ value.sale_price +'">';
                                 html += '</tr>';
                              }
                           });
                           $('#summary').html(html);
-                          updateInvoiceDetails(data.products);
+                          updateInvoiceDetails();
                           calculateTotal();
 
-                        };
+                        } else {
+                            $('#summary').html(html);
+                            updateInvoiceDetails();
+                            calculateTotal();
+                        }
 
                       }
                 });
