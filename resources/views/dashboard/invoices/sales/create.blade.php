@@ -948,7 +948,7 @@
                                                                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.gold_price')</label>
-                                                                                    <input type="number" step="0.01" id="gold_price_manual" name="gold_price_manual" onkeyup="salesPriceByManualWeight(event,'total_gold','gold_total')" placeholder="0.00" class="form-control">
+                                                                                    <input type="number" step="0.01" id="gold_price_manual" name="gold_price_manual" placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
                                                                             <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
@@ -960,7 +960,7 @@
                                                                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.big_stone_price')</label>
-                                                                                    <input type="number" step="0.01" name="big_stone_price" placeholder="0.00" class="form-control">
+                                                                                    <input type="number" step="0.01" id="big_stone_price_manual" name="big_stone_price_manual" placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
                                                                             <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
@@ -972,7 +972,7 @@
                                                                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.baguette_price')</label>
-                                                                                    <input type="number" step="0.01" name="baguette_price" placeholder="0.00" class="form-control">
+                                                                                    <input type="number" step="0.01" id="baguette_price_manual" name="baguette_price_manual" placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
@@ -986,7 +986,7 @@
                                                                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.marquis_price')</label>
-                                                                                    <input type="number" step="0.01" name="marquis_price" placeholder="0.00" class="form-control">
+                                                                                    <input type="number" step="0.01" id="marquis_price_manual" name="marquis_price_manual" placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
                                                                             <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
@@ -998,7 +998,7 @@
                                                                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.princess_price')</label>
-                                                                                    <input type="number" step="0.01" name="princess_price" placeholder="0.00" class="form-control">
+                                                                                    <input type="number" step="0.01" id="princess_price_manual" name="princess_price_manual" placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
                                                                             <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
@@ -1010,7 +1010,7 @@
                                                                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.colored_price')</label>
-                                                                                    <input type="number" step="0.01" name="colored_price" placeholder="0.00" class="form-control">
+                                                                                    <input type="number" step="0.01" id="colored_price_manual" name="colored_price_manual" placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
@@ -1024,7 +1024,7 @@
                                                                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.dimaond1_price')</label>
-                                                                                    <input type="number" step="0.01" name="dimaond1_price" placeholder="0.00" class="form-control">
+                                                                                    <input type="number" step="0.01" id="dimaond1_price_manual" name="dimaond1_price_manual" placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
                                                                             <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
@@ -1036,7 +1036,7 @@
                                                                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.dimaond2_price')</label>
-                                                                                    <input type="number" step="0.01" name="dimaond2_price" placeholder="0.00" class="form-control">
+                                                                                    <input type="number" step="0.01" id="dimaond2_price_manual" name="dimaond2_price_manual" placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
                                                                             <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
@@ -1048,7 +1048,7 @@
                                                                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.dimaond3_price')</label>
-                                                                                    <input type="number" step="0.01" name="dimaond3_price" placeholder="0.00" class="form-control">
+                                                                                    <input type="number" step="0.01" id="dimaond3_price_manual" name="dimaond3_price_manual" placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
@@ -1062,7 +1062,7 @@
                                                                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.dimaond4_price')</label>
-                                                                                    <input type="number" step="0.01" name="dimaond4_price" placeholder="0.00" class="form-control">
+                                                                                    <input type="number" step="0.01" id="dimaond4_price_manual" name="dimaond4_price_manual" placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
                                                                             <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
@@ -1074,7 +1074,7 @@
                                                                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                                 <div class="form-group">
                                                                                     <label>@lang('site.dimaond5_price')</label>
-                                                                                    <input type="number" step="0.01" name="dimaond5_price" placeholder="0.00" class="form-control">
+                                                                                    <input type="number" step="0.01" id="dimaond5_price_manual" name="dimaond5_price_manual" placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
                                                                             <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
@@ -1089,8 +1089,8 @@
                                                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
                                                                             <div class="text-right">
-                                                                                <button type="button" id="" name="edit" class="btn btn-success">Edit to All Items</button>
-                                                                                <button type="button" id="" class="btn btn-danger">Edit to the selected Item Only</button>
+                                                                                <button type="button" id="updateAllManualSP" name="edit" class="btn btn-success">Edit to All Items</button>
+                                                                                <button type="button" id="updateSelectedItemManualSP" class="btn btn-danger">Edit to the selected Item Only</button>
 
                                                                             </div>
 
@@ -1289,11 +1289,11 @@
                         '<td><label for="" class="marquis" name="marquis['+ numberIncr +']">' + marquis + '</label></td>'+
                         '<td><label for="" class="bigStone" name="big_stone['+ numberIncr +']">' + big_stone + '</label></td>'+
                         '<td><label for="" class="colored" name="colored['+ numberIncr +']">' + colored + '</label></td>'+
-                        '<td><label for="" id="sale_price_original_'+ id +'" class="item_price item_priceByPurchase" name="sale_price['+ numberIncr +']">' + $.number(sale_price, 2) +'</label></td><input type="hidden" name="sale_price_original_'+ id +'_value" id="sale_price_original_'+ id +'_value" value="'+ sale_price +'">'+
+                        '<td><label for="" id="sale_price_original_'+ id +'" class="item_price item_priceByPurchase" name="sale_price['+ numberIncr +']">' + $.number(sale_price, 2) +'</label></td><input type="hidden" name="sale_price_original_'+ id +'_value" id="sale_price_original_'+ id +'_value" value="'+ sale_price +'"><input type="hidden" class="purchase-price" value="'+ purchase_price +'">'+
                         '<td><a class="btn btn-sm btn-danger delegated-btn"><i class="icon-remove_circle"></i></a>' +
                         '</td>'+
                     '</tr>'));
-
+                    updateLatestSPCW();
                     calSalesPrice();
                     calculateTotal();
                     count_items();
@@ -1383,15 +1383,23 @@
 
             }
 
-            function updateDefaultSalesPrice() {
+            $('#client_no,#saleType').on('change', function (e) {
+                $("#invoice_details tbody tr").each(function() {
+                    updateSPCW($(this));
+                });
+                updateItemSalesPrice('default');
+            });
 
+            function updateLatestSPCW() {
+                var thisObj = $("#invoice_details").find("tbody tr").last();
+                updateSPCW(thisObj);
             }
 
             $("#invoice_details").delegate("tr", "click", function(){
-                let dataAttr = $(this).find("td .gold").html();
+                updateSPCW($(this),'false');
             });
 
-            function salesPriceByClientWeight() {
+            function updateSPCW(thisObj,updatePrice = 'true') {
                 var salesType = $('#saleType').val();
                 var client_gold_price;
                 var client_dimaond1_price;
@@ -1462,121 +1470,159 @@
                     $('#colored_price_default').val('0.00');
                 }
 
-                var gold_price = parseFloat($('.total_gold').html());
+                var gold_price = parseFloat(thisObj.find("td .gold").html());
                 let gold_total_price = client_gold_price * gold_price;
                 $('#gold_total_default').val($.number(gold_total_price, 3));
 
-                var dimaond1_price = parseFloat($('.total_dimaond_1').html());
+                var dimaond1_price = parseFloat(thisObj.find("td .dimaond_1").html());
                 let dimaond1_total_price = client_dimaond1_price * dimaond1_price;
                 $('#dimaond1_total_default').val($.number(dimaond1_total_price, 3));
 
-                var dimaond2_price = parseFloat($('.total_dimaond_2').html());
+                var dimaond2_price = parseFloat(thisObj.find("td .dimaond_2").html());
                 let dimaond2_total_price = client_dimaond2_price * dimaond2_price;
                 $('#dimaond2_total_default').val($.number(dimaond2_total_price, 3));
 
-                var dimaond3_price = parseFloat($('.total_dimaond_3').html());
+                var dimaond3_price = parseFloat(thisObj.find("td .dimaond_3").html());
                 let dimaond3_total_price = client_dimaond3_price * dimaond3_price;
                 $('#dimaond3_total_default').val($.number(dimaond3_total_price, 3));
 
-                var dimaond4_price = parseFloat($('.total_dimaond_4').html());
+                var dimaond4_price = parseFloat(thisObj.find("td .dimaond_4").html());
                 let dimaond4_total_price = client_dimaond4_price * dimaond4_price;
                 $('#dimaond4_total_default').val($.number(dimaond4_total_price, 3));
 
-                var dimaond5_price = parseFloat($('.total_dimaond_5').html());
+                var dimaond5_price = parseFloat(thisObj.find("td .dimaond_5").html());
                 let dimaond5_total_price = client_dimaond5_price * dimaond5_price;
                 $('#dimaond5_total_default').val($.number(dimaond5_total_price, 3));
 
-                var baguette_price = parseFloat($('.total_baguette').html());
+                var baguette_price = parseFloat(thisObj.find("td .baguette").html());
                 let baguette_total_price = client_baguette_price * baguette_price;
                 $('#baguette_total_default').val($.number(baguette_total_price, 3));
 
-                var marquis_price = parseFloat($('.total_marquis').html());
+                var marquis_price = parseFloat(thisObj.find("td .marquis").html());
                 let marquis_total_price = client_marquis_price * marquis_price;
                 $('#marquis_total_default').val($.number(marquis_total_price, 3));
 
-                var big_stone_price = parseFloat($('.total_big_stone').html());
+                var big_stone_price = parseFloat(thisObj.find("td .bigStone").html());
                 let big_stone_total_price = client_big_stone_price * big_stone_price;
                 $('#big_stone_total_default').val($.number(big_stone_total_price, 3));
 
-                var princess_price = parseFloat($('.total_princess').html());
+                var princess_price = parseFloat(thisObj.find("td .princess").html());
                 let princess_total_price = client_princess_price * princess_price;
                 $('#princess_total_default').val($.number(princess_total_price, 3));
 
-                var colored_price = parseFloat($('.total_colored').html());
+                var colored_price = parseFloat(thisObj.find("td .colored").html());
                 let colored_total_price = client_colored_price * colored_price;
                 $('#colored_total_default').val($.number(colored_total_price, 3));
 
+                if(updatePrice == 'true') {
+                    updateItemSalesPrice('default',thisObj);
+                }
             }
 
+
+            $('#updateAllManualSP').click(function () {
+                $("#invoice_details tbody tr").each(function() {
+                    updateItemSalesPrice('manual',$(this));
+                });
+            });
+
+            $('#updateSelectedItemManualSP').click(function () {
+                $("#invoice_details tbody tr").each(function() {
+                    var $chkbox = $(this).find('input[type="checkbox"]');
+                    var status = $chkbox.prop('checked');
+                    if(status) {
+                        updateItemSalesPrice('manual',$(this));
+                    }
+
+                });
+            });
+
             //type can be 'default' or 'manual'
-            function updateItemSalesPrice(type) {
+            function updateItemSalesPrice(type, thisObj ='false') {
                 var salesType = $('#saleType').val();
                 if(salesType == 1) {
                     var counter = 0;
                     $("#invoice_details tbody tr").each(function() {
                         //skipping first row as it is part of plugin/sticky header
+
                         if(counter !=0) {
-                            var itemSalePrice = 0;
-                            var item_gold_weight = parseFloat($(this).find('.gold').html());
-                            var client_gold_price = $('#gold_price_'+type).val();
-                            var item_gold_price = item_gold_weight * client_gold_price;
-                            itemSalePrice = itemSalePrice + item_gold_price;
+                            if(thisObj.attr('id') == $(this).attr('id') || thisObj == 'false') {
+                                var itemSalePrice = 0;
+                                var item_gold_weight = parseFloat($(this).find('.gold').html());
+                                var client_gold_price = $('#gold_price_'+type).val();
+                                var item_gold_price = item_gold_weight * client_gold_price;
+                                itemSalePrice = itemSalePrice + item_gold_price;
 
-                            var item_diamond1_weight = parseFloat($(this).find('.dimaond_1').html());
-                            var client_diamond1_price = $('#dimaond1_price_'+type).val();
-                            var item_diamond1_price = item_diamond1_weight * client_diamond1_price;
-                            itemSalePrice = itemSalePrice + item_diamond1_price;
+                                var item_diamond1_weight = parseFloat($(this).find('.dimaond_1').html());
+                                var client_diamond1_price = $('#dimaond1_price_'+type).val();
+                                var item_diamond1_price = item_diamond1_weight * client_diamond1_price;
+                                itemSalePrice = itemSalePrice + item_diamond1_price;
 
-                            var item_diamond2_weight = parseFloat($(this).find('.dimaond_2').html());
-                            var client_diamond2_price = $('#dimaond2_price_'+type).val();
-                            var item_diamond2_price = item_diamond2_weight * client_diamond2_price;
-                            itemSalePrice = itemSalePrice + item_diamond2_price;
+                                var item_diamond2_weight = parseFloat($(this).find('.dimaond_2').html());
+                                var client_diamond2_price = $('#dimaond2_price_'+type).val();
+                                var item_diamond2_price = item_diamond2_weight * client_diamond2_price;
+                                itemSalePrice = itemSalePrice + item_diamond2_price;
 
-                            var item_diamond3_weight = parseFloat($(this).find('.dimaond_3').html());
-                            var client_diamond3_price = $('#dimaond3_price_'+type).val();
-                            var item_diamond3_price = item_diamond3_weight * client_diamond3_price;
-                            itemSalePrice = itemSalePrice + item_diamond3_price;
+                                var item_diamond3_weight = parseFloat($(this).find('.dimaond_3').html());
+                                var client_diamond3_price = $('#dimaond3_price_'+type).val();
+                                var item_diamond3_price = item_diamond3_weight * client_diamond3_price;
+                                itemSalePrice = itemSalePrice + item_diamond3_price;
 
-                            var item_diamond4_weight = parseFloat($(this).find('.dimaond_4').html());
-                            var client_diamond4_price = $('#dimaond4_price_'+type).val();
-                            var item_diamond4_price = item_diamond4_weight * client_diamond4_price;
-                            itemSalePrice = itemSalePrice + item_diamond4_price;
+                                var item_diamond4_weight = parseFloat($(this).find('.dimaond_4').html());
+                                var client_diamond4_price = $('#dimaond4_price_'+type).val();
+                                var item_diamond4_price = item_diamond4_weight * client_diamond4_price;
+                                itemSalePrice = itemSalePrice + item_diamond4_price;
 
-                            var item_diamond5_weight = parseFloat($(this).find('.dimaond_5').html());
-                            var client_diamond5_price = $('#dimaond5_price_'+type).val();
-                            var item_diamond5_price = item_diamond5_weight * client_diamond5_price;
-                            itemSalePrice = itemSalePrice + item_diamond5_price;
+                                var item_diamond5_weight = parseFloat($(this).find('.dimaond_5').html());
+                                var client_diamond5_price = $('#dimaond5_price_'+type).val();
+                                var item_diamond5_price = item_diamond5_weight * client_diamond5_price;
+                                itemSalePrice = itemSalePrice + item_diamond5_price;
 
-                            var item_baguette_weight = parseFloat($(this).find('.baguette').html());
-                            var client_baguette_price = $('#baguette_price_'+type).val();
-                            var item_baguette_price = item_baguette_weight * client_baguette_price;
-                            itemSalePrice = itemSalePrice + item_baguette_price;
+                                var item_baguette_weight = parseFloat($(this).find('.baguette').html());
+                                var client_baguette_price = $('#baguette_price_'+type).val();
+                                var item_baguette_price = item_baguette_weight * client_baguette_price;
+                                itemSalePrice = itemSalePrice + item_baguette_price;
 
-                            var item_princess_weight = parseFloat($(this).find('.princess').html());
-                            var client_princess_price = $('#princess_price_'+type).val();
-                            var item_princess_price = item_princess_weight * client_princess_price;
-                            itemSalePrice = itemSalePrice + item_princess_price;
+                                var item_princess_weight = parseFloat($(this).find('.princess').html());
+                                var client_princess_price = $('#princess_price_'+type).val();
+                                var item_princess_price = item_princess_weight * client_princess_price;
+                                itemSalePrice = itemSalePrice + item_princess_price;
 
-                            var item_marquis_weight = parseFloat($(this).find('.marquis').html());
-                            var client_marquis_price = $('#marquis_price_'+type).val();
-                            var item_marquis_price = item_marquis_weight * client_marquis_price;
-                            itemSalePrice = itemSalePrice + item_marquis_price;
+                                var item_marquis_weight = parseFloat($(this).find('.marquis').html());
+                                var client_marquis_price = $('#marquis_price_'+type).val();
+                                var item_marquis_price = item_marquis_weight * client_marquis_price;
+                                itemSalePrice = itemSalePrice + item_marquis_price;
 
-                            var item_big_stone_weight = parseFloat($(this).find('.bigStone').html());
-                            var client_big_stone_price = $('#big_stone_price_'+type).val();
-                            var item_big_stone_price = item_big_stone_weight * client_big_stone_price;
-                            itemSalePrice = itemSalePrice + item_big_stone_price;
+                                var item_big_stone_weight = parseFloat($(this).find('.bigStone').html());
+                                var client_big_stone_price = $('#big_stone_price_'+type).val();
+                                var item_big_stone_price = item_big_stone_weight * client_big_stone_price;
+                                itemSalePrice = itemSalePrice + item_big_stone_price;
 
-                            var item_colored_weight = parseFloat($(this).find('.colored').html());
-                            var client_colored_price = $('#colored_price_'+type).val();
-                            var item_colored_price = item_colored_weight * client_colored_price;
-                            itemSalePrice = itemSalePrice + item_colored_price;
+                                var item_colored_weight = parseFloat($(this).find('.colored').html());
+                                var client_colored_price = $('#colored_price_'+type).val();
+                                var item_colored_price = item_colored_weight * client_colored_price;
+                                itemSalePrice = itemSalePrice + item_colored_price;
 
 
-                            itemSalePrice = parseFloat(itemSalePrice,2);
+                                itemSalePrice = parseFloat(itemSalePrice,2);
+                                var item_id = $(this).find('.product_ids').val();
+                                $(this).find('.item_price').html($.number(itemSalePrice, 2));
+                                $('#sale_price_original_'+item_id+'_value').val(itemSalePrice);
+                            }
+                        }
+
+                        counter++;
+                    });
+                } else {
+                    var counter = 0;
+                    $("#invoice_details tbody tr").each(function() {
+                        //skipping first row as it is part of plugin/sticky header
+                        if(counter !=0) {
                             var item_id = $(this).find('.product_ids').val();
-                            $(this).find('.item_price').html($.number(itemSalePrice, 2));
-                            $('#sale_price_original_'+item_id+'_value').val(itemSalePrice);
+                            var item_purchase_price = 0;
+                            var item_purchase_price = parseFloat($(this).find('.purchase-price').val());
+                            $(this).find('.item_price').html($.number(item_purchase_price, 2));
+                            $('#sale_price_original_'+item_id+'_value').val(item_purchase_price);
                         }
 
                         counter++;
@@ -1586,11 +1632,26 @@
                 calculateTotal();
             }
 
-            $('#client_no,#saleType').on('change', function (e) {
-                salesPriceByClientWeight();
-                updateItemSalesPrice('default');
-            });
+            function updateInvoiceDetails(products) {
+                counter = 0;
+                alert(products.length);
+                if(products.length > 0) {
+                    alert("A");
+                }
+                $("#invoice_details tbody tr").each(function() {
+                    //skipping first row as it is part of plugin/sticky header
+                    if(counter !=0) {
 
+                        var item_id = $(this).find('.product_ids').val();
+                        var item_purchase_price = 0;
+                        var item_purchase_price = parseFloat($(this).find('.purchase-price').val());
+                        $(this).find('.item_price').html($.number(item_purchase_price, 2));
+                        $('#sale_price_original_'+item_id+'_value').val(item_purchase_price);
+                    }
+
+                    counter++;
+                });
+            }
             // هنا القيمه في الخصم اذا كان بالريال يتغير بسعر ثابت اما اذا كان البنسبه فيتغير بالنسبه المئاويه
             $('body').on('keyup blur', '.discount_value', function(){
                 calculateTotal();
@@ -2070,7 +2131,7 @@
                             html += '<td><label for="" class="marquis" name="marquis['+ numberIncr +']">' + value.marquis + '</label></td>';
                             html +='<td><label for="" class="bigStone" name="big_stone['+ numberIncr +']">' + value.big_stone + '</label></td>';
                             html +=   '<td><label for="" class="colored" name="colored['+ numberIncr +']">' + value.colored + '</label></td>';
-                            html += '<td><label for="" id="sale_price_original_'+ value.id +'" class="item_price item_priceByPurchase" name="sale_price['+ numberIncr +']">' + $.number(value.sale_price, 2) +'</td><input type="hidden" name="sale_price_original_'+ value.id +'_value" id="sale_price_original_'+ value.id +'_value" value="'+ value.sale_price +'"></label>';
+                            html += '<td><label for="" id="sale_price_original_'+ value.id +'" class="item_price item_priceByPurchase" name="sale_price['+ numberIncr +']">' + $.number(value.sale_price, 2) +'</label></td><input type="hidden" name="sale_price_original_'+ value.id +'_value" id="sale_price_original_'+ value.id +'_value" value="'+ value.sale_price +'"><input type="hidden" class="purchase-price" value="'+ value.purchase_price +'">';
                             html += '<td><a class="btn btn-sm btn-danger delegated-btn"><i class="icon-remove_circle"></i></a>';
                             html +=  '</tr>';
 
@@ -2223,6 +2284,7 @@
                              }
                           });
                           $('#summary').html(html);
+                          updateInvoiceDetails(data.products);
                           calculateTotal();
 
                         };
@@ -2247,12 +2309,6 @@
             });
 
         });
-
-        function salesPriceByManualWeight(event,itemId,targetId) {
-            alert(event.target.value);
-        }
-
-
     </script>
 
 @endsection
