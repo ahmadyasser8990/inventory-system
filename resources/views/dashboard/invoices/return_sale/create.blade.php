@@ -83,7 +83,7 @@
                                             <a href="{{route('dashboard.purchase.index')}}">@lang('site.purchase_bill')</a>
                                         </li>
                                         <li>
-                                            <a href="return-purchase.html"> @lang('site.return_purchase') </a>
+                                            <a href="{{route('dashboard.return-purchase.index')}}"> @lang('site.return_purchase') </a>
                                         </li>
                                         <li>
                                             <a href="{{route('dashboard.secure-bonds.index')}}">@lang('site.security_bond') </a>
@@ -457,7 +457,7 @@
                                                             <input class="form-control form-control-sm" type="text" readonly placeholder="120">
                                                         </div>
                                                     </div>
-                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                    <div class="col-xl-1 col-lg col-md-1 col-sm-1 col-12">
                                                         <div class="form-group">
                                                             <label for="">@lang('site.item_no') <small>(items based on invoice sale no)</small></label>
                                                             <select name="get_ids"  type="number" id="get_ids" class="form-control form-control-sm selectpicker get_ids"  data-live-search="true">
@@ -601,6 +601,8 @@
                                                                         <input type="number" step="0.01" name="sub_total" id="sub_total" readonly class="form-control sub_total">
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row gutters">
                                                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                                                                     <div class="form-group">
                                                                         <label>@lang('site.tax_amount')</label>
@@ -635,6 +637,14 @@
                                     </div>
                                 </div>
                                 <div class="row gutters pt-2">
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+
+                                        <div class="form-group">
+                                            <label for="">@lang('site.user_name')</label>
+                                            <input type="text" class="form-control" readonly>
+                                        </div>
+
+                                    </div>
                                     {{-- important --}}
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 

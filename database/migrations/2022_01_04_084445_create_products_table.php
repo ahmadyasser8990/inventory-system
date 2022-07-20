@@ -32,12 +32,12 @@ class CreateProductsTable extends Migration
             $table->double('princess', 8, 2)->nullable();
             $table->string('colored')->nullable();
             $table->double('sale_price', 8, 2)->nullable();
-
+            $table->integer('qty');
             $table->string('item_type');
             $table->string('color')->nullable();
             $table->string('purity')->nullable();
             $table->text('description')->nullable();
-            $table->text('status');
+            $table->text('status')->default('available');
             $table->string('image')->default('default.png');
             $table->timestamps();
 

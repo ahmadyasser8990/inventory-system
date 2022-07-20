@@ -17,8 +17,7 @@ class CreateExpenseimportsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('type');
-            $table->string('amount');
-            $table->text('note');
+            $table->string('no');
             $table->timestamps();
         });
     }

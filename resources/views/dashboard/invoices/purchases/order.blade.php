@@ -69,7 +69,7 @@
                                         <a href="{{route('dashboard.purchase.index')}}">@lang('site.purchase_bill')</a>
                                     </li>
                                     <li>
-                                        <a href="return-purchase.html"> @lang('site.return_purchase') </a>
+                                        <a href="{{route('dashboard.return-purchase.index')}}"> @lang('site.return_purchase') </a>
                                     </li>
                                     <li>
                                         <a href="{{route('dashboard.secure-bonds.index')}}">@lang('site.security_bond') </a>
@@ -390,25 +390,24 @@
                                             <tr>
                                                 <th>@lang('site.bill_no')</th>
                                                 <th>@lang('site.supplier_name')</th>
-                                                <th>@lang('site.phone_no')</th>
-                                                <th>@lang('site.total_price')</th>
-                                                <th>@lang('site.tax_amount')</th>
+                                                <th>@lang('site.payment_method')</th>
+                                                <th>@lang('site.purchase_type')</th>
                                                 <th>@lang('site.final_total')</th>
                                                 <th>@lang('site.total_products')</th>
-                                                <th>@lang('site.bill_state')</th>
                                                 <th class="text-center">@lang('site.action')</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                          
+                                            @foreach($purchasesOrders  as $purchaseOrder)
                                             <tr>
-                                                <td>125</td>
-                                                <td>Mohammed</td>
-                                                <td>055554855</td>
-                                                <td>1000</td>
-                                                <td>150</td>
-                                                <td>1150</td>
-                                                <td>16</td>
-                                                <td>Purchased</td>
+                                                <td>{{$purchaseOrder->id}}</td>
+                                                <td>{{$purchaseOrder->supplier->name}}</td>
+                                                <td>{{$purchaseOrder->payment_method}}</td>
+                                                <td>{{$purchaseOrder->purchase_type}}</td>
+                                                <td>{{$purchaseOrder->final_total}}</td>
+                                                <td>1</td>
+                                             
                                                 <td>
                                                     <div class="task-list">
                                                         <div class="task-block" style="justify-content: center; flex-direction: row; padding: 0; border-bottom: 0">
@@ -419,12 +418,12 @@
                                                                     </a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="{{asset('dashboard.purchase.show',)}}" class="star" data-toggle="tooltip" data-placement="top" title="@lang('site.show')">
+                                                                    <a href="#" class="star" data-toggle="tooltip" data-placement="top" title="@lang('site.show')">
                                                                         <i class="icon-eye"></i>
                                                                     </a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="#" class="star" data-toggle="tooltip" data-placement="top"  title="@lang('site.edit')">
+                                                                    <a href="{{route('dashboard.purchase.edit',['purchase'=>$purchaseOrder->id,'type'=>'order'])}}" class="star" data-toggle="tooltip" data-placement="top"  title="@lang('site.edit')">
                                                                         <i class="icon-edit"></i>
                                                                     </a>
                                                                 </li>
@@ -433,7 +432,74 @@
                                                     </div>
                                                 </td>
                                             </tr>
+
+                                            @endforeach
                                         </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="7"> {{ $purchasesOrders->appends(request()->query())->links() }}</td>
+                                            </tr>
+                                       
+                                       </tfoot>
+                                    </table>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-light table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>@lang('site.bill_no')</th>
+                                                <th>@lang('site.supplier_name')</th>
+                                                <th>@lang('site.payment_method')</th>
+                                                <th>@lang('site.purchase_type')</th>
+                                                <th>@lang('site.final_total')</th>
+                                                <th>@lang('site.total_products')</th>
+                                                <th class="text-center">@lang('site.action')</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          
+                                            @foreach($purchasesCashes as $purchasesCash)
+                                            <tr>
+                                                <td>{{$purchasesCash->id}}</td>
+                                                <td>{{$purchasesCash->supplier_name}}</td>
+                                                <td>{{$purchasesCash->payment_method}}</td>
+                                                <td>{{$purchasesCash->purchase_type}}</td>
+                                                <td>{{$purchasesCash->final_total}}</td>
+                                                <td>1</td>
+                                             
+                                                <td>
+                                                    <div class="task-list">
+                                                        <div class="task-block" style="justify-content: center; flex-direction: row; padding: 0; border-bottom: 0">
+                                                            <ul class="task-actions">
+                                                                <li>
+                                                                    <a href="#" class="star" data-toggle="tooltip" data-placement="top" title="@lang('site.delete')">
+                                                                        <i class="icon-delete"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#" class="star" data-toggle="tooltip" data-placement="top" title="@lang('site.show')">
+                                                                        <i class="icon-eye"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="{{route('dashboard.purchase.edit',['purchase'=>$purchasesCash->id,'type'=>'cash'])}}" class="star" data-toggle="tooltip" data-placement="top"  title="@lang('site.edit')">
+                                                                        <i class="icon-edit"></i>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            @endforeach
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="7"> {{ $purchasesCashes->appends(request()->query())->links() }}</td>
+                                            </tr>
+                                       
+                                       </tfoot>
                                     </table>
                                 </div>
                             </div>

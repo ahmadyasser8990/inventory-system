@@ -80,7 +80,8 @@
 			**************************
 		**************************-->
     <!-- Required jQuery first, then Bootstrap Bundle JS -->
-    <script src="{{asset('dashboard_files/js/jquery.min.js')}}"></script>
+   {{-- <script src="{{asset('dashboard_files/js/jquery.min.js')}}"></script> --}}
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="{{asset('dashboard_files/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('dashboard_files/js/moment.js')}}"></script>
 
@@ -165,6 +166,8 @@
     </script>
 
     @yield('scripts')
+
+    @stack('scriptsJs')
 
 </body>
 

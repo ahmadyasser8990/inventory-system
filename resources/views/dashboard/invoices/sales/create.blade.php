@@ -81,7 +81,7 @@
                                         <a href="{{route('dashboard.purchase.index')}}">@lang('site.purchase_bill')</a>
                                     </li>
                                     <li>
-                                        <a href="return-purchase.html"> @lang('site.return_purchase') </a>
+                                        <a href="{{route('dashboard.return-purchase.index')}}"> @lang('site.return_purchase') </a>
                                     </li>
                                     <li>
                                         <a href="{{route('dashboard.secure-bonds.index')}}">@lang('site.security_bond') </a>
@@ -454,6 +454,24 @@
                                                             <input type="text" class="form-control form-control-sm "  name="">
                                                         </div>
                                                     </div>
+                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                        <div class="form-group">
+                                                            <label for="">@lang('site.client_name')</label>
+                                                            <input class="form-control form-control-sm name" name="client_name"  type="text" value="" placeholder="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                        <div class="form-group">
+                                                            <label for="">@lang('site.phone_no')</label>
+                                                            <input class="form-control form-control-sm phone" name="phone" type="text"  placeholder="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                        <div class="form-group">
+                                                            <label for="">@lang('site.tax_no')</label>
+                                                            <input class="form-control form-control-sm tax_no" name="tax_no" type="text"  placeholder="">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -648,18 +666,18 @@
                                                             </div>
                                                         </div>
                                                         <div class="row gutters">
-                                                            <div class="form-inline">
-                                                                <div class="form-check mb-2">
-                                                                    <input class="form-check-input mb-2 mr-sm-2" type="checkbox" value="" id="defaultCheck1">
-                                                                    <label class="form-check-label mb-2 mr-sm-2" for="defaultCheck1">
-                                                                        @lang('site.includeTax')
-                                                                    </label>
-                                                                </div>
-                                                                <div class="form-check mb-2">
-                                                                    <input class="form-check-input mb-2 mr-sm-2" type="checkbox" value="" id="defaultCheck2">
-                                                                    <label class="form-check-label mb-2 mr-sm-2" for="defaultCheck2">
-                                                                        @lang('site.notiIncludeTax')
-                                                                    </label>
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                                <div class="form-inline">
+                                                                    <!-- Checkbox item_include_tax -->
+                                                                    <div class="form-check custom-control custom-radio mb-2 mr-sm-2">
+                                                                        <input type="checkbox" class="custom-control-input" id="checkbox_item_include_tax">
+                                                                        <label class="custom-control-label" for="checkbox_item_include_tax">@lang('site.item_include_tax')</label>
+                                                                    </div>
+                                                                    <!-- Checkbox tax -->
+                                                                    <div class="form-check custom-control custom-radio mb-2 mr-sm-2">
+                                                                        <input type="checkbox" class="custom-control-input" id="checkbox_tax">
+                                                                        <label class="custom-control-label" for="checkbox_tax">@lang('site.tax')</label>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -708,6 +726,7 @@
                                                     <i class="icon icon-tag1"></i>Sale Price Auto show
                                                 </a>
                                             </div>
+
                                             <div id="collapseWithIconTwo" class="collapse" aria-labelledby="withIconTwo" data-parent="#withIconsAccordion">
                                                 <div class="accordion-body">
                                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -923,9 +942,11 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
+<<<<<<< HEAD
 
                                                             <!-- Accordion card  Manually-->
                                                             <div class="card">
@@ -939,6 +960,74 @@
                                                                         </h5>
                                                                     </a>
                                                                 </div>
+=======
+                                                        </div>
+
+                                                        <!-- button salePrice_manualy -->
+                                                        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#manualy">@lang('site.salePrice_manualy')</button>
+                                                        <div id="manualy" class="collapse">
+                                                            <div class="card h-100">
+                                                                <div class="card-header">
+                                                                    <div class="card-title">Sale Price Manualy</div>
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row gutters">
+                                                                        <div class="col-xl-4 col-lglg-4 col-md-4 col-sm-4 col-12">
+                                                                            <div class="form-group">
+                                                                                <div class="input-group">
+                                                                                    <div class="input-group-prepend">
+                                                                                        <select class="form-control">
+                                                                                            <option value="">Select</option>
+                                                                                            <option value="fixed">SAR</option>
+                                                                                        </select>
+
+                                                                                    </div>
+                                                                                    <input type="number"  class="form-control " placeholder="Number">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+                                                                        <div class="text-right">
+                                                                            <button type="button" id="edit_all_products_purchase" name="edit" class="btn btn-success">Edit to All Items</button>
+                                                                            <button type="button" id="edit_selected_products_purchase" class="btn btn-danger">Edit to the selected Item Only</button>
+
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-container">
+                                            <div class="accordion-header" id="withIconThree">
+                                                <a  href="" class="collapsed" data-toggle="collapse" data-target="#collapseWithIconThree" aria-expanded="false" aria-controls="collapseWithIconThree">
+                                                    (<span class="text-danger">Delete this part</span>)<i class="icon icon-triangle"></i>Account Method price By Sale Price
+                                                </a>
+                                            </div>
+                                            <div id="collapseWithIconThree" class="collapse" aria-labelledby="withIconThree" data-parent="#withIconsAccordion">
+                                                <div class="accordion-body">
+
+                                                    <div class="card h-100">
+                                                        <div class="card-header">
+                                                            <div class="card-title">Sale Prices</div>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="row gutters">
+                                                                <div class="col-xl-4 col-lglg-4 col-md-4 col-sm-4 col-12">
+                                                                    <div class="form-group">
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                                                <select name="edit_salePrice" id="edit_salePrice" class="form-control edit_salePrice">
+                                                                                    <option value="">Select</option>
+                                                                                    <option value="fixed">SAR</option>
+                                                                                    <option value="percentage">%</option>
+                                                                                </select>
+>>>>>>> test
 
                                                                 <!-- Card body -->
                                                                 <div id="collapseThree3" class="collapse" role="tabpanel" aria-labelledby="headingThree3"
@@ -1166,6 +1255,18 @@
                                 </div>
                             </div>
                             <div class="row gutters pt-2">
+                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+
+                                    <div class="form-group">
+                                        <label for="">@lang('site.user_name')</label>
+                                        <select name="" id="" class="form-control form-control-sm">
+                                            <option value="">choose...</option>
+                                            <option value="1">Ahmed</option>
+                                            <option value="2">Yaser</option>
+                                        </select>
+                                    </div>
+
+                                </div>
                                 {{-- important --}}
 
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -1192,14 +1293,15 @@
 
 @section('scripts')
 
-<!-- Bootstrap Select JS -->
-<script src="{{ asset('dashboard_files/vendor/bs-select/bs-select.min.js')}}"></script>
-<script src="{{ asset('dashboard_files/js/pickadate/picker.js') }}"></script>
-<script src="{{ asset('dashboard_files/js/pickadate/picker.date.js') }}"></script>
+    <!-- Bootstrap Select JS -->
+    <script src="{{ asset('dashboard_files/vendor/bs-select/bs-select.min.js')}}"></script>
+    <script src="{{ asset('dashboard_files/js/pickadate/picker.js') }}"></script>
+    <script src="{{ asset('dashboard_files/js/pickadate/picker.date.js') }}"></script>
 
-@if(config('app.locale') == 'ar')
-    <script src="{{ asset('dashboard_files/js/pickadate/ar.js') }}"></script>
-@endif
+    @if(config('app.locale') == 'ar')
+        <script src="{{ asset('dashboard_files/js/pickadate/ar.js') }}"></script>
+    @endif
+
     <script>
         $(document).ready(function(){
 

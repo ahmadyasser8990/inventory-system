@@ -72,7 +72,7 @@ return [
 
     // purchase Invoice
     'new_purchase'=> 'New Purchase',
-
+    'new_returnPurchase' => 'New Return Purchase',
 
     //Exchange_Doc
     'customer_no'=> 'Account No',
@@ -545,7 +545,10 @@ return [
 
     //Sales
     'sale_type' => 'Sale Type',
-    'masterCard' => 'Master Card',
+    'salePrice_byWeight' => 'Sale Price by Weights',
+    'salePrice_manualy' => 'Sale Price Manually',
+    'sale_price_byCost' => 'Sale Price by Cost Price',
+    'item_include_tax' => 'Item Include Tax',
     'profit'=> 'Profit',
     'add' => 'Add',
     'create' => 'Create',
@@ -633,6 +636,8 @@ return [
     ],
 
     //purchases
+    'purchase_type' => 'Purchase Type',
+    'cost' => 'Cost',
     'total_price' => 'Totally',
     'supplier_name' => 'Supplier Name',
     'riyal' => 'Riyal',
