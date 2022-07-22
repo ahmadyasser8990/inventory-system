@@ -439,19 +439,19 @@
                                                     <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12 sale-type-cash">
                                                         <div class="form-group">
                                                             <label for="">@lang('site.name')</label>
-                                                            <input type="text" class="form-control form-control-sm "  name="">
+                                                            <input type="text" class="form-control form-control-sm "  name="client_name_manual">
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12 sale-type-cash">
                                                         <div class="form-group">
                                                             <label for="">@lang('site.phone')</label>
-                                                            <input type="text" class="form-control form-control-sm "  name="">
+                                                            <input type="text" class="form-control form-control-sm " name="phone_manual">
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12 sale-type-cash">
                                                         <div class="form-group">
                                                             <label for="">@lang('site.tax_no')</label>
-                                                            <input type="text" class="form-control form-control-sm "  name="">
+                                                            <input type="text" class="form-control form-control-sm " name="tax_no_manual">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1149,7 +1149,7 @@
                                 </div>
 
                             <!-- Row end -->
-                            <div class="row gutters pt-2">
+                            {{-- <div class="row gutters pt-2">
 
                                 <div class="col-xl-4 col-lglg-4 col-md-4 col-sm-4 col-12">
                                     <div class="form-inline">
@@ -1164,7 +1164,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="row gutters pt-2">
                                 {{-- important --}}
 

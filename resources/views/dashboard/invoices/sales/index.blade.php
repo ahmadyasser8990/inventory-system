@@ -408,8 +408,8 @@
                                                 @foreach ($sales as $index=>$sale)
                                                     <tr>
                                                         <td>{{ $index + 1 }}</td>
-                                                        <td>{{$sale->client->name}}</td>
-                                                        <td>{{$sale->client->phone}}</td>
+                                                        <td>{{$sale->client_name}}</td>
+                                                        <td>{{$sale->client_phone}}</td>
                                                         <td><span class="text-success">{{$sale->sub_total}}</span> @lang('site.riyal')</td>
                                                         <td><span class="text-danger">{{$sale->vat_value}}</span> @lang('site.riyal')</td>
                                                         <td>{{$sale->final_total}} @lang('site.riyal')</td>
