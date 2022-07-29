@@ -104,6 +104,7 @@
                         <li>
                            <a href="{{route('dashboard.products.index')}}">@lang('site.all_item')</a>
                         </li>
+<<<<<<< HEAD
                         <li>
                            <a href="{{route('dashboard.inquiryProducts')}}">@lang('site.inquiry_about_item')</a>
                         </li>
@@ -396,6 +397,363 @@
                                           <div class="text-danger">{{$message}}</div>
                                           @enderror
                                        </div>
+=======
+                    </ul>
+                    <!-- Header actions end -->
+                </div>
+            </header>
+            <!-- Header end -->
+            <!-- Page header start -->
+            <div class="page-header">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}">@lang('site.dashboard')</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('dashboard.purchase.index')}}">@lang('site.purchase_bill')</a></li>
+                    <li class="breadcrumb-item active">@lang('site.purchase_bill')</li>
+                </ol>
+            </div>
+            <!-- Page header end -->
+
+            <!-- Main container start -->
+            <div class="main-container fixed-height">
+                <!-- Setting vertical scroll start -->
+                <div class="fixedBodyScroll">
+                    <!-- Content wrapper start -->
+                    <div class="content-wrapper">
+                        {{-- <form action="{{route('dashboard.sales.store')}}" method="POST">
+                            {{ csrf_field() }}
+                            {{ method_field('post')}} --}}
+
+                            <div class="row gutters">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="card" id="customer_details">
+                                        <div class="card-header">
+                                            <div class="card-title">@lang('site.invoice_info')</div>
+                                            <div class="card-sub-title">
+                                                <div class="row gutters">
+                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                        <div class="form-group">
+                                                            <label for="">@lang('site.invoice_date')</label>
+                                                            <input type="text" class="form-control form-control-sm pickdate"  name="invoice_date">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                        <div class="form-group">
+                                                            <label for="">@lang('site.payment_method')</label>
+                                                            <select name="" id="" class="form-control form-control-sm">
+                                                                <option value="">choose...</option>
+                                                                <option value="1">@lang('site.cash')</option>
+                                                                <option value="2">@lang('site.masterCard')</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                        <div class="form-group">
+                                                            <label for="">@lang('site.purchase_type')</label>
+                                                            <select name="" id="" class="form-control form-control-sm">
+                                                                <option value="">choose...</option>
+                                                                <option value="1">Order</option>
+                                                                <option value="2">Cash</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                        <div class="form-group">
+                                                            <label for="">@lang('site.name')</label>
+                                                            <input type="text" class="form-control form-control-sm "  name="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                        <div class="form-group">
+                                                            <label for="">@lang('site.phone')</label>
+                                                            <input type="text" class="form-control form-control-sm "  name="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                        <div class="form-group">
+                                                            <label for="">@lang('site.tax_no')</label>
+                                                            <input type="text" class="form-control form-control-sm "  name="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body" id="getClient">
+
+                                            <div class="row gutters">
+                                                <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                    <div class="form-group">
+                                                        <label for="">@lang('site.bill_no')</label>
+                                                        <input class="form-control form-control-sm" type="text" readonly placeholder="120">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                    <div class="form-group">
+                                                        <label for="">@lang('site.supplier_id')</label>
+                                                        <select name="" type="text" id="" class="form-control form-control-sm "  data-live-search="true">
+
+                                                            <option value="">Nacer</option>
+                                                            <option value="">Mohammed</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-4 col-lg col-md-4 col-sm-4 col-12">
+                                                    <div class="form-group">
+                                                        <label for="">@lang('site.supplier_name')</label>
+                                                        <input class="form-control form-control-sm name" name="client_name" readonly type="text" value="" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                    <div class="form-group">
+                                                        <label for="">@lang('site.phone_no')</label>
+                                                        <input class="form-control form-control-sm phone" name="phone" type="text" readonly placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                    <div class="form-group">
+                                                        <label for="">@lang('site.tax_no')</label>
+                                                        <input class="form-control form-control-sm tax_no" name="tax_no" type="text" readonly placeholder="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <h6 class="">@lang('site.add_new_product')</h6>
+
+                                            <div class="row gutters">
+                                                <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                    <div class="user-avatar">
+                                                        <img src="{{asset('uploads/product_images/default.png')}}" class="img-fluid float-center image-preview" alt="Wafi Admin" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                    <div class="form-group">
+                                                        <label>@lang('site.image')</label>
+                                                        <input type="file" name="image" class="form-control image">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>@lang('site.sale_price')</label>
+                                                        <input type="number" step="0.01" value="{{ old('sale_price')}}" name="sale_price" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>@lang('site.category_type')</label>
+                                                        <select name="category_id" class="form-control form-control-lg">
+                                                            <option value="">Nic</option>
+                                                            <option value="">Earrings</option>
+                                                            <option value="">Ring</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                    <div class="form-group">
+                                                        <label>@lang('site.extra_no')</label>
+                                                        <input type="text" name="extra_no" value="{{ old('extra_no')}}" class="form-control">
+                                                        <input type="hidden" name="status" value="avaliable">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>@lang('site.item_type')</label>
+                                                        <select name="item_type" class="form-control form-control-lg">
+                                                            <option value="new" class=""> @lang('site.new')</option>
+                                                            <option value="used" class="">@lang('site.used')</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="docTitle">@lang('site.supplier')</label>
+                                                        <select name="supplier_id" class="form-control form-control-lg">
+                                                            <option value="">Nacer</option>
+                                                            <option value="">Mohammed</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                    <div class="form-group">
+                                                        <label>@lang('site.design_no')</label>
+                                                        <input type="text" name="design_no" value="{{ old('design_no')}}" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>@lang('site.purchase_price')</label>
+                                                        <input type="number" step="0.01" name="purchase_price" value="{{ old('purchase_price')}}" required class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-form-label">@lang('site.description')</label>
+                                                        <textarea class="form-control" name="description" maxlength="140" rows="4"> {{ old('description')}}</textarea>
+                                                        <div class="form-text text-muted"><p id="characterLeft" class="help-block ">140 characters left</p></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
+                                                    <div class="form-group">
+                                                        <label>@lang('site.gold')</label>
+                                                        <input type="number" name="gold" step="0.01" value="{{ old('gold')}}"  class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>@lang('site.marquis')</label>
+                                                        <input type="number" name="marquis" step="0.01" value="{{ old('marquis')}}" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>@lang('site.baguette')</label>
+                                                        <input type="number" name="baguette" step="0.01" value="{{ old('baguette')}}"  class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>@lang('site.color')</label>
+                                                        <input type="text" name="color"  value="{{ old('color')}}" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
+                                                    <div class="form-group">
+                                                        <label>@lang('site.big_stone')</label>
+                                                        <input type="number" name="big_stone" step="0.01" value="{{ old('big_stone')}}" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>@lang('site.princess')</label>
+                                                        <input type="number" name="princess" step="0.01" value="{{ old('princess')}}" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>@lang('site.colored')</label>
+                                                        <input type="number" name="colored" value="{{ old('colored')}}" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
+                                                    <div class="form-group">
+                                                        <label>@lang('site.dimaond_1')</label>
+                                                        <input type="number" name="dimaond_1" step="0.01" value="{{ old('dimaond_1')}}" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>@lang('site.dimaond_2')</label>
+                                                        <input type="number" name="dimaond_2" step="0.01" value="{{ old('dimaond_2')}}" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>@lang('site.dimaond_3')</label>
+                                                        <input type="number" name="dimaond_3" step="0.01" value="{{ old('dimaond_3')}}" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
+                                                    <div class="form-group">
+                                                        <label>@lang('site.dimaond_4')</label>
+                                                        <input type="number" name="dimaond_4" step="0.01" value="{{ old('dimaond_4')}}" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>@lang('site.dimaond_5')</label>
+                                                        <input type="number" name="dimaond_5" step="0.01" value="{{ old('dimaond_5')}}" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>@lang('site.purity')</label>
+                                                        <input type="text" name="purity"  value="{{ old('purity')}}" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                    <div class="text-right">
+                                                        <button type="submit" class="btn btn-primary mr-3">@lang('site.save')</button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                    <a href="#" class="btn btn-outline-primary">@lang('site.import_by_excel')</a>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row gutters">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered table-light table-sm" id="invoice_details">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>@lang('site.select')</th>
+                                                                <th>@lang('site.item_no')</th>
+                                                                <th>@lang('site.extra_no')</th>
+                                                                <th>@lang('site.description')</th>
+                                                                <th>@lang('site.category_type')</th>
+                                                                <th>@lang('site.purity')</th>
+                                                                <th>@lang('site.color')</th>
+                                                                <th>@lang('site.gold')</th>
+                                                                <th>@lang('site.dimaond_1')</th>
+                                                                <th>@lang('site.dimaond_2')</th>
+                                                                <th>@lang('site.dimaond_3')</th>
+                                                                <th>@lang('site.dimaond_4')</th>
+                                                                <th>@lang('site.dimaond_5')</th>
+                                                                <th>@lang('site.baguette')</th>
+                                                                <th>@lang('site.princess')</th>
+                                                                <th>@lang('site.marquis')</th>
+                                                                <th>@lang('site.big_stone')</th>
+                                                                <th>@lang('site.colored')</th>
+                                                                <!-- <th> الماس 4 </th> -->
+                                                                <th>@lang('site.purchase_price')</th>
+                                                                <th>@lang('site.action')</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="cloning_row" id="0">
+
+                                                            </tr>
+                                                        </tbody>
+
+                                                        <tfoot>
+                                                            <tr>
+                                                                <td colspan="2">Total</td>
+                                                                <td colspan="6"><label for="" class="text-bold text-danger count_item">0</label></td>
+                                                                <td><label for="" class="text-bold text-danger total_gold">0.00</label></td>
+                                                                <td><label for="" class="text-bold text-danger total_dimaond_1">0.00</label></td>
+                                                                <td><label for="" class="text-bold text-danger total_dimaond_2">0.00</label></td>
+                                                                <td><label for="" class="text-bold text-danger total_dimaond_3">0.00</label></td>
+                                                                <td><label for="" class="text-bold text-danger total_dimaond_4">0.00</label></td>
+                                                                <td><label for="" class="text-bold text-danger total_dimaond_5">0.00</label></td>
+                                                                <td><label for="" class="text-bold text-danger total_baguette">0.00</label></td>
+                                                                <td><label for="" class="text-bold text-danger total_princess">0.00</label></td>
+                                                                <td><label for="" class="text-bold text-danger total_marquis">0.00</label></td>
+                                                                <td><label for="" class="text-bold text-danger total_bigStone">0.00</label></td>
+                                                                <td><label for="" class="text-bold text-danger total_colored">0.00</label></td>
+                                                                <td><label for="" class="text-bold text-danger total_price">0.00</label></td>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Row start -->
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="accordion" id="withIconsAccordion">
+                                        <div class="accordion-container">
+                                            <div class="accordion-header" id="withIconOne">
+                                                <a  href="" class="collapsed" data-toggle="collapse" data-target="#collapseWithIconOne" aria-expanded="false" aria-controls="collapseWithIconOne">
+                                                    <i class="icon icon-tag1"></i>Summary Invoice
+                                                </a>
+                                            </div>
+                                            <div id="collapseWithIconOne" class="collapse" aria-labelledby="withIconOne" data-parent="#withIconsAccordion">
+                                                <div class="accordion-body">
+                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                        <div class="card h-100" id="summary_invoice" >
+                                                            <div class="card-header">
+                                                                <div class="card-title">@lang('site.summary_invoice')</div>
+                                                            </div>
+                                                            <div class="card-body" >
+                                                                <div class="table-responsive">
+                                                                    <table class="table table-bordered table-light table-sm">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>@lang('site.category_type')</th>
+                                                                                <th> @lang('site.quantity')</th>
+                                                                                <th>@lang('site.total_price')</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="summary">
+
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row gutters">
+                                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                                                <div class="form-group">
+                                                                    <label>@lang('site.final_total')</label>
+                                                                    <input type="number" step="0.01" name="final_total" id="final_total" readonly value="" class="form-control final_total ">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+>>>>>>> 48cc974befe1b63235387c5da9b81a7ff2347468
                                     </div>
                                     <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
                                        <div class="form-group">

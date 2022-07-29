@@ -413,16 +413,25 @@
                                                         </div>
                                                         <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
                                                             <div class="form-group">
+<<<<<<< HEAD
                                                                 <label for="">@lang('site.sale_type')</label>
                                                                 <select name="" id="" class="form-control form-control-sm">
                                                                     <option value="">choose...</option>
                                                                     <option value="1">Order</option>
                                                                     <option value="2">Cash</option>
+=======
+                                                                <label for="">@lang('site.payment_method')</label>
+                                                                <select name="" id="" class="form-control form-control-sm">
+                                                                    <option value="">choose...</option>
+                                                                    <option value="1">@lang('site.cash')</option>
+                                                                    <option value="2">@lang('site.masterCard')</option>
+>>>>>>> 48cc974befe1b63235387c5da9b81a7ff2347468
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
                                                             <div class="form-group">
+<<<<<<< HEAD
                                                                 <label for="">@lang('site.sale_invoices')</label>
                                                                 <input class="form-control form-control-sm name" name=""  type="number" value="" placeholder="">
                                                             </div>
@@ -431,12 +440,32 @@
                                                             <div class="form-group">
                                                                 <label for="">@lang('site.client_name')</label>
                                                                 <input class="form-control form-control-sm name" name="client_name"  type="text" value="" placeholder="">
+=======
+                                                                <label for="">@lang('site.invoice_no') (Invocie Sale No)</label>
+                                                                <input type="number" class="form-control form-control-sm "  name="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                            <div class="form-group">
+                                                                <label for="">@lang('site.name')</label>
+                                                                <input type="text" class="form-control form-control-sm "  name="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                            <div class="form-group">
+                                                                <label for="">@lang('site.phone')</label>
+                                                                <input type="text" class="form-control form-control-sm "  name="">
+>>>>>>> 48cc974befe1b63235387c5da9b81a7ff2347468
                                                             </div>
                                                         </div>
                                                         <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
                                                             <div class="form-group">
                                                                 <label for="">@lang('site.tax_no')</label>
+<<<<<<< HEAD
                                                                 <input class="form-control form-control-sm phone" name="" type="number"  placeholder="">
+=======
+                                                                <input type="text" class="form-control form-control-sm "  name="">
+>>>>>>> 48cc974befe1b63235387c5da9b81a7ff2347468
                                                             </div>
                                                         </div>
                                                     </div>
@@ -453,6 +482,7 @@
                                                     </div>
                                                     <div class="col-xl-1 col-lg col-md-1 col-sm-1 col-12">
                                                         <div class="form-group">
+<<<<<<< HEAD
                                                             <label for="">@lang('site.client_no')</label>
                                                             <input name="client_no" type="text" id="client_no" class="form-control form-control-sm selectpicker client_no">
                                                         </div>
@@ -481,6 +511,9 @@
                                                     <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
                                                         <div class="form-group">
                                                             <label for="">@lang('site.item_no')</label>
+=======
+                                                            <label for="">@lang('site.item_no') <small>(items based on invoice sale no)</small></label>
+>>>>>>> 48cc974befe1b63235387c5da9b81a7ff2347468
                                                             <select name="get_ids"  type="number" id="get_ids" class="form-control form-control-sm selectpicker get_ids"  data-live-search="true">
                                                                 <option value=""></option>
                                                                 @foreach ($products as $product)
@@ -527,21 +560,15 @@
                                                                     <th>@lang('site.extra_no')</th>
                                                                     <th>@lang('site.description')</th>
                                                                     <th>@lang('site.category_type')</th>
-                                                                    <th>@lang('site.purity')</th>
-                                                                    <th>@lang('site.color')</th>
                                                                     <th>@lang('site.gold')</th>
                                                                     <th>@lang('site.dimaond_1')</th>
                                                                     <th>@lang('site.dimaond_2')</th>
                                                                     <th>@lang('site.dimaond_3')</th>
                                                                     <th>@lang('site.dimaond_4')</th>
                                                                     <th>@lang('site.dimaond_5')</th>
-                                                                    <th>@lang('site.baguette')</th>
-                                                                    <th>@lang('site.princess')</th>
-                                                                    <th>@lang('site.marquis')</th>
-                                                                    <th>@lang('site.big_stone')</th>
                                                                     <th>@lang('site.colored')</th>
-                                                                    <!-- <th> الماس 4 </th> -->
                                                                     <th>@lang('site.sale_price')</th>
+                                                                    <th>@lang('site.invoice_no')</th>
                                                                     <th>@lang('site.action')</th>
                                                                 </tr>
                                                             </thead>
@@ -554,17 +581,13 @@
                                                             <tfoot>
                                                                 <tr>
                                                                     <td colspan="2">Total</td>
-                                                                    <td colspan="6"><label for="" class="text-bold text-danger count_item">0</label></td>
+                                                                    <td colspan="4"><label for="" class="text-bold text-danger count_item">0</label></td>
                                                                     <td><label for="" class="text-bold text-danger total_gold">0.00</label></td>
                                                                     <td><label for="" class="text-bold text-danger total_dimaond_1">0.00</label></td>
                                                                     <td><label for="" class="text-bold text-danger total_dimaond_2">0.00</label></td>
                                                                     <td><label for="" class="text-bold text-danger total_dimaond_3">0.00</label></td>
                                                                     <td><label for="" class="text-bold text-danger total_dimaond_4">0.00</label></td>
                                                                     <td><label for="" class="text-bold text-danger total_dimaond_5">0.00</label></td>
-                                                                    <td><label for="" class="text-bold text-danger total_baguette">0.00</label></td>
-                                                                    <td><label for="" class="text-bold text-danger total_princess">0.00</label></td>
-                                                                    <td><label for="" class="text-bold text-danger total_marquis">0.00</label></td>
-                                                                    <td><label for="" class="text-bold text-danger total_bigStone">0.00</label></td>
                                                                     <td><label for="" class="text-bold text-danger total_colored">0.00</label></td>
                                                                     <td><label for="" class="text-bold text-danger total_price">0.00</label></td>
                                                                 </tr>
@@ -610,6 +633,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="row gutters">
+<<<<<<< HEAD
                                                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                                     <div class="form-inline">
                                                                         <!-- Checkbox tax -->
@@ -617,6 +641,28 @@
                                                                             <input type="checkbox" class="custom-control-input" id="checkbox_tax">
                                                                             <label class="custom-control-label" for="checkbox_tax">@lang('site.tax')</label>
                                                                         </div>
+=======
+                                                                <div class="form-inline">
+                                                                    <div class="form-check mb-2">
+                                                                        <input class="form-check-input mb-2 mr-sm-2" type="checkbox" value="" id="defaultCheck1">
+                                                                        <label class="form-check-label mb-2 mr-sm-2" for="defaultCheck1">
+                                                                            @lang('site.includeTax')
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check mb-2">
+                                                                        <input class="form-check-input mb-2 mr-sm-2" type="checkbox" value="" id="defaultCheck1">
+                                                                        <label class="form-check-label mb-2 mr-sm-2" for="defaultCheck1">
+                                                                            @lang('site.notiIncludeTax')
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row gutters">
+                                                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                    <div class="form-group">
+                                                                        <label>@lang('site.total_price')</label>
+                                                                        <input type="number" step="0.01" name="sub_total" id="sub_total" readonly class="form-control sub_total">
+>>>>>>> 48cc974befe1b63235387c5da9b81a7ff2347468
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -638,10 +684,24 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                     <!-- Row end -->
+                                </div>
+                                <!-- Row end -->
+                                <div class="row gutters pt-2">
+
+<<<<<<< HEAD
+=======
+                                    <div class="col-xl-4 col-lglg-4 col-md-4 col-sm-4 col-12">
+                                        <div class="form-inline">
+                                            <div class="form-group">
+                                                <label for="" class="pl-2"> @lang('site.users') </label>
+                                                <input type="text" class="form-control" name="">
+                                            </div>
+>>>>>>> 48cc974befe1b63235387c5da9b81a7ff2347468
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row gutters pt-2">
                                     <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">

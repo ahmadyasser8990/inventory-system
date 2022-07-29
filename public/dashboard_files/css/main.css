@@ -1108,11 +1108,11 @@ ul.header-tasks li:last-child {
 }
 
 .page-wrapper .sidebar-wrapper .sidebar-menu ul li.active {
-    background: #25b54d;
+    background: #f7fafe;
 }
 
 .page-wrapper .sidebar-wrapper .sidebar-menu ul li.active>a {
-    background: #8796af94;
+    background: #f5f6fa;
 }
 
 .page-wrapper .sidebar-wrapper .sidebar-menu ul li.active a i {
@@ -9117,4 +9117,16 @@ textarea.form-control.is-valid {
 code {
     color: #f77eb9;
     word-break: break-word;
+}
+
+.error {
+    color: red;
+}
+
+.sale-type-cash {
+    display: none;
+}
+
+.sale-type-order  {
+    display: none;
 }

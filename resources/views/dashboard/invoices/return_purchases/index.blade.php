@@ -415,7 +415,11 @@
                                                                     </a>
                                                                 </li>
                                                                 <li>
+<<<<<<< HEAD:resources/views/dashboard/invoices/return_purchases/index.blade.php
                                                                     <a href="#" class="star" data-toggle="tooltip" data-placement="top" title="@lang('site.show')">
+=======
+                                                                    <a href="{{asset('dashboard.purchase.show',)}}" class="star" data-toggle="tooltip" data-placement="top" title="@lang('site.show')">
+>>>>>>> 48cc974befe1b63235387c5da9b81a7ff2347468:resources/views/dashboard/invoices/purchases/index.blade.php
                                                                         <i class="icon-eye"></i>
                                                                     </a>
                                                                 </li>
