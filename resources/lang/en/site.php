@@ -465,6 +465,8 @@ return [
     'invoice_to' => 'Invoice To',
     'company_name' => 'Roae Almasat Almasiah',
     'total_products' => 'Quantity',
+    'includeTax' => 'include Tax',
+    'notiIncludeTax' => 'Not Include Tax',
 
     'gold_total' => 'Gold Amount',
     'dimaond1_total' => 'Dimaond Amount',
@@ -521,6 +523,7 @@ return [
 
     // Purchases
     'bill_no' => 'Invoice No',
+    'purchase_type' => 'Purchase Type',
     'phone_no' => ' Phone Number',
     'client_name' => 'Client Name ',
     'item_name' => 'Item Name',
@@ -542,10 +545,14 @@ return [
 
     //Sales
     'sale_type' => 'Sale Type',
+<<<<<<< HEAD
     'salePrice_byWeight' => 'Sale Price by Weights',
     'salePrice_manualy' => 'Sale Price Manually',
     'sale_price_byCost' => 'Sale Price by Cost Price',
     'item_include_tax' => 'Item Include Tax',
+=======
+    'masterCard' => 'Master Card',
+>>>>>>> 48cc974befe1b63235387c5da9b81a7ff2347468
     'profit'=> 'Profit',
     'add' => 'Add',
     'create' => 'Create',

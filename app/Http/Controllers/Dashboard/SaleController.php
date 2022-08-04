@@ -10,6 +10,8 @@ use App\Price;
 use App\Product;
 use App\SaleDetails;
 use DB;
+use Auth;
+
 class SaleController extends Controller
 {
 
@@ -29,7 +31,9 @@ class SaleController extends Controller
         $clients = Client::all();
         $products = Product::where('status','available')->get();
         $prices = Price::all();
-        return view('dashboard.invoices.sales.create', compact('clients','products','prices'));
+        $sale = Sale::latest()->first();
+        $nextSaleId = isset($sale->id)?$sale->id+1:1;
+        return view('dashboard.invoices.sales.create', compact('clients','products','prices','nextSaleId'));
     }
 
     public function updateSalePrice(Request $request)
@@ -134,11 +138,25 @@ class SaleController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
+        $request->validate([
+            'invoice_date'=>'required',
+            'payment_method'=>'required',
+            'sale_type'=>'required',
+        ]);
         $data['client_id'] = $request->client_no;
-        $data['client_name'] = $request->client_name;
-        $data['client_phone'] = $request->phone;
-        $data['client_tax_no'] = $request->tax_no;
+        $data['user_id'] = Auth::id();
+        if($request->sale_type == 1) {
+            $data['client_name'] = $request->client_name;
+            $data['client_phone'] = $request->phone;
+            $data['client_tax_no'] = $request->tax_no;
+        } else {
+            $data['client_name'] = $request->client_name_manual;
+            $data['client_phone'] = $request->phone_manual;
+            $data['client_tax_no'] = $request->tax_no_manual;
+        }
+
+        $data['payment_method'] = $request->payment_method;
+        $data['sales_type'] = $request->sale_type;
         $data['invoice_date'] = $request->invoice_date;
         $data['sub_total'] = $request->sub_total;
         $data['discount_type'] = $request->discount_type;
