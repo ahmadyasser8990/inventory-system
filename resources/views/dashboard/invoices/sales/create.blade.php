@@ -1069,6 +1069,9 @@
     <script>
         $(document).ready(function(){
 
+        window.onbeforeunload = function() {
+            return 'Your changes will be lost!';
+        };
             // For invoice Date
             $('.pickdate').pickadate({
                 format: 'yyyy-mm-dd',
