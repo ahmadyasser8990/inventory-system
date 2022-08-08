@@ -1289,7 +1289,7 @@
                         '<td><label for="" class="marquis" name="marquis['+ numberIncr +']">' + marquis + '</label></td>'+
                         '<td><label for="" class="bigStone" name="big_stone['+ numberIncr +']">' + big_stone + '</label></td>'+
                         '<td><label for="" class="colored" name="colored['+ numberIncr +']">' + colored + '</label></td>'+
-                        '<td><label for="" id="sale_price_original_'+ id +'" class="item_price item_priceByPurchase" name="sale_price['+ numberIncr +']">' + $.number(sale_price, 2) +'</label></td><input type="hidden" name="sale_price_original_'+ id +'_value" id="sale_price_original_'+ id +'_value" value="'+ sale_price +'"><input type="hidden" class="purchase-price" value="'+ purchase_price +'">'+
+                        '<td><label for="" id="sale_price_original_'+ id +'" class="item_price item_priceByPurchase" name="sale_price['+ numberIncr +']">' + $.number(sale_price, 2) +'</label></td><input type="hidden" name="sale_price_original_'+ id +'_value" id="sale_price_original_'+ id +'_value" value="'+ sale_price +'"><input type="hidden" class="purchase-price" value="'+ purchase_price +'"><input type="hidden" name="sale_price_original_'+ id +'_product" id="sale_price_original_'+ id +'_product" value="'+ sale_price +'">'+
                         '<td><a class="btn btn-sm btn-danger delegated-btn"><i class="icon-remove_circle"></i></a>' +
                         '</td>'+
                     '</tr>'));
@@ -1608,6 +1608,7 @@
                                 var item_id = $(this).find('.product_ids').val();
                                 $(this).find('.item_price').html($.number(itemSalePrice, 2));
                                 $('#sale_price_original_'+item_id+'_value').val(itemSalePrice);
+                                $('#sale_price_original_'+item_id+'_product').val(itemSalePrice);
                             }
                         }
 
@@ -1623,6 +1624,7 @@
                             var item_purchase_price = parseFloat($(this).find('.purchase-price').val());
                             $(this).find('.item_price').html($.number(item_purchase_price, 2));
                             $('#sale_price_original_'+item_id+'_value').val(item_purchase_price);
+                            $('#sale_price_original_'+item_id+'_product').val(item_purchase_price);
                         }
 
                         counter++;
@@ -1696,6 +1698,7 @@
                 }
                 thisObj.find('.item_price').html($.number(updatedPrice, 2));
                 $('#sale_price_original_'+item_id+'_value').val($.number(updatedPrice, 2));
+                $('#sale_price_original_'+item_id+'_product').val(updatedPrice);
             }
 
             let calculate_vat = function () {
@@ -1758,10 +1761,12 @@
                         priceLessTax = 0;
                         priceLessTax = (priceWithTax / 1.15);
                         $(this).html($.number(priceLessTax, 2));
+                        $('#'+originalPriceID+'_product').val(priceLessTax);
                         price += parseFloat(priceLessTax);
                     } else {
                         price += priceWithTax;
                         $(this).html($.number(priceWithTax, 2));
+                        $('#'+originalPriceID+'_product').val(priceWithTax);
                     }
 
                 });//end of product price total_price-input
@@ -2114,7 +2119,7 @@
                             html += '<td><label for="" class="marquis" name="marquis['+ numberIncr +']">' + value.marquis + '</label></td>';
                             html +='<td><label for="" class="bigStone" name="big_stone['+ numberIncr +']">' + value.big_stone + '</label></td>';
                             html +=   '<td><label for="" class="colored" name="colored['+ numberIncr +']">' + value.colored + '</label></td>';
-                            html += '<td><label for="" id="sale_price_original_'+ value.id +'" class="item_price item_priceByPurchase" name="sale_price['+ numberIncr +']">' + $.number(value.sale_price, 2) +'</label></td><input type="hidden" name="sale_price_original_'+ value.id +'_value" id="sale_price_original_'+ value.id +'_value" value="'+ value.sale_price +'"><input type="hidden" class="purchase-price" value="'+ value.purchase_price +'">';
+                            html += '<td><label for="" id="sale_price_original_'+ value.id +'" class="item_price item_priceByPurchase" name="sale_price['+ numberIncr +']">' + $.number(value.sale_price, 2) +'</label></td><input type="hidden" name="sale_price_original_'+ value.id +'_value" id="sale_price_original_'+ value.id +'_value" value="'+ value.sale_price +'"><input type="hidden" class="purchase-price" value="'+ value.purchase_price +'"><input type="hidden" name="sale_price_original_'+ value.id +'_product" id="sale_price_original_'+ value.id +'_product" value="'+ value.sale_price +'">';
                             html += '<td><a class="btn btn-sm btn-danger delegated-btn"><i class="icon-remove_circle"></i></a>';
                             html +=  '</tr>';
 

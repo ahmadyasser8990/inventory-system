@@ -171,6 +171,8 @@ class SaleController extends Controller
             $details_list[$i]['product_id'] = $request->all_products[$i];
             $product = Product::find($request->all_products[$i]);
             $product->status = 'sold';
+            $product_sale_price = 'sale_price_original_'.$request->all_products[$i].'_product';
+            $product->sale_price = $request->$product_sale_price;
             $product->save();
         }
 
