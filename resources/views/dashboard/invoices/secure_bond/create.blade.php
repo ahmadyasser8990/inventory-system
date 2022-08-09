@@ -83,8 +83,8 @@
                                     <li>
                                         <a href="{{route('dashboard.return-purchase.index')}}"> @lang('site.return_purchase') </a>
                                     </li>
-                                    <li>
-                                        <a href="{{route('dashboard.secure-bonds.index')}}">@lang('site.security_bond') </a>
+                                    <li class="active">
+                                        <a style="background: #8796af94;" href="{{route('dashboard.secure-bonds.index')}}">@lang('site.security_bond') </a>
                                     </li>
                                     <li>
                                         <a href="{{route('dashboard.return-secure-bonds.index')}}">@lang('site.return_security_bond')</a>
@@ -377,8 +377,8 @@
             <div class="page-header">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}">@lang('site.dashboard')</a></li>
-                    <li class="breadcrumb-item"><a href="{{route('dashboard.sales.index')}}">@lang('site.sale_invoices')</a></li>
-                    <li class="breadcrumb-item">@lang('site.sale_bill')</li>
+                    <li class="breadcrumb-item"><a href="{{route('dashboard.secure-bonds.index')}}">@lang('site.secure_bond')</a></li>
+                    <li class="breadcrumb-item active">@lang('site.secure_bond_bill')</li>
                 </ol>
             </div>
             <!-- Page header end -->
@@ -399,10 +399,60 @@
                                         <div class="card-header">
                                             <div class="card-title">@lang('site.invoice_info')</div>
                                             <div class="card-sub-title">
-                                                <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
-                                                    <div class="form-group">
-                                                        <label for="">@lang('site.invoice_date')</label>
-                                                        <input type="text" class="form-control form-control-sm pickdate"  name="invoice_date">
+                                                <div class="row gutters">
+                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                        <div class="form-group">
+                                                            <label for="">@lang('site.invoice_date')</label>
+                                                            <input type="text" class="form-control form-control-sm pickdate"  name="invoice_date">
+                                                        </div>
+                                                        @if($errors->has('invoice_date'))
+                                                            <div class="error">{{ $errors->first('invoice_date') }}</div>
+                                                        @endif
+                                                    </div>
+                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                        <div class="form-group">
+                                                            <label for="">@lang('site.payment_method')</label>
+                                                            <select name="payment_method" id="" class="form-control form-control-sm">
+                                                                <option value="">choose...</option>
+                                                                <option value="cash">@lang('site.cash')</option>
+                                                                <option value="masterCard">@lang('site.masterCard')</option>
+                                                            </select>
+                                                        </div>
+                                                        @if($errors->has('payment_method'))
+                                                            <div class="error">{{ $errors->first('payment_method') }}</div>
+                                                        @endif
+                                                    </div>
+                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                        <div class="form-group">
+                                                            <label for="">@lang('site.secureBond_type')</label>
+                                                            <select name="secureBond_type" id="secureBondType" class="form-control form-control-sm">
+                                                                <option value="">choose...</option>
+                                                                <option value="1">Order</option>
+                                                                <option value="2">Cash</option>
+                                                            </select>
+                                                        </div>
+                                                        @if($errors->has('secureBond_type'))
+                                                            <div class="error">{{ $errors->first('secureBond_type') }}</div>
+                                                        @endif
+                                                    </div>
+
+                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12 sale-type-cash">
+                                                        <div class="form-group">
+                                                            <label for="">@lang('site.name')</label>
+                                                            <input type="text" class="form-control form-control-sm "  name="client_name_manual">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12 sale-type-cash">
+                                                        <div class="form-group">
+                                                            <label for="">@lang('site.phone')</label>
+                                                            <input type="text" class="form-control form-control-sm " name="phone_manual">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12 sale-type-cash">
+                                                        <div class="form-group">
+                                                            <label for="">@lang('site.tax_no')</label>
+                                                            <input type="text" class="form-control form-control-sm " name="tax_no_manual">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -413,18 +463,30 @@
                                                 <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
                                                     <div class="form-group">
                                                         <label for="">@lang('site.bill_no')</label>
-                                                        <input class="form-control form-control-sm" type="text" readonly placeholder="120">
+                                                        <input class="form-control form-control-sm" type="text" readonly value="{{$nextSecure_bondId}}">
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12 secureBondType-order">
                                                     <div class="form-group">
-                                                        <label for="">@lang('site.client_no')</label>
-                                                        <select name="client_no" type="text" id="client_no" class="form-control form-control-sm selectpicker client_no"  data-live-search="true">
+                                                        <label for="" class="">@lang('site.client_no')</label>
+                                                        <select name="client_no" type="text" id="client_no" class="form-control  form-control-sm selectpicker client_no"  data-live-search="true">
+                                                            <option value="">choose...</option>
                                                             @foreach ($clients as $client)
                                                                 <option
                                                                     data-tax_no="{{ $client->tax_no }}"
                                                                     data-phone="{{ $client->phone }}"
                                                                     data-name="{{ $client->name }}"
+                                                                    data-client_gold_price="{{ $client->gold_price }}"
+                                                                    data-client_dimaond1_price="{{ $client->dimaond1_price }}"
+                                                                    data-client_dimaond2_price="{{ $client->dimaond2_price }}"
+                                                                    data-client_dimaond3_price="{{ $client->dimaond3_price }}"
+                                                                    data-client_dimaond4_price="{{ $client->dimaond4_price }}"
+                                                                    data-client_dimaond5_price="{{ $client->dimaond5_price }}"
+                                                                    data-client_baguette_price="{{ $client->baguette_price }}"
+                                                                    data-client_marquis_price="{{ $client->marquis_price }}"
+                                                                    data-client_big_stone_price="{{ $client->big_stone_price }}"
+                                                                    data-client_princess_price="{{ $client->princess_price }}"
+                                                                    data-client_colored_price="{{ $client->colored_price }}"
                                                                     value="{{ $client->id }}">
                                                                     {{$client->name}} -  {{$client->id}}
                                                                 </option>
@@ -432,19 +494,20 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-4 col-lg col-md-4 col-sm-4 col-12">
+
+                                                <div class="col-xl-4 col-lg col-md-4 col-sm-4 col-12 secureBondType-order">
                                                     <div class="form-group">
                                                         <label for="">@lang('site.client_name')</label>
-                                                        <input class="form-control form-control-sm name" name="client_name" readonly type="text" value="" placeholder="">
+                                                        <input class="form-control form-control-sm name" name="client_name" readonly type="text" placeholder="">
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12 secureBondType-order">
                                                     <div class="form-group">
                                                         <label for="">@lang('site.phone_no')</label>
                                                         <input class="form-control form-control-sm phone" name="phone" type="text" readonly placeholder="">
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12 secureBondType-order">
                                                     <div class="form-group">
                                                         <label for="">@lang('site.tax_no')</label>
                                                         <input class="form-control form-control-sm tax_no" name="tax_no" type="text" readonly placeholder="">
@@ -585,6 +648,22 @@
                                                             </div>
                                                         </div>
                                                         <div class="row gutters">
+                                                            <div class="form-inline">
+                                                                <div class="form-check mb-2">
+                                                                    <input class="form-check-input mb-2 mr-sm-2" type="checkbox" value="" id="defaultCheck1">
+                                                                    <label class="form-check-label mb-2 mr-sm-2" for="defaultCheck1">
+                                                                        @lang('site.includeTax')
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check mb-2">
+                                                                    <input class="form-check-input mb-2 mr-sm-2" type="checkbox" value="" id="defaultCheck2">
+                                                                    <label class="form-check-label mb-2 mr-sm-2" for="defaultCheck2">
+                                                                        @lang('site.notiIncludeTax')
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row gutters">
                                                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
                                                                 <div class="form-group">
                                                                     <label>@lang('site.total_price')</label>
@@ -624,47 +703,403 @@
                                         </div>
 
                                         <div class="accordion-container">
-                                            <div class="accordion-header" id="withIconThree">
-                                                <a  href="" class="collapsed" data-toggle="collapse" data-target="#collapseWithIconThree" aria-expanded="false" aria-controls="collapseWithIconThree">
-                                                    <i class="icon icon-triangle"></i>Account Method price By Sale Price
+                                            <div class="accordion-header" id="withIconTwo">
+                                                <a  href="" class="collapsed" data-toggle="collapse" data-target="#collapseWithIconTwo" aria-expanded="false" aria-controls="collapseWithIconTwo">
+                                                    <i class="icon icon-tag1"></i>Sale Price Auto show
                                                 </a>
                                             </div>
-                                            <div id="collapseWithIconThree" class="collapse" aria-labelledby="withIconThree" data-parent="#withIconsAccordion">
-                                                <div class="accordion-body">
 
-                                                    <div class="card h-100">
-                                                        <div class="card-header">
-                                                            <div class="card-title">Sale Prices</div>
-                                                        </div>
-                                                        <div class="card-body">
-                                                            <div class="row gutters">
-                                                                <div class="col-xl-4 col-lglg-4 col-md-4 col-sm-4 col-12">
-                                                                    <div class="form-group">
-                                                                        <div class="input-group">
-                                                                            <div class="input-group-prepend">
-                                                                                <select name="edit_salePrice" id="edit_salePrice" class="form-control edit_salePrice">
-                                                                                    <option value="">Select</option>
-                                                                                    <option value="fixed">SAR</option>
-                                                                                    <option value="percentage">%</option>
-                                                                                </select>
+                                            <div id="collapseWithIconTwo" class="collapse" aria-labelledby="withIconTwo" data-parent="#withIconsAccordion">
+                                                <div class="accordion-body">
+                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+                                                            <!--Accordion wrapper-->
+                                                        <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+                                                            <!-- Accordion card Fixed, Percentage, and multiple the Cost -->
+                                                            <div class="card">
+
+                                                                <!-- Card header -->
+                                                                <div class="card-header" role="tab" id="headingOne1">
+                                                                <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
+                                                                    aria-controls="collapseOne1">
+                                                                    <h5 class="mb-0">
+                                                                        Sale Prices (by Fixed, Percentage, and multiple the Cost) <i class="fas fa-angle-down rotate-icon"></i>
+                                                                    </h5>
+                                                                </a>
+                                                                </div>
+
+                                                                <!-- Card body -->
+                                                                <div id="collapseOne1" class="collapse" role="tabpanel" aria-labelledby="headingOne1"
+                                                                data-parent="#accordionEx">
+                                                                    <div class="card-body">
+
+                                                                        <div class="row gutters">
+                                                                            <div class="col-xl-4 col-lglg-4 col-md-4 col-sm-4 col-12">
+                                                                                <div class="form-group">
+                                                                                    <div class="input-group">
+                                                                                        <div class="input-group-prepend">
+                                                                                            <select name="edit_salePrice" id="edit_salePrice" class="form-control edit_salePrice">
+                                                                                                <option value="">Select</option>
+                                                                                                <option value="multiple">multiple</option>
+                                                                                                <option value="fixed">SAR</option>
+                                                                                                <option value="percentage">%</option>
+                                                                                            </select>
+
+                                                                                        </div>
+                                                                                        <input type="number" name="sale_value" id="sale_value" class="form-control sale_value" placeholder="Number">
+                                                                                    </div>
+                                                                                    <div id="edit_salePrice_error" class="text-danger text-left mt-2"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+                                                                            <div class="text-right">
+                                                                                <button type="button" id="edit_all_products_purchase" name="edit" class="btn btn-success">Edit to All Items</button>
+                                                                                <button type="button" id="edit_selected_products_purchase" class="btn btn-danger">Edit to the selected Item Only</button>
 
                                                                             </div>
-                                                                            <input type="number" name="sale_value" id="sale_value" class="form-control sale_value" placeholder="Number">
+
                                                                         </div>
-                                                                        <div id="edit_salePrice_error" class="text-danger text-left mt-2"></div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <!-- End Accordion card -->
+
+                                                            <!-- Accordion card Auto -->
+                                                            <div class="card">
+
+                                                                <!-- Card header -->
+                                                                <div class="card-header" role="tab" id="headingTwo2">
+                                                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo2"
+                                                                        aria-expanded="false" aria-controls="collapseTwo2">
+                                                                        <h5 class="mb-0">
+                                                                        Sale Price (by Client's Weights) <span class="text-danger">default</span> <i class="fas fa-angle-down rotate-icon"></i>
+                                                                        </h5>
+                                                                    </a>
+                                                                </div>
+
+                                                                <!-- Card body -->
+                                                                <div id="collapseTwo2" class="collapse" role="tabpanel" aria-labelledby="headingTwo2"
+                                                                    data-parent="#accordionEx">
+                                                                    <div class="card-body">
+                                                                        <div class="row gutters">
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.gold_price')</label>
+                                                                                    <input type="number" id="gold_price_default" step="0.01" name="gold_price_default" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div  style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.gold_total')</label>
+                                                                                    <input type="number" step="0.01" id="gold_total_default" name="gold_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.big_stone_price')</label>
+                                                                                    <input type="number" step="0.01" id="big_stone_price_default" name="big_stone_price_default" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.big_stone_total')</label>
+                                                                                    <input type="number" step="0.01" id="big_stone_total_default" name="big_stone_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.baguette_price')</label>
+                                                                                    <input type="number" step="0.01" id="baguette_price_default" name="baguette_price_default" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.baguette_total')</label>
+                                                                                    <input type="number" step="0.01" id="baguette_total_default" name="baguette_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row gutters">
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.marquis_price')</label>
+                                                                                    <input type="number" step="0.01" id="marquis_price_default" name="marquis_price_default" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.marquis_total')</label>
+                                                                                    <input type="number" step="0.01" id="marquis_total_default" name="marquis_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.princess_price')</label>
+                                                                                    <input type="number" step="0.01" id="princess_price_default" name="princess_price_default" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.princess_total')</label>
+                                                                                    <input type="number" step="0.01" id="princess_total_default" name="princess_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.colored_price')</label>
+                                                                                    <input type="number" step="0.01" id="colored_price_default" name="colored_price_default" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.colored_total')</label>
+                                                                                    <input type="number" step="0.01" id="colored_total_default" name="colored_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row gutters">
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond1_price')</label>
+                                                                                    <input type="number" step="0.01" id="dimaond1_price_default" name="dimaond1_price_default" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond1_total')</label>
+                                                                                    <input type="number" step="0.01" id="dimaond1_total_default" name="dimaond1_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond2_price')</label>
+                                                                                    <input type="number" step="0.01" id="dimaond2_price_default" name="dimaond2_price_default" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond2_total')</label>
+                                                                                    <input type="number" step="0.01" id="dimaond2_total_default" name="dimaond2_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond3_price')</label>
+                                                                                    <input type="number" step="0.01" id="dimaond3_price_default"  name="dimaond3_price_default" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond3_total')</label>
+                                                                                    <input type="number" step="0.01" id="dimaond3_total_default" name="dimaond3_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row gutters">
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond4_price')</label>
+                                                                                    <input type="number" step="0.01" id="dimaond4_price_default" name="dimaond4_price_default" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div  style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond4_total')</label>
+                                                                                    <input type="number" step="0.01" id="dimaond4_total_default" name="dimaond4_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond5_price')</label>
+                                                                                    <input type="number" step="0.01" id="dimaond5_price_default" name="dimaond5_price_default" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond5_total')</label>
+                                                                                    <input type="number" step="0.01" id="dimaond5_total_default" name="dimaond5_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
-                                                                <div class="text-right">
-                                                                    <button type="button" id="edit_all_products_purchase" name="edit" class="btn btn-success">Edit to All Items</button>
-                                                                    <button type="button" id="edit_selected_products_purchase" class="btn btn-danger">Edit to the selected Item Only</button>
+                                                            <!-- Accordion card  Manually-->
+                                                            <div class="card">
 
+                                                                <!-- Card header -->
+                                                                <div class="card-header" role="tab" id="headingThree3">
+                                                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree3"
+                                                                        aria-expanded="false" aria-controls="collapseThree3">
+                                                                        <h5 class="mb-0">
+                                                                        Sale Price Manually<i class="fas fa-angle-down rotate-icon"></i>
+                                                                        </h5>
+                                                                    </a>
                                                                 </div>
 
+                                                                <!-- Card body -->
+                                                                <div id="collapseThree3" class="collapse" role="tabpanel" aria-labelledby="headingThree3"
+                                                                    data-parent="#accordionEx">
+                                                                    <div class="card-body sale-price-manual">
+                                                                        <div class="row gutters">
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.gold_price')</label>
+                                                                                    <input type="number" step="0.01" id="gold_price_manual" name="gold_price_manual" placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.gold_total')</label>
+                                                                                    <input type="number" step="0.01" name="gold_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.big_stone_price')</label>
+                                                                                    <input type="number" step="0.01" id="big_stone_price_manual" name="big_stone_price_manual" placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.big_stone_total')</label>
+                                                                                    <input type="number" step="0.01" name="big_stone_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.baguette_price')</label>
+                                                                                    <input type="number" step="0.01" id="baguette_price_manual" name="baguette_price_manual" placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.baguette_total')</label>
+                                                                                    <input type="number" step="0.01" name="baguette_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row gutters">
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.marquis_price')</label>
+                                                                                    <input type="number" step="0.01" id="marquis_price_manual" name="marquis_price_manual" placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.marquis_total')</label>
+                                                                                    <input type="number" step="0.01" name="marquis_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.princess_price')</label>
+                                                                                    <input type="number" step="0.01" id="princess_price_manual" name="princess_price_manual" placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.princess_total')</label>
+                                                                                    <input type="number" step="0.01" name="princess_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.colored_price')</label>
+                                                                                    <input type="number" step="0.01" id="colored_price_manual" name="colored_price_manual" placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.colored_total')</label>
+                                                                                    <input type="number" step="0.01" name="colored_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row gutters">
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond1_price')</label>
+                                                                                    <input type="number" step="0.01" id="dimaond1_price_manual" name="dimaond1_price_manual" placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond1_total')</label>
+                                                                                    <input type="number" step="0.01" name="dimaond1_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond2_price')</label>
+                                                                                    <input type="number" step="0.01" id="dimaond2_price_manual" name="dimaond2_price_manual" placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond2_total')</label>
+                                                                                    <input type="number" step="0.01" name="dimaond2_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond3_price')</label>
+                                                                                    <input type="number" step="0.01" id="dimaond3_price_manual" name="dimaond3_price_manual" placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond3_total')</label>
+                                                                                    <input type="number" step="0.01" name="dimaond3_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row gutters">
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond4_price')</label>
+                                                                                    <input type="number" step="0.01" id="dimaond4_price_manual" name="dimaond4_price_manual" placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond4_total')</label>
+                                                                                    <input type="number" step="0.01" name="dimaond4_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond5_price')</label>
+                                                                                    <input type="number" step="0.01" id="dimaond5_price_manual" name="dimaond5_price_manual" placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div style="border-left: ridge;" class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>@lang('site.dimaond5_total')</label>
+                                                                                    <input type="number" step="0.01" name="dimaond5_total" readonly placeholder="0.00" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="card-footer">
+                                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+                                                                            <div class="text-right">
+                                                                                <button type="button" id="updateAllManualSP" name="edit" class="btn btn-success">Edit to All Items</button>
+                                                                                <button type="button" id="updateSelectedItemManualSP" class="btn btn-danger">Edit to the selected Item Only</button>
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -677,10 +1112,6 @@
                                             </div>
                                             <div id="collapseWithIconFour" class="collapse" aria-labelledby="withIconFour" data-parent="#withIconsAccordion">
                                                 <div class="accordion-body">
-                                                    <p>Here, Color and Purity Can edit, For example of the color of item is empty.</p>
-                                                    <p>and here if user edit color maybe to 20.12 for example, so the color of this item will change.</p>
-                                                    <p>And so on, for Purity.</p>
-
                                                     <div class="card h-100">
                                                         <div class="card-header">
                                                             <div class="card-title">Change Purity and Color</div>
@@ -718,14 +1149,43 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Row end -->
-                            </div>
+
+                            <!-- Row end -->
+                            {{-- <div class="row gutters pt-2">
+
+                                <div class="col-xl-4 col-lglg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-inline">
+                                        <div class="form-group">
+                                            <label for="" class="pl-2"> @lang('site.users') </label>
+
+                                            <select name="" class="form-control" id="">
+                                                <option value="">Ahmed</option>
+                                                <option value="">Nacer</option>
+                                                <option value="">Khaled</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> --}}
                             <div class="row gutters pt-2">
+                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
+
+                                    <div class="form-group">
+                                        <label for="">@lang('site.user_name')</label>
+                                        <select name="" id="" class="form-control form-control-sm">
+                                            <option value="">choose...</option>
+                                            <option value="1">Ahmed</option>
+                                            <option value="2">Yaser</option>
+                                        </select>
+                                    </div>
+
+                                </div>
                                 {{-- important --}}
+
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
                                     <div class="text-right">
-                                        <a href="{{route('dashboard.sales.index')}}" class="btn btn-dark">@lang('site.close')</a>
+                                        <a href="{{route('dashboard.secure-bonds.index')}}" class="btn btn-dark">@lang('site.close')</a>
                                         {{-- <a href="#" class="btn btn-danger">@lang('site.draft_invoice')</a> --}}
                                         <button type="submit" id="make_invoice" class="btn btn-success disabled">@lang('site.invoice')</button>
                                     </div>
@@ -746,14 +1206,15 @@
 
 @section('scripts')
 
-<!-- Bootstrap Select JS -->
-<script src="{{ asset('dashboard_files/vendor/bs-select/bs-select.min.js')}}"></script>
-<script src="{{ asset('dashboard_files/js/pickadate/picker.js') }}"></script>
-<script src="{{ asset('dashboard_files/js/pickadate/picker.date.js') }}"></script>
+    <!-- Bootstrap Select JS -->
+    <script src="{{ asset('dashboard_files/vendor/bs-select/bs-select.min.js')}}"></script>
+    <script src="{{ asset('dashboard_files/js/pickadate/picker.js') }}"></script>
+    <script src="{{ asset('dashboard_files/js/pickadate/picker.date.js') }}"></script>
 
-@if(config('app.locale') == 'ar')
-    <script src="{{ asset('dashboard_files/js/pickadate/ar.js') }}"></script>
-@endif
+    @if(config('app.locale') == 'ar')
+        <script src="{{ asset('dashboard_files/js/pickadate/ar.js') }}"></script>
+    @endif
+
     <script>
         $(document).ready(function(){
 
@@ -824,12 +1285,12 @@
                     $('#invoice_details').find('tbody').append($('' +
                     '<tr class="cloning_row" id="' + numberIncr + '" data-id="'+id+'">' +
 
-                        '<td><label class="count"for="">' + numberIncr + '</label></td>' +
+                        '<td><label class="count" for="">' + numberIncr + '</label></td>' +
                         '<td><input type="checkbox" for="" value="'+id+'" name="product_ids['+ id +']"><input name="all_products[]" value='+id+' class="product_ids" hidden></label></td>' +
                         '<td><label for="" name="id['+ numberIncr +']">' + item_no + '</label></td>' +
                         '<td><label for="" name="extra_no['+ numberIncr +']">' + extra_no +'</label></td>' +
                         '<td><label for="" name="description['+ numberIncr +']">' + description + '</label></td>'+
-                        '<td><label for="" name="category_name['+ numberIncr +']">' + category_name + '</label></td>'+
+                        '<td><label for="" class="category" name="category_name['+ numberIncr +']">' + category_name + '</label></td>'+
                         '<td><label for="" class="purity" name="purity['+ numberIncr +']">' + purity + '</label></td>'+
                         '<td><label for="" class="color" name="color['+ numberIncr +']">' + color + '</label></td>'+
                         '<td><label for="" class="gold" name="gold['+ numberIncr +']">' + gold + '</label></td>'+
@@ -843,12 +1304,12 @@
                         '<td><label for="" class="marquis" name="marquis['+ numberIncr +']">' + marquis + '</label></td>'+
                         '<td><label for="" class="bigStone" name="big_stone['+ numberIncr +']">' + big_stone + '</label></td>'+
                         '<td><label for="" class="colored" name="colored['+ numberIncr +']">' + colored + '</label></td>'+
-                        '<td><label for="" class="item_price item_priceByPurchase" name="sale_price['+ numberIncr +']">' + $.number(sale_price, 2) +'</label></td>'+
+                        '<td><label for="" id="sale_price_original_'+ id +'" class="item_price item_priceByPurchase" name="sale_price['+ numberIncr +']">' + $.number(sale_price, 2) +'</label></td><input type="hidden" name="sale_price_original_'+ id +'_value" id="sale_price_original_'+ id +'_value" value="'+ sale_price +'"><input type="hidden" class="purchase-price" value="'+ purchase_price +'">'+
                         '<td><a class="btn btn-sm btn-danger delegated-btn"><i class="icon-remove_circle"></i></a>' +
                         '</td>'+
                     '</tr>'));
-
-                    // cal_Weights();
+                    updateLatestSPCW();
+                    calSalesPrice();
                     calculateTotal();
                     count_items();
                     cal_colored();
@@ -873,7 +1334,7 @@
             $(document).on('click', '.delegated-btn', function (e) {
                 e.preventDefault();
                 $(this).parent().parent().remove();
-                // cal_Weights();
+                calSalesPrice();
                 calculateTotal();
                 count_items();
                 cal_colored();
@@ -890,8 +1351,9 @@
                 summaryInvoice();
             });
 
+
             //Cal_salePrice
-            function cal_Weights(){
+            function calSalesPrice(){
                     // Gold
                     var gold = $('#customer_details').find('#get_ids option:selected').attr('data-gold');
                     var gold_price = $('#SalePrice_byWeight').find('.gold_price').val();
@@ -936,23 +1398,339 @@
 
             }
 
-            $('body').on('keyup blur', '.discount_type', function () {
-                $('#vat_value').val(calculate_vat());
-                $('#final_total').val(sum_due_total());
-            });
-            // هنا القيمه في الخصم اذا كان بالريال يتغير بسعر ثابت اما اذا كان البنسبه فيتغير بالنسبه المئاويه
-            $('body').on('keyup blur', '.discount_value', function(){
-                $('#vat_value').val(calculate_vat());
-                $('#final_total').val(sum_due_total());
+            $('#client_no,#secureBondType').on('change', function (e) {
+                $("#invoice_details tbody tr").each(function() {
+                    updateSPCW($(this));
+                });
+                updateItemSalesPrice('default');
             });
 
+            function updateLatestSPCW() {
+                var thisObj = $("#invoice_details").find("tbody tr").last();
+                updateSPCW(thisObj);
+            }
+
+            $("#invoice_details").delegate("tr", "click", function(){
+                updateSPCW($(this),'false');
+            });
+
+            function updateSPCW(thisObj,updatePrice = 'true') {
+                var salesType = $('#secureBondType').val();
+                var client_gold_price;
+                var client_dimaond1_price;
+                var client_dimaond2_price;
+                var client_dimaond3_price;
+                var client_dimaond4_price;
+                var client_dimaond5_price;
+                var client_baguette_price
+                var client_marquis_price;
+                var client_big_stone_price
+                var client_princess_price;
+                var client_colored_price;
+                if(salesType == 1) {
+                    client_gold_price = $('#getClient').find('.client_no option:selected').attr('data-client_gold_price');
+                    $('#gold_price_default').val(client_gold_price);
+
+                    client_dimaond1_price = $('#getClient').find('.client_no option:selected').attr('data-client_dimaond1_price');
+                    $('#dimaond1_price_default').val(client_dimaond1_price);
+
+                    client_dimaond2_price = $('#getClient').find('.client_no option:selected').attr('data-client_dimaond2_price');
+                    $('#dimaond2_price_default').val(client_dimaond2_price);
+
+                    client_dimaond3_price = $('#getClient').find('.client_no option:selected').attr('data-client_dimaond3_price');
+                    $('#dimaond3_price_default').val(client_dimaond3_price);
+
+                    client_dimaond4_price = $('#getClient').find('.client_no option:selected').attr('data-client_dimaond4_price');
+                    $('#dimaond4_price_default').val(client_dimaond4_price);
+
+                    client_dimaond5_price = $('#getClient').find('.client_no option:selected').attr('data-client_dimaond5_price');
+                    $('#dimaond5_price_default').val(client_dimaond5_price);
+
+                    client_baguette_price = $('#getClient').find('.client_no option:selected').attr('data-client_baguette_price');
+                    $('#baguette_price_default').val(client_baguette_price);
+
+                    client_marquis_price = $('#getClient').find('.client_no option:selected').attr('data-client_marquis_price');
+                    $('#marquis_price_default').val(client_marquis_price);
+
+                    client_big_stone_price = $('#getClient').find('.client_no option:selected').attr('data-client_big_stone_price');
+                    $('#big_stone_price_default').val(client_big_stone_price);
+
+                    client_princess_price = $('#getClient').find('.client_no option:selected').attr('data-client_princess_price');
+                    $('#princess_price_default').val(client_princess_price);
+
+                    client_colored_price = $('#getClient').find('.client_no option:selected').attr('data-client_colored_price');
+                    $('#colored_price_default').val(client_colored_price);
+                } else {
+                    client_gold_price = 0;
+                    $('#gold_price_default').val('0.00');
+                    client_dimaond1_price = 0;
+                    $('#dimaond1_price_default').val('0.00');
+                    client_dimaond2_price = 0;
+                    $('#dimaond2_price_default').val('0.00');
+                    client_dimaond3_price = 0;
+                    $('#dimaond3_price_default').val('0.00');
+                    client_dimaond4_price = 0;
+                    $('#dimaond4_price_default').val('0.00');
+                    client_dimaond5_price = 0;
+                    $('#dimaond5_price_default').val('0.00');
+                    client_baguette_price = 0;
+                    $('#baguette_price_default').val('0.00');
+                    client_marquis_price = 0;
+                    $('#marquis_price_default').val('0.00');
+                    client_big_stone_price = 0;
+                    $('#big_stone_price_default').val('0.00');
+                    client_princess_price = 0;
+                    $('#princess_price_default').val('0.00');
+                    client_colored_price = 0;
+                    $('#colored_price_default').val('0.00');
+                }
+
+                var gold_price = parseFloat(thisObj.find("td .gold").html());
+                let gold_total_price = client_gold_price * gold_price;
+                $('#gold_total_default').val($.number(gold_total_price, 3));
+
+                var dimaond1_price = parseFloat(thisObj.find("td .dimaond_1").html());
+                let dimaond1_total_price = client_dimaond1_price * dimaond1_price;
+                $('#dimaond1_total_default').val($.number(dimaond1_total_price, 3));
+
+                var dimaond2_price = parseFloat(thisObj.find("td .dimaond_2").html());
+                let dimaond2_total_price = client_dimaond2_price * dimaond2_price;
+                $('#dimaond2_total_default').val($.number(dimaond2_total_price, 3));
+
+                var dimaond3_price = parseFloat(thisObj.find("td .dimaond_3").html());
+                let dimaond3_total_price = client_dimaond3_price * dimaond3_price;
+                $('#dimaond3_total_default').val($.number(dimaond3_total_price, 3));
+
+                var dimaond4_price = parseFloat(thisObj.find("td .dimaond_4").html());
+                let dimaond4_total_price = client_dimaond4_price * dimaond4_price;
+                $('#dimaond4_total_default').val($.number(dimaond4_total_price, 3));
+
+                var dimaond5_price = parseFloat(thisObj.find("td .dimaond_5").html());
+                let dimaond5_total_price = client_dimaond5_price * dimaond5_price;
+                $('#dimaond5_total_default').val($.number(dimaond5_total_price, 3));
+
+                var baguette_price = parseFloat(thisObj.find("td .baguette").html());
+                let baguette_total_price = client_baguette_price * baguette_price;
+                $('#baguette_total_default').val($.number(baguette_total_price, 3));
+
+                var marquis_price = parseFloat(thisObj.find("td .marquis").html());
+                let marquis_total_price = client_marquis_price * marquis_price;
+                $('#marquis_total_default').val($.number(marquis_total_price, 3));
+
+                var big_stone_price = parseFloat(thisObj.find("td .bigStone").html());
+                let big_stone_total_price = client_big_stone_price * big_stone_price;
+                $('#big_stone_total_default').val($.number(big_stone_total_price, 3));
+
+                var princess_price = parseFloat(thisObj.find("td .princess").html());
+                let princess_total_price = client_princess_price * princess_price;
+                $('#princess_total_default').val($.number(princess_total_price, 3));
+
+                var colored_price = parseFloat(thisObj.find("td .colored").html());
+                let colored_total_price = client_colored_price * colored_price;
+                $('#colored_total_default').val($.number(colored_total_price, 3));
+
+                if(updatePrice == 'true') {
+                    updateItemSalesPrice('default',thisObj);
+                }
+            }
+
+
+            $('#updateAllManualSP').click(function () {
+                $("#invoice_details tbody tr").each(function() {
+                    updateItemSalesPrice('manual',$(this));
+                });
+            });
+
+            $('#updateSelectedItemManualSP').click(function () {
+                $("#invoice_details tbody tr").each(function() {
+                    var $chkbox = $(this).find('input[type="checkbox"]');
+                    var status = $chkbox.prop('checked');
+                    if(status) {
+                        updateItemSalesPrice('manual',$(this));
+                    }
+
+                });
+            });
+
+            //type can be 'default' or 'manual'
+            function updateItemSalesPrice(type, thisObj ='false') {
+                var salesType = $('#secureBondType').val();
+                if(salesType == 1) {
+                    var counter = 0;
+                    $("#invoice_details tbody tr").each(function() {
+                        //skipping first row as it is part of plugin/sticky header
+
+                        if(counter !=0) {
+                            if(thisObj.attr('id') == $(this).attr('id') || thisObj == 'false') {
+                                var itemSalePrice = 0;
+                                var item_gold_weight = parseFloat($(this).find('.gold').html());
+                                var client_gold_price = $('#gold_price_'+type).val();
+                                var item_gold_price = item_gold_weight * client_gold_price;
+                                itemSalePrice = itemSalePrice + item_gold_price;
+
+                                var item_diamond1_weight = parseFloat($(this).find('.dimaond_1').html());
+                                var client_diamond1_price = $('#dimaond1_price_'+type).val();
+                                var item_diamond1_price = item_diamond1_weight * client_diamond1_price;
+                                itemSalePrice = itemSalePrice + item_diamond1_price;
+
+                                var item_diamond2_weight = parseFloat($(this).find('.dimaond_2').html());
+                                var client_diamond2_price = $('#dimaond2_price_'+type).val();
+                                var item_diamond2_price = item_diamond2_weight * client_diamond2_price;
+                                itemSalePrice = itemSalePrice + item_diamond2_price;
+
+                                var item_diamond3_weight = parseFloat($(this).find('.dimaond_3').html());
+                                var client_diamond3_price = $('#dimaond3_price_'+type).val();
+                                var item_diamond3_price = item_diamond3_weight * client_diamond3_price;
+                                itemSalePrice = itemSalePrice + item_diamond3_price;
+
+                                var item_diamond4_weight = parseFloat($(this).find('.dimaond_4').html());
+                                var client_diamond4_price = $('#dimaond4_price_'+type).val();
+                                var item_diamond4_price = item_diamond4_weight * client_diamond4_price;
+                                itemSalePrice = itemSalePrice + item_diamond4_price;
+
+                                var item_diamond5_weight = parseFloat($(this).find('.dimaond_5').html());
+                                var client_diamond5_price = $('#dimaond5_price_'+type).val();
+                                var item_diamond5_price = item_diamond5_weight * client_diamond5_price;
+                                itemSalePrice = itemSalePrice + item_diamond5_price;
+
+                                var item_baguette_weight = parseFloat($(this).find('.baguette').html());
+                                var client_baguette_price = $('#baguette_price_'+type).val();
+                                var item_baguette_price = item_baguette_weight * client_baguette_price;
+                                itemSalePrice = itemSalePrice + item_baguette_price;
+
+                                var item_princess_weight = parseFloat($(this).find('.princess').html());
+                                var client_princess_price = $('#princess_price_'+type).val();
+                                var item_princess_price = item_princess_weight * client_princess_price;
+                                itemSalePrice = itemSalePrice + item_princess_price;
+
+                                var item_marquis_weight = parseFloat($(this).find('.marquis').html());
+                                var client_marquis_price = $('#marquis_price_'+type).val();
+                                var item_marquis_price = item_marquis_weight * client_marquis_price;
+                                itemSalePrice = itemSalePrice + item_marquis_price;
+
+                                var item_big_stone_weight = parseFloat($(this).find('.bigStone').html());
+                                var client_big_stone_price = $('#big_stone_price_'+type).val();
+                                var item_big_stone_price = item_big_stone_weight * client_big_stone_price;
+                                itemSalePrice = itemSalePrice + item_big_stone_price;
+
+                                var item_colored_weight = parseFloat($(this).find('.colored').html());
+                                var client_colored_price = $('#colored_price_'+type).val();
+                                var item_colored_price = item_colored_weight * client_colored_price;
+                                itemSalePrice = itemSalePrice + item_colored_price;
+
+
+                                itemSalePrice = parseFloat(itemSalePrice,2);
+                                var item_id = $(this).find('.product_ids').val();
+                                $(this).find('.item_price').html($.number(itemSalePrice, 2));
+                                $('#sale_price_original_'+item_id+'_value').val(itemSalePrice);
+                            }
+                        }
+
+                        counter++;
+                    });
+                } else {
+                    var counter = 0;
+                    $("#invoice_details tbody tr").each(function() {
+                        //skipping first row as it is part of plugin/sticky header
+                        if(counter !=0) {
+                            var item_id = $(this).find('.product_ids').val();
+                            var item_purchase_price = 0;
+                            var item_purchase_price = parseFloat($(this).find('.purchase-price').val());
+                            $(this).find('.item_price').html($.number(item_purchase_price, 2));
+                            $('#sale_price_original_'+item_id+'_value').val(item_purchase_price);
+                        }
+
+                        counter++;
+                    });
+                }
+                updateInvoiceDetails();
+                calculateTotal();
+            }
+
+            function updateInvoiceDetails() {
+                var category = '';
+                var counter = 0;
+                var categoryValue = 0;
+                $("#summary tr").each(function() {
+                    if(counter !=0) {
+                        category = $(this).find('.group_category').html();
+                        categoryValue = 0;
+                        $("#invoice_details tbody tr").each(function() {
+                            if($(this).find('.category').html() == category) {
+                                categoryValue = categoryValue + parseFloat($(this).find('.item_price').html(),2);
+                            }
+                        });
+                        $("#total_price_"+category).html(categoryValue);
+                        $("#total_price_"+category+"_value").val(categoryValue);
+                    }
+                    counter++;
+                });
+            }
+            // هنا القيمه في الخصم اذا كان بالريال يتغير بسعر ثابت اما اذا كان البنسبه فيتغير بالنسبه المئاويه
+            $('body').on('keyup blur', '.discount_value', function(){
+                calculateTotal();
+            });
+
+            $('#edit_all_products_purchase').on('click',function(){
+                var counter = 0;
+                $("#invoice_details tbody tr").each(function() {
+                    if(counter != 0) {
+                        updateItemSalesPriceOptional($(this));
+                    }
+                    counter ++;
+                });
+                calculateTotal();
+            });
+
+            $('#edit_selected_products_purchase').on('click',function(){
+                var counter = 0;
+                $("#invoice_details tbody tr").each(function() {
+                    if(counter != 0) {
+                        var $chkbox = $(this).find('input[type="checkbox"]');
+                        var status = $chkbox.prop('checked');
+                        if(status) {
+                            updateItemSalesPriceOptional($(this));
+                        }
+                    }
+                    counter ++;
+                });
+                calculateTotal();
+            });
+
+            function updateItemSalesPriceOptional(thisObj) {
+                var unit = $('#edit_salePrice').val();
+                var price = parseInt($('#sale_value').val());
+                var updatedPrice = parseFloat(thisObj.find('.item_price').html(),2);
+                var item_id = thisObj.find('.product_ids').val();
+                if(unit == 'fixed') {
+                    updatedPrice = price;
+                } else if (unit == 'percentage') {
+                    updatedPrice = parseInt(updatedPrice + parseInt((updatedPrice/100)*price));
+                } else if (unit == 'multiple') {
+                    updatedPrice = parseInt (updatedPrice * price);
+                }
+                thisObj.find('.item_price').html($.number(updatedPrice, 2));
+                $('#sale_price_original_'+item_id+'_value').val($.number(updatedPrice, 2));
+            }
+
             let calculate_vat = function () {
+                var defaultCheck1 = $('#defaultCheck1').is(":checked");
+                var defaultCheck2 = $('#defaultCheck2').is(":checked");
                 let sub_totalVal = parseFloat($('.sub_total').val()) || 0;
+                let vatVal = 0;
+                if(defaultCheck1 && defaultCheck2) {
+                    vatVal = sub_totalVal * 0.15;
+                } else if (defaultCheck1) {
+                    vatVal = 0;
+                }
+
                 let discount_type = $('.discount_type').val();
                 let discount_value = parseFloat($('.discount_value').val()) || 0;
                 let discountVal = discount_value != 0 ? discount_type == 'percentage' ? sub_totalVal * (discount_value / 100) : discount_value : 0;
 
-                let vatVal = (sub_totalVal - discountVal) * 0.15;
+                if(!defaultCheck1 && defaultCheck2) {
+                    vatVal = (sub_totalVal - discountVal) * 0.15;
+                }
 
                 return vatVal.toFixed(2);
             }
@@ -974,15 +1752,32 @@
                 return sum.toFixed(2);
             }
 
+            // Apply tax as per the selected option
+            $('#defaultCheck1,#defaultCheck2').click(function () {
+                calculateTotal();
+            });
+
             //  Count Total sale_prices (class="item_price" and class="total_price")
             function calculateTotal() {
 
                 var price = 0;
+                var priceLessTax = 0;
+                var priceWithTax = 0;
+                var defaultCheck1 = $('#defaultCheck1').is(":checked");
+                var defaultCheck2 = $('#defaultCheck2').is(":checked");
 
                 $('#invoice_details .item_price').each(function(index) {
-
-
-                    price += parseFloat($(this).html().replace(/,/g, ''));
+                    originalPriceID = $(this).prop('id');
+                    priceWithTax = parseFloat($('#'+originalPriceID+'_value').val());
+                    if(defaultCheck1 && defaultCheck2) {
+                        priceLessTax = 0;
+                        priceLessTax = (priceWithTax / 1.15);
+                        $(this).html($.number(priceLessTax, 2));
+                        price += parseFloat(priceLessTax);
+                    } else {
+                        price += priceWithTax;
+                        $(this).html($.number(priceWithTax, 2));
+                    }
 
                 });//end of product price total_price-input
 
@@ -992,6 +1787,17 @@
                 $('#final_total').val(sum_due_total());
                 $('.total_price_summary').html($.number(price, 2));
 
+                $('.total_item_price').each(function(index) {
+                    originalPriceID = $(this).prop('id');
+                    priceWithTax = parseFloat($('#'+originalPriceID+'_value').val());
+                    if(defaultCheck1 && defaultCheck2) {
+                        priceLessTax = 0;
+                        priceLessTax = (priceWithTax / 1.15);
+                        $(this).html($.number(priceLessTax, 2));
+                    } else {
+                        $(this).html($.number(priceWithTax, 2));
+                    }
+                });
                 //check if price > 0
                 if (price > 0) {
 
@@ -1225,64 +2031,6 @@
                 $('.tax_no').val(tax_no);
             });
 
-            $('#edit_all_products_purchase').on('click',function(){
-                   var ids = selectedRowId("all");
-                   if(ids == false){
-                       return false;
-                   }
-                   var unit = $('#edit_salePrice');
-                   var price = $('#sale_value');
-                   salePriceValidation(unit,price);
-
-                  $.ajax({
-                      url : "{{route('dashboard.update.sale_price')}}",
-                      method : "POST",
-                      data : {
-                        "_token": "{{ csrf_token() }}",
-                        'ids' : ids,
-                        'unit': unit.val(),
-                        'price' : price.val()
-                      },
-                      success : function(data){
-                        if(data.success){
-                            reloadProducts();
-                            notification.show();
-                            clearPrice(unit,price);
-
-                        }
-                      }
-
-                });
-            });
-
-            $('#edit_selected_products_purchase').on('click',function(){
-                   var ids = selectedRowId("selected");
-                   if(ids == false){
-                       return false;
-                   }
-                   var unit = $('#edit_salePrice');
-                   var price = $('#sale_value');
-                   salePriceValidation(unit,price);
-                  $.ajax({
-                      url : "{{route('dashboard.update.sale_price')}}",
-                      method : "POST",
-                      data : {
-                        "_token": "{{ csrf_token() }}",
-                        'ids' : ids,
-                        'unit': unit.val(),
-                        'price' : price.val()
-                      },
-                      success : function(data){
-
-                        if(data.success){
-                            reloadProducts();
-                            notification.show();
-                            clearPrice(unit,price);
-                        }
-                      }
-                });
-            });
-
             $('#edit_selected_purity').on('click',function(){
                 var ids = selectedRowId("selected");
                    if(ids == false){
@@ -1367,7 +2115,7 @@
                             html += '<td><label for="" name="id['+ numberIncr +']">' + value.id + '</label></td>';
                             html +=  '<td><label for="" name="extra_no['+ numberIncr +']">' + value.extra_no +'</label></td>';
                             html += '<td><label for="" name="description['+ numberIncr +']">' + value.description + '</label></td>';
-                            html +=  '<td><label for="" name="category_name['+ numberIncr +']">' + value.category.name + '</label></td>';
+                            html +=  '<td><label for="" class="category" name="category_name['+ numberIncr +']">' + value.category.name + '</label></td>';
                             html +=  '<td><label for="" class="purity" name="purity['+ numberIncr +']">' + value.purity + '</label></td>';
                             html +=   '<td><label for="" class="color" name="color['+ numberIncr +']">' + value.color + '</label></td>';
                             html +='<td><label for="" class="gold" name="gold['+ numberIncr +']">' + value.gold + '</label></td>';
@@ -1381,7 +2129,7 @@
                             html += '<td><label for="" class="marquis" name="marquis['+ numberIncr +']">' + value.marquis + '</label></td>';
                             html +='<td><label for="" class="bigStone" name="big_stone['+ numberIncr +']">' + value.big_stone + '</label></td>';
                             html +=   '<td><label for="" class="colored" name="colored['+ numberIncr +']">' + value.colored + '</label></td>';
-                            html += '<td><label for="" class="item_price item_priceByPurchase" name="sale_price['+ numberIncr +']">' + $.number(value.sale_price, 2) +'</label></td>';
+                            html += '<td><label for="" id="sale_price_original_'+ value.id +'" class="item_price item_priceByPurchase" name="sale_price['+ numberIncr +']">' + $.number(value.sale_price, 2) +'</label></td><input type="hidden" name="sale_price_original_'+ value.id +'_value" id="sale_price_original_'+ value.id +'_value" value="'+ value.sale_price +'"><input type="hidden" class="purchase-price" value="'+ value.purchase_price +'">';
                             html += '<td><a class="btn btn-sm btn-danger delegated-btn"><i class="icon-remove_circle"></i></a>';
                             html +=  '</tr>';
 
@@ -1513,36 +2261,56 @@
                         'ids' :  ids
                       },
                       success : function(data){
+                        var html = null;
                         if(data.success){
-                          var html = null;
                           $.each(data.products,function(index,value){
-
                              if(index == 0){
                                 html += '<tr class="addCategory_row" id="0" style="color: red;">';
-                                html += '<td>'+value.category_name+'</td>';
+                                html += '<td class="group_category">'+value.category_name+'</td>';
                                 html += '<td class="count_item_summary">'+value.qty+'</td>';
-                                html += '<td class="total_price_summary">'+value.sale_price+'</td>';
+                                html += '<td class="total_price_summary" id="total_price_' + value.category_name + '">'+value.sale_price+'</td><input type="hidden" name="total_price_'+ value.category_name +'_value" id="total_price_'+ value.category_name +'_value" value="'+ value.sale_price +'">';
                                 html += '</tr>';
                               }else{
+                                if(value.sale_price == null) {
+                                    value.sale_price = 0;
+                                }
                                 html += '<tr>';
-                                html += '<td>'+value.category_name+'</td>';
+                                html += '<td class="group_category">'+value.category_name+'</td>';
                                 html += '<td>'+value.qty+'</td>';
-                                html += '<td>'+value.sale_price+'</td>';
+                                html += '<td class="total_item_price" id="total_price_' + value.category_name + '">'+ value.sale_price +'</td><input type="hidden" name="total_price_'+ value.category_name +'_value" id="total_price_'+ value.category_name +'_value" value="'+ value.sale_price +'">';
                                 html += '</tr>';
                              }
                           });
                           $('#summary').html(html);
+                          updateInvoiceDetails();
+                          calculateTotal();
 
-
-                        };
+                        } else {
+                            $('#summary').html(html);
+                            updateInvoiceDetails();
+                            calculateTotal();
+                        }
 
                       }
                 });
 
             }
 
-        });
+            $("#secureBondType").change(function(){
+                var secureBondType = $('#secureBondType').val();
+                if(secureBondType == '1') {
+                    $(".sale-type-cash").hide();
+                    $(".secureBondType-order").show();
+                } else if (secureBondType == '2') {
+                    $(".sale-type-cash").show();
+                    $(".secureBondType-order").hide();
+                } else {
+                    $(".sale-type-cash").hide();
+                    $(".secureBondType-order").hide();
+                }
+            });
 
+        });
     </script>
 
 @endsection

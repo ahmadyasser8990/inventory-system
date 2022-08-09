@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Dashboard;
 use App\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Price;
 use App\Product;
 use App\SecureBond;
 use App\SecureBondDetail;
+use Auth;
 
 class SecureBondController extends Controller
 {
@@ -21,15 +23,34 @@ class SecureBondController extends Controller
     {
         $clients = Client::all();
         $products = Product::where('status','available')->get();
-        return view('dashboard.invoices.secure_bond.create', compact('clients','products'));
+        $prices = Price::all();
+        $secure_bond = SecureBond::latest()->first();
+        $nextSecure_bondId = isset($secure_bond->id)?$secure_bond->id+1:1;
+        return view('dashboard.invoices.secure_bond.create', compact('clients','products','prices','nextSecure_bondId'));
     }
 
     public function store(Request $request)
     {
+        // dd($request->all());
+        $request->validate([
+            'invoice_date'=>'required',
+            'payment_method'=>'required',
+            'secureBond_type'=>'required',
+        ]);
         $data['client_id'] = $request->client_no;
-        $data['client_name'] = $request->client_name;
-        $data['client_phone'] = $request->phone;
-        $data['client_tax_no'] = $request->tax_no;
+        $data['user_id'] = Auth::id();
+        if($request->secureBond_type == 1) {
+            $data['client_name'] = $request->client_name;
+            $data['client_phone'] = $request->phone;
+            $data['client_tax_no'] = $request->tax_no;
+        } else {
+            $data['client_name'] = $request->client_name_manual;
+            $data['client_phone'] = $request->phone_manual;
+            $data['client_tax_no'] = $request->tax_no_manual;
+        }
+
+        $data['payment_method'] = $request->payment_method;
+        $data['secureBond_type'] = $request->secureBond_type;
         $data['invoice_date'] = $request->invoice_date;
         $data['sub_total'] = $request->sub_total;
         $data['discount_type'] = $request->discount_type;
@@ -37,20 +58,22 @@ class SecureBondController extends Controller
         $data['vat_value'] = $request->vat_value;
         $data['final_total'] = $request->final_total;
 
-        $secure_bond_invoice = SecureBond::create($data);
+        $secureBond_invoice = SecureBond::create($data);
 
         $details_list = [];
         for ($i = 0; $i < count($request->all_products); $i++) {
             $details_list[$i]['product_id'] = $request->all_products[$i];
             $product = Product::find($request->all_products[$i]);
-            $product->status = 'secure_bond';
+            $product->status = 'secure';
             $product->save();
         }
 
-        $secure_bond_invoice->secure_bond_details()->createMany($details_list);
+        $secureBond_invoice->secure_bond_details()->createMany($details_list);
 
         session()->flash('success',__('site.added_successfully'));
         return redirect()->route('dashboard.secure-bonds.index');
+
+        //
     }
 
     /**

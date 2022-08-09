@@ -1,8 +1,9 @@
 @extends('layouts.dashboard.app')
 
-@section('content')
-    <div class="page-wrapper pinned">
 
+@section('content')
+
+    <div class="page-wrapper">
         <!-- Sidebar wrapper start -->
         <nav id="sidebar" class="sidebar-wrapper">
             <!-- Sidebar brand start  -->
@@ -216,8 +217,8 @@
         </nav>
         <!-- Sidebar wrapper end -->
 
-        <!-- Page content start  -->
-        <div class="page-content">
+         <!-- Page content start  -->
+         <div class="page-content">
 
             <!-- Header start -->
             <header class="header">
@@ -365,212 +366,190 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}">@lang('site.dashboard')</a></li>
                     <li class="breadcrumb-item"><a href="{{route('dashboard.sales.index')}}">@lang('site.sale_invoices')</a></li>
-                    <li class="breadcrumb-item">@lang('site.invoice')</li>
+                    <li class="breadcrumb-item">@lang('site.sale_bill')</li>
                 </ol>
             </div>
             <!-- Page header end -->
 
             <!-- Main container start -->
             <div class="main-container fixed-height">
+
                 <!-- Setting vertical scroll start -->
                 <div class="fixedBodyScroll">
-                    <!-- Content wrapper start -->
-                    <div class="content-wrapper">
-                        <!-- Row start -->
+
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">@lang('site.invoice_info')</div>
+                                <div class="card-sub-title">@lang('site.invoice_date')</div>
+                            </div>
+                            <div class="card-body">
+
+                                <div class="row gutters">
+                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                        <div class="form-group">
+                                            <label for="">@lang('site.bill_no')</label>
+                                            <input class="form-control form-control-sm" type="text" readonly placeholder="120">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                        <div class="form-group">
+                                            <label for="">@lang('site.client_no')</label>
+                                            <input class="form-control form-control-sm" type="text" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg col-md-4 col-sm-4 col-12">
+                                        <div class="form-group">
+                                            <label for="">@lang('site.client_name')</label>
+                                            <input class="form-control form-control-sm" readonly type="text" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                        <div class="form-group">
+                                            <label for="">@lang('site.phone_no')</label>
+                                            <input class="form-control form-control-sm" type="text" readonly placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                        <div class="form-group">
+                                            <label for="">@lang('site.tax_no')</label>
+                                            <input class="form-control form-control-sm" type="text" readonly placeholder="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row gutters">
+                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                        <div class="form-group">
+                                            <label for="">@lang('site.item_no')</label>
+                                            <input class="form-control form-control-sm" type="text" placeholder="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row gutters">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-light table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th>@lang('site.item_no')</th>
+                                                    <th>@lang('site.extra_no')</th>
+                                                    <th>@lang('site.description')</th>
+                                                    <th>@lang('site.category_type')</th>
+                                                    <th>@lang('site.purity')</th>
+                                                    <th>@lang('site.color')</th>
+                                                    <th>@lang('site.gold')</th>
+                                                    <th>@lang('site.dimaond')</th>
+                                                    <th>@lang('site.baguette')</th>
+                                                    <th>@lang('site.princess')</th>
+                                                    <th>@lang('site.marquis')</th>
+                                                    <th>@lang('site.big_stone')</th>
+                                                    <!-- <th> الماس 4 </th> -->
+                                                    <th>@lang('site.sale_price')</th>
+                                                    <th>@lang('site.action')</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>100215</td>
+                                                    <td>1420011</td>
+                                                    <td>تعليقه ذهب الماس ....</td>
+                                                    <td> تعليقه </td>
+                                                    <td> - </td>
+                                                    <td> - </td>
+                                                    <td>1.51</td>
+                                                    <td> 0.29 </td>
+                                                    <td> 0.23 </td>
+                                                    <td>0.00</td>
+                                                    <td>0.00</td>
+                                                    <td>0.00</td>
+                                                    <td>788.25</td>
+                                                    <td class="text-center">
+                                                        <div class="task-list">
+                                                            <div class="task-block" style="
+                                                            flex-direction: row;
+                                                             padding: 0;
+                                                             border-bottom: 0">
+                                                                <ul class="task-actions">
+                                                                    <li class="dropdown">
+                                                                        <a href="#" id="task-actions" data-toggle="dropdown" aria-haspopup="true">
+                                                                            <i class="icon-more-horizontal"></i>
+                                                                        </a>
+                                                                        <div class="dropdown-menu" aria-labelledby="task-actions">
+                                                                            <a href="#">
+                                                                                <i class="icon-close"></i> @lang('site.delete')
+                                                                            </a>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="row gutters">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <div class="card">
-                                    <div class="card-body p-0">
-                                        <div class="invoice-container" id="print-area">
-                                            <div class="invoice-header">
-
-                                                <!-- Row start -->
-                                                <div class="row gutters">
-                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                                        <div class="custom-actions-btns mb-5">
-                                                            <a href="{{route('dashboard.sales.index')}}" class="btn btn-primary">
-                                                                <i class="icon-arrow_back"></i> @lang('site.back')
-                                                            </a>
-                                                            <a href="#" class="btn btn-dark print-btn">
-                                                                <i class="icon-printer"></i> @lang('site.print')
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Row end -->
-
-                                                <!-- Row start -->
-                                                <div class="row gutters">
-                                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
-                                                        <div class="text-left">
-                                                            <img src="{{asset('dashboard_files/img/qrcode1.png')}}" class="img-fluid  float-left" style="max-width: 80px;">
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
-                                                        <h4 class="text-center">@lang('site.sale_invoices')</h4>
-                                                    </div>
-                                                    <div class="col-lg-4 col-md-4 col-sm-4">
-                                                        <div class="text-left">
-                                                            <img src="{{asset('dashboard_files/img/logo.jpg')}}" class="img-fluid  float-right" style="max-width: 258px;">
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Row end -->
-
-                                                <!-- Row start -->
-                                                <div class="row gutters">
-                                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                                        <div class="invoice-details">
-                                                            <h5>@lang('site.invoice_to') </h5>
-                                                            <address>
-                                                                     {{$sale->client_name}} <br />
-                                                                    {{$sale->client_phone}}
-                                                                </address>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                                        <div class="invoice-details">
-                                                            <h5>@lang('site.invoice_from') </h5>
-                                                            <address>
-                                                                    @lang('site.company_name')<br />
-                                                                    +966580891057
-                                                                </address>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Row end -->
-                                                <!-- Row start -->
-                                                <div class="row gutters">
-                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                        <div class="bill-details">
-                                                            <h5>@lang('site.invoice_no') </h5>
-                                                            <address>
-                                                                    {{$sale->id}}<br />
-                                                                    {{$sale->invoice_date}}
-                                                                </address>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Row end -->
-
-                                            </div>
-
-                                            <div class="invoice-body">
-
-                                                <!-- Row start -->
-                                                <div class="row gutters">
-                                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                                        <div class="table-responsive">
-                                                            <table class="table table-bordered table-sm">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>#</th>
-                                                                        <th>@lang('site.item_no')</th>
-                                                                        <th>@lang('site.extra_no')</th>
-                                                                        <th>@lang('site.description')</th>
-                                                                        <th>@lang('site.category_type')</th>
-                                                                        <th>@lang('site.purity')</th>
-                                                                        <th>@lang('site.color')</th>
-                                                                        <th>@lang('site.gold')</th>
-                                                                        <th>@lang('site.dimaond_1')</th>
-                                                                        <th>@lang('site.dimaond_2')</th>
-                                                                        <th>@lang('site.dimaond_3')</th>
-                                                                        <th>@lang('site.dimaond_4')</th>
-                                                                        <th>@lang('site.dimaond_5')</th>
-                                                                        <th>@lang('site.baguette')</th>
-                                                                        <th>@lang('site.princess')</th>
-                                                                        <th>@lang('site.marquis')</th>
-                                                                        <th>@lang('site.big_stone')</th>
-                                                                        <th>@lang('site.colored')</th>
-                                                                        <th>@lang('site.sale_price')</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    @foreach ($sale_details as $index=>$sale_detail )
-                                                                        <tr>
-                                                                            <td>{{$index + 1}}</td>
-                                                                            <td>{{$sale_detail->product->id}}</td>
-                                                                            <td>{{$sale_detail->product->extra_no}}</td>
-                                                                            <td>{{$sale_detail->product->description}}</td>
-                                                                            <td>{{$sale_detail->product->category->name}} </td>
-                                                                            <td>{{$sale_detail->product->purity}}</td>
-                                                                            <td>{{$sale_detail->product->color}}</td>
-                                                                            <td>{{$sale_detail->product->gold}}</td>
-                                                                            <td>{{$sale_detail->product->dimaond_1}}</td>
-                                                                            <td>{{$sale_detail->product->dimaond_2}}</td>
-                                                                            <td>{{$sale_detail->product->dimaond_3}}</td>
-                                                                            <td>{{$sale_detail->product->dimaond_4}}</td>
-                                                                            <td>{{$sale_detail->product->dimaond_5}}</td>
-                                                                            <td>{{$sale_detail->product->baguette}}</td>
-                                                                            <td>{{$sale_detail->product->princess}}</td>
-                                                                            <td>{{$sale_detail->product->marquis}}</td>
-                                                                            <td>{{$sale_detail->product->big_stone}}</td>
-                                                                            <td>{{$sale_detail->product->colored}}</td>
-                                                                            <td>{{$sale_detail->product->sale_price}}</td>
-                                                                        </tr>
-                                                                    @endforeach
-                                                                    <tr>
-                                                                        <td colspan="18">
-                                                                            <p>
-                                                                                @lang('site.total')<br> @lang('site.total_descount') <br> @lang('site.tax_amount')
-                                                                                <br>
-                                                                            </p>
-                                                                            <h5 class="text-danger"><strong>@lang('site.final_total')</strong></h5>
-                                                                        </td>
-                                                                        <td>
-                                                                            <p>
-                                                                                {{$sale->sub_total}} @lang('site.riyal')<br> {{$sale->discount_value}} @lang('site.riyal')
-                                                                                <br> {{$sale->vat_value}} @lang('site.riyal') <br>
-                                                                            </p>
-                                                                            <h5 class="text-danger"><strong>{{$sale->final_total}} @lang('site.riyal')</strong></h5>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Row end -->
-
-                                            </div>
-
-                                            <div class="invoice-footer">
-                                                نسعد بخدمتكم
-                                            </div>
-
+                            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                                <div class="card h-100">
+                                    <div class="card-header">
+                                        <div class="card-title">@lang('site.summary_invoice')</div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-light table-sm">
+                                                <thead>
+                                                    <tr>
+                                                        <th>@lang('site.category_type')</th>
+                                                        <th> @lang('site.quantity')</th>
+                                                        <th>@lang('site.total_price')</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr style="color: red;">
+                                                        <td>@lang('site.total')</td>
+                                                        <td>7</td>
+                                                        <td>1300 @lang('site.riyal')</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>تعليقه</td>
+                                                        <td>4</td>
+                                                        <td>600 @lang('site.riyal')</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>عقد</td>
+                                                        <td>3</td>
+                                                        <td>700 @lang('site.riyal')</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="text-right">
+                                            <button type="button" id="submit" name="submit" class="btn btn-dark">الغاء</button>
+                                            <a href="sales.html" class="btn btn-danger">@lang('site.draft_invoice')</a>
+                                            <a href="invoice.html" class="btn btn-success">@lang('site.invoice')</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- Row end -->
+
                     </div>
                 </div>
-
             </div>
             <!-- Main container end -->
 
+
         </div>
         <!-- Page content end -->
-
     </div>
 
-@endsection
-@section('scripts')
-    {{--print this--}}
-    <script src="{{ asset('dashboard_files/js/printThis.js') }}"></script>
-
-    <script>
-
-        //print
-        $(document).on('click', '.print-btn', function() {
-
-            $('#print-area').printThis();
-
-        }); //end of click function
-
-
-    </script>
 @endsection
