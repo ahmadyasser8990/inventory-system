@@ -414,8 +414,8 @@
                                                             <label for="">@lang('site.payment_method')</label>
                                                             <select name="payment_method" id="" class="form-control form-control-sm">
                                                                 <option value="">choose...</option>
-                                                                <option value="1">@lang('site.cash')</option>
-                                                                <option value="2">@lang('site.masterCard')</option>
+                                                                <option value="cash">@lang('site.cash')</option>
+                                                                <option value="masterCard">@lang('site.masterCard')</option>
                                                             </select>
                                                         </div>
                                                         @if($errors->has('payment_method'))
@@ -454,7 +454,7 @@
                                                             <input type="text" class="form-control form-control-sm " name="tax_no_manual">
                                                         </div>
                                                     </div>
-                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                    {{-- <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
                                                         <div class="form-group">
                                                             <label for="">@lang('site.client_name')</label>
                                                             <input class="form-control form-control-sm name" name="client_name"  type="text" value="" placeholder="">
@@ -471,7 +471,7 @@
                                                             <label for="">@lang('site.tax_no')</label>
                                                             <input class="form-control form-control-sm tax_no" name="tax_no" type="text"  placeholder="">
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -484,10 +484,10 @@
                                                         <input class="form-control form-control-sm" type="text" readonly value="{{$nextSaleId}}">
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12 sale-type-order">
                                                     <div class="form-group">
-                                                        <label for="">@lang('site.client_no')</label>
-                                                        <select name="client_no" type="text" id="client_no" class="form-control form-control-sm selectpicker client_no"  data-live-search="true">
+                                                        <label for="" class="">@lang('site.client_no')</label>
+                                                        <select name="client_no" type="text" id="client_no" class="form-control  form-control-sm selectpicker client_no"  data-live-search="true">
                                                             <option value="">choose...</option>
                                                             @foreach ($clients as $client)
                                                                 <option
@@ -666,20 +666,6 @@
                                                             </div>
                                                         </div>
                                                         <div class="row gutters">
-<<<<<<< HEAD
-                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                                <div class="form-inline">
-                                                                    <!-- Checkbox item_include_tax -->
-                                                                    <div class="form-check custom-control custom-radio mb-2 mr-sm-2">
-                                                                        <input type="checkbox" class="custom-control-input" id="checkbox_item_include_tax">
-                                                                        <label class="custom-control-label" for="checkbox_item_include_tax">@lang('site.item_include_tax')</label>
-                                                                    </div>
-                                                                    <!-- Checkbox tax -->
-                                                                    <div class="form-check custom-control custom-radio mb-2 mr-sm-2">
-                                                                        <input type="checkbox" class="custom-control-input" id="checkbox_tax">
-                                                                        <label class="custom-control-label" for="checkbox_tax">@lang('site.tax')</label>
-                                                                    </div>
-=======
                                                             <div class="form-inline">
                                                                 <div class="form-check mb-2">
                                                                     <input class="form-check-input mb-2 mr-sm-2" type="checkbox" value="" id="defaultCheck1">
@@ -692,7 +678,6 @@
                                                                     <label class="form-check-label mb-2 mr-sm-2" for="defaultCheck2">
                                                                         @lang('site.notiIncludeTax')
                                                                     </label>
->>>>>>> 48cc974befe1b63235387c5da9b81a7ff2347468
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -745,198 +730,6 @@
                                             <div id="collapseWithIconTwo" class="collapse" aria-labelledby="withIconTwo" data-parent="#withIconsAccordion">
                                                 <div class="accordion-body">
                                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-<<<<<<< HEAD
-                                                        <!-- button salePrice_byWeight -->
-                                                        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#weight">@lang('site.salePrice_byWeight')</button>
-                                                        <div id="weight" class="collapse">
-                                                            <div class="card h-100" >
-                                                                <div class="card-header">
-                                                                    <div class="card-title">Wieghts</div>
-                                                                </div>
-                                                                <div class="card-body" >
-                                                                    <div class="row gutters">
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.gold_price')</label>
-                                                                                <input type="number" step="0.01" name="gold_price" placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.gold_total')</label>
-                                                                                <input type="number" step="0.01" name="gold_total" readonly placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.dimaond1_price')</label>
-                                                                                <input type="number" step="0.01" name="dimaond1_price" placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.dimaond1_total')</label>
-                                                                                <input type="number" step="0.01" name="dimaond1_total" readonly placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.baguette_price')</label>
-                                                                                <input type="number" step="0.01" name="baguette_price" placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.baguette_total')</label>
-                                                                                <input type="number" step="0.01" name="baguette_total" readonly placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.marquis_price')</label>
-                                                                                <input type="number" step="0.01" name="marquis_price" placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.marquis_total')</label>
-                                                                                <input type="number" step="0.01" name="marquis_total" readonly placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.princess_price')</label>
-                                                                                <input type="number" step="0.01" name="princess_price" placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.princess_total')</label>
-                                                                                <input type="number" step="0.01" name="princess_total" readonly placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.colored_price')</label>
-                                                                                <input type="number" step="0.01" name="colored_price" placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.colored_total')</label>
-                                                                                <input type="number" step="0.01" name="colored_total" readonly placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row gutters">
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.big_stone_price')</label>
-                                                                                <input type="number" step="0.01" name="big_stone_price" placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.big_stone_total')</label>
-                                                                                <input type="number" step="0.01" name="big_stone_total" readonly placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.dimaond2_price')</label>
-                                                                                <input type="number" step="0.01" name="dimaond2_price" placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.dimaond2_total')</label>
-                                                                                <input type="number" step="0.01" name="dimaond2_total" readonly placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.dimaond3_price')</label>
-                                                                                <input type="number" step="0.01" name="dimaond3_price" placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.dimaond3_total')</label>
-                                                                                <input type="number" step="0.01" name="dimaond3_total" readonly placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.dimaond4_price')</label>
-                                                                                <input type="number" step="0.01" name="dimaond4_price" placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.dimaond4_total')</label>
-                                                                                <input type="number" step="0.01" name="dimaond4_total" readonly placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.dimaond5_price')</label>
-                                                                                <input type="number" step="0.01" name="dimaond5_price" placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                                                                            <div class="form-group">
-                                                                                <label>@lang('site.dimaond5_total')</label>
-                                                                                <input type="number" step="0.01" name="dimaond5_total" readonly placeholder="0.00" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="card-footer">
-                                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-
-                                                                        <div class="text-right">
-                                                                            <button type="button" id="" name="edit" class="btn btn-success">Edit to All Items</button>
-                                                                            <button type="button" id="" class="btn btn-danger">Edit to the selected Item Only</button>
-
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- button sale_price_byCost -->
-                                                        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#cost">@lang('site.sale_price_byCost')</button>
-                                                        <div id="cost" class="collapse">
-                                                            <div class="card h-100">
-                                                                <div class="card-header">
-                                                                    <div class="card-title">Sale Price by Cost</div>
-                                                                </div>
-                                                                <div class="card-body">
-                                                                    <div class="row gutters">
-                                                                        <div class="col-xl-4 col-lglg-4 col-md-4 col-sm-4 col-12">
-                                                                            <div class="form-group">
-                                                                                <div class="input-group">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <select class="form-control">
-                                                                                            <option value="">Select</option>
-                                                                                            <option value="fixed">SAR</option>
-                                                                                            <option value="percentage">%</option>
-                                                                                            <option value="multiple">Multiple</option>
-                                                                                        </select>
-
-                                                                                    </div>
-                                                                                    <input type="number"  class="form-control " placeholder="Number">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-
-                                                                        <div class="text-right">
-                                                                            <button type="button" id="edit_all_products_purchase" name="edit" class="btn btn-success">Edit to All Items</button>
-                                                                            <button type="button" id="edit_selected_products_purchase" class="btn btn-danger">Edit to the selected Item Only</button>
-
-=======
 
                                                             <!--Accordion wrapper-->
                                                         <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
@@ -1148,80 +941,11 @@
                                                                                     <input type="number" step="0.01" id="dimaond5_total_default" name="dimaond5_total" readonly placeholder="0.00" class="form-control">
                                                                                 </div>
                                                                             </div>
->>>>>>> 48cc974befe1b63235387c5da9b81a7ff2347468
                                                                         </div>
 
                                                                     </div>
                                                                 </div>
                                                             </div>
-<<<<<<< HEAD
-                                                        </div>
-
-                                                        <!-- button salePrice_manualy -->
-                                                        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#manualy">@lang('site.salePrice_manualy')</button>
-                                                        <div id="manualy" class="collapse">
-                                                            <div class="card h-100">
-                                                                <div class="card-header">
-                                                                    <div class="card-title">Sale Price Manualy</div>
-                                                                </div>
-                                                                <div class="card-body">
-                                                                    <div class="row gutters">
-                                                                        <div class="col-xl-4 col-lglg-4 col-md-4 col-sm-4 col-12">
-                                                                            <div class="form-group">
-                                                                                <div class="input-group">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <select class="form-control">
-                                                                                            <option value="">Select</option>
-                                                                                            <option value="fixed">SAR</option>
-                                                                                        </select>
-
-                                                                                    </div>
-                                                                                    <input type="number"  class="form-control " placeholder="Number">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-
-                                                                        <div class="text-right">
-                                                                            <button type="button" id="edit_all_products_purchase" name="edit" class="btn btn-success">Edit to All Items</button>
-                                                                            <button type="button" id="edit_selected_products_purchase" class="btn btn-danger">Edit to the selected Item Only</button>
-
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-container">
-                                            <div class="accordion-header" id="withIconThree">
-                                                <a  href="" class="collapsed" data-toggle="collapse" data-target="#collapseWithIconThree" aria-expanded="false" aria-controls="collapseWithIconThree">
-                                                    (<span class="text-danger">Delete this part</span>)<i class="icon icon-triangle"></i>Account Method price By Sale Price
-                                                </a>
-                                            </div>
-                                            <div id="collapseWithIconThree" class="collapse" aria-labelledby="withIconThree" data-parent="#withIconsAccordion">
-                                                <div class="accordion-body">
-
-                                                    <div class="card h-100">
-                                                        <div class="card-header">
-                                                            <div class="card-title">Sale Prices</div>
-                                                        </div>
-                                                        <div class="card-body">
-                                                            <div class="row gutters">
-                                                                <div class="col-xl-4 col-lglg-4 col-md-4 col-sm-4 col-12">
-                                                                    <div class="form-group">
-                                                                        <div class="input-group">
-                                                                            <div class="input-group-prepend">
-                                                                                <select name="edit_salePrice" id="edit_salePrice" class="form-control edit_salePrice">
-                                                                                    <option value="">Select</option>
-                                                                                    <option value="fixed">SAR</option>
-                                                                                    <option value="percentage">%</option>
-                                                                                </select>
-=======
 
                                                             <!-- Accordion card  Manually-->
                                                             <div class="card">
@@ -1235,7 +959,6 @@
                                                                         </h5>
                                                                     </a>
                                                                 </div>
->>>>>>> 48cc974befe1b63235387c5da9b81a7ff2347468
 
                                                                 <!-- Card body -->
                                                                 <div id="collapseThree3" class="collapse" role="tabpanel" aria-labelledby="headingThree3"
