@@ -389,7 +389,7 @@
                 <div class="fixedBodyScroll">
                     <!-- Content wrapper start -->
                     <div class="content-wrapper">
-                        <form action="{{route('dashboard.sales.store')}}" method="POST">
+                        <form action="{{route('dashboard.sales.store')}}" method="POST" id="form">
                             {{ csrf_field() }}
                             {{ method_field('post')}}
 
@@ -1139,13 +1139,13 @@
                                                                 <div class="col-xl-4 col-lglg-4 col-md-4 col-sm-4    col-12">
                                                                     <div class="form-group">
                                                                         <label for=""> @lang('site.color') </label>
-                                                                        <input type="text" name="color" class="form-control" id="color">
+                                                                        <input type="text" class="form-control" id="color">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-xl-4 col-lglg-4 col-md-4 col-sm-4 col-12">
                                                                     <div class="form-group">
                                                                         <label for=""> @lang('site.purity') </label>
-                                                                        <input type="text" name="purity" class="form-control" id="purity">
+                                                                        <input type="text" class="form-control" id="purity">
                                                                     </div>
                                                                 </div>
 
@@ -1190,7 +1190,7 @@
 
                                     <div class="form-group">
                                         <label for="">@lang('site.user_name')</label>
-                                        <select name="" id="" class="form-control form-control-sm">
+                                        <select name="user_id" id="" class="form-control form-control-sm">
                                             <option value="">choose...</option>
                                             <option value="1">Ahmed</option>
                                             <option value="2">Yaser</option>
@@ -1304,7 +1304,7 @@
                     let numberIncr = trCount > 0 ? parseInt($('#invoice_details').find('tr.cloning_row:last').attr('id')) + 1 : 0;
 
                     $('#invoice_details').find('tbody').append($('' +
-                    '<tr class="cloning_row" id="' + numberIncr + '" data-id="'+id+'">' +
+                    '<tr class="cloning_row row_product_'+id+'" id="' + numberIncr + '" data-id="'+id+'">' +
 
                         '<td><label class="count" for="">' + numberIncr + '</label></td>' +
                         '<td><input type="checkbox" for="" value="'+id+'" name="product_ids['+ id +']"><input name="all_products[]" value='+id+' class="product_ids" hidden></label></td>' +
@@ -1312,8 +1312,8 @@
                         '<td><label for="" name="extra_no['+ numberIncr +']">' + extra_no +'</label></td>' +
                         '<td><label for="" name="description['+ numberIncr +']">' + description + '</label></td>'+
                         '<td><label for="" class="category" name="category_name['+ numberIncr +']">' + category_name + '</label></td>'+
-                        '<td><label for="" class="purity" name="purity['+ numberIncr +']">' + purity + '</label></td>'+
-                        '<td><label for="" class="color" name="color['+ numberIncr +']">' + color + '</label></td>'+
+                        '<td class="purity"><label for=""  name="purity['+ numberIncr +']"><input type="hidden" name="purity['+id+']" value='+purity+'>' + purity + '</label></td>'+
+                        '<td class="color"><label for=""  name="color['+ numberIncr +']"><input type="hidden" name="color['+id+']" value='+color+'>' + color + '</label></td>'+
                         '<td><label for="" class="gold" name="gold['+ numberIncr +']">' + gold + '</label></td>'+
                         '<td><label for="" class="dimaond_1" name="dimaond_1['+ numberIncr +']">' + dimaond_1 + '</label></td>'+
                         '<td><label for="" class="dimaond_2" name="dimaond_2['+ numberIncr +']">' + dimaond_2 + '</label></td>'+
@@ -2060,24 +2060,42 @@
                    var color = $('#color');
                    var purity = $('#purity');
                    colorPurityValidation(color,purity);
-                  $.ajax({
-                      url : "{{route('dashboard.update.color_purity')}}",
-                      method : "POST",
-                      data : {
-                        "_token": "{{ csrf_token() }}",
-                        'ids' : ids,
-                        'color': color.val(),
-                        'purity' : purity.val(),
-                      },
-                      success : function(data){
-
-                        if(data.success){
-                            reloadProducts();
-                            notification.show();
-                             clearPurity(color,purity);
-                        }
+                   
+              
+                   $.each(ids,function(index,value){
+                      var self = $('.row_product_'+value);
+                      var id = self.data('id');
+                      
+                      if(purity.val().length > 0){
+                      self.find('.purity').html('<label for=""><input type="hidden" name="purity['+id+']" value='+purity.val()+'>' + purity.val() + '</label>');
                       }
-                });
+
+                      if(color.val().length > 0){
+                      self.find('.color').html('<label for=""><input type="hidden" name="color['+id+']" value='+color.val()+'>' + color.val() + '</label>');
+                      }
+                   });
+                 
+
+                   notification.show();
+                   clearPurity(color,purity);
+                    // $.ajax({
+                    //   url : "{{route('dashboard.update.color_purity')}}",
+                    //   method : "POST",
+                    //   data : {
+                    //     "_token": "{{ csrf_token() }}",
+                    //     'ids' : ids,
+                    //     'color': color.val(),
+                    //     'purity' : purity.val(),
+                    //   },
+                    //   success : function(data){
+
+                    //     if(data.success){
+                    //         reloadProducts();
+                    //         notification.show();
+                    //          clearPurity(color,purity);
+                    //     }
+                    //   }
+                    // });
             });
 
 
@@ -2089,25 +2107,43 @@
                    var color = $('#color');
                    var purity = $('#purity');
                    colorPurityValidation(color,purity);
-                  $.ajax({
-                      url : "{{route('dashboard.update.color_purity')}}",
-                      method : "POST",
-                      data : {
-                        "_token": "{{ csrf_token() }}",
-                        'ids' : ids,
-                        'color': color.val(),
-                        'purity' : purity.val(),
-                      },
-                      success : function(data){
-                        if(data.success){
-                            reloadProducts();
-                            notification.show();
-                            summaryInvoice();
-                            clearPurity(color,purity);
-                        }
+                   var trs = $('#invoice_details').find('tbody tr');
+                   trs.each(function(index,value){
+                      var self = $(this);
+                      var id = $(this).data('id');
+
+                      if(purity.val().length > 0){
+                      self.find('.purity').html('<label for=""><input type="hidden" name="purity['+id+']" value='+purity.val()+'>' + purity.val() + '</label>');
                       }
 
-                });
+                      if(color.val().length > 0){
+                      self.find('.color').html('<label for=""><input type="hidden" name="color['+id+']" value='+color.val()+'>' + color.val() + '</label>');
+                      }
+                   });
+
+                   notification.show();
+                   clearPurity(color,purity);
+
+                   
+                    // $.ajax({
+                    //   url : "{{route('dashboard.update.color_purity')}}",
+                    //   method : "POST",
+                    //   data : {
+                    //     "_token": "{{ csrf_token() }}",
+                    //     'ids' : ids,
+                    //     'color': color.val(),
+                    //     'purity' : purity.val(),
+                    //   },
+                    //   success : function(data){
+                    //     if(data.success){
+                    //         reloadProducts();
+                    //         notification.show();
+                    //         summaryInvoice();
+                    //         clearPurity(color,purity);
+                    //     }
+                    //   }
+
+                    // });
             });
 
             function reloadProducts()
@@ -2332,6 +2368,44 @@
             });
 
         });
+
+        $('#make_invoice').click(function(){
+            event.preventDefault();
+        
+        $.ajax({
+    url: "{{route('dashboard.sales.store')}}",
+    type: "POST",
+    data: $('#form').serialize(),
+    success: function(response) {
+        if (response.success == 1) {
+
+            var msg = new Noty({
+                text: "sale added",
+                timeout: 5000,
+                type: "success",
+
+            });
+            msg.show();
+            window.location.href = "/dashboard/sale";
+        } else if (response.success == 0) {
+            $.each(response.errors, function(index, value) {
+                if (value.length !== 0) {
+
+                    var error = new Noty({
+                        text: value,
+                        timeout: 5000,
+                        type: "error",
+
+                    });
+                    error.show();
+                }
+            });
+        }
+    }
+})
+});
+       
+
     </script>
 
 @endsection
