@@ -364,8 +364,8 @@
             <div class="page-header">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}">@lang('site.dashboard')</a></li>
-                    <li class="breadcrumb-item"><a href="{{route('dashboard.secure-bonds.index')}}">@lang('site.security_bond')</a></li>
-                    <li class="breadcrumb-item active">@lang('site.invoice')</li>
+                    <li class="breadcrumb-item"><a href="{{route('dashboard.sales.index')}}">@lang('site.sale_invoices')</a></li>
+                    <li class="breadcrumb-item">@lang('site.invoice')</li>
                 </ol>
             </div>
             <!-- Page header end -->
@@ -388,7 +388,7 @@
                                                 <div class="row gutters">
                                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                                         <div class="custom-actions-btns mb-5">
-                                                            <a href="{{route('dashboard.secure-bonds.index')}}" class="btn btn-primary">
+                                                            <a href="{{route('dashboard.sales.index')}}" class="btn btn-primary">
                                                                 <i class="icon-arrow_back"></i> @lang('site.back')
                                                             </a>
                                                             <a href="#" class="btn btn-dark print-btn">
@@ -408,7 +408,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
-                                                        <h4 class="text-center">@lang('site.security_bond')</h4>
+                                                        <h4 class="text-center">@lang('site.sale_invoices')</h4>
                                                     </div>
                                                     <div class="col-lg-4 col-md-4 col-sm-4">
                                                         <div class="text-left">
@@ -425,8 +425,8 @@
                                                         <div class="invoice-details">
                                                             <h5>@lang('site.invoice_to') </h5>
                                                             <address>
-                                                                     {{$secure_bond->client_name}} <br />
-                                                                    {{$secure_bond->client_phone}}
+                                                                     {{$sale->client_name}} <br />
+                                                                    {{$sale->client_phone}}
                                                                 </address>
                                                         </div>
                                                     </div>
@@ -447,8 +447,8 @@
                                                         <div class="bill-details">
                                                             <h5>@lang('site.invoice_no') </h5>
                                                             <address>
-                                                                    {{$secure_bond->id}}<br />
-                                                                    {{$secure_bond->invoice_date}}
+                                                                    {{$sale->id}}<br />
+                                                                    {{$sale->invoice_date}}
                                                                 </address>
                                                         </div>
                                                     </div>
@@ -488,27 +488,27 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    @foreach ($secure_bond_details as $index=>$secure_bond_detail )
+                                                                    @foreach ($sale_details as $index=>$sale_detail )
                                                                         <tr>
                                                                             <td>{{$index + 1}}</td>
-                                                                            <td>{{$secure_bond_detail->product->id}}</td>
-                                                                            <td>{{$secure_bond_detail->product->extra_no}}</td>
-                                                                            <td>{{$secure_bond_detail->product->description}}</td>
-                                                                            <td>{{$secure_bond_detail->product->category->name}} </td>
-                                                                            <td>{{$secure_bond_detail->product->purity}}</td>
-                                                                            <td>{{$secure_bond_detail->product->color}}</td>
-                                                                            <td>{{$secure_bond_detail->product->gold}}</td>
-                                                                            <td>{{$secure_bond_detail->product->dimaond_1}}</td>
-                                                                            <td>{{$secure_bond_detail->product->dimaond_2}}</td>
-                                                                            <td>{{$secure_bond_detail->product->dimaond_3}}</td>
-                                                                            <td>{{$secure_bond_detail->product->dimaond_4}}</td>
-                                                                            <td>{{$secure_bond_detail->product->dimaond_5}}</td>
-                                                                            <td>{{$secure_bond_detail->product->baguette}}</td>
-                                                                            <td>{{$secure_bond_detail->product->princess}}</td>
-                                                                            <td>{{$secure_bond_detail->product->marquis}}</td>
-                                                                            <td>{{$secure_bond_detail->product->big_stone}}</td>
-                                                                            <td>{{$secure_bond_detail->product->colored}}</td>
-                                                                            <td>{{$secure_bond_detail->product->sale_price}}</td>
+                                                                            <td>{{$sale_detail->product->id}}</td>
+                                                                            <td>{{$sale_detail->product->extra_no}}</td>
+                                                                            <td>{{$sale_detail->product->description}}</td>
+                                                                            <td>{{$sale_detail->product->category->name}} </td>
+                                                                            <td>{{$sale_detail->product->purity}}</td>
+                                                                            <td>{{$sale_detail->product->color}}</td>
+                                                                            <td>{{$sale_detail->product->gold}}</td>
+                                                                            <td>{{$sale_detail->product->dimaond_1}}</td>
+                                                                            <td>{{$sale_detail->product->dimaond_2}}</td>
+                                                                            <td>{{$sale_detail->product->dimaond_3}}</td>
+                                                                            <td>{{$sale_detail->product->dimaond_4}}</td>
+                                                                            <td>{{$sale_detail->product->dimaond_5}}</td>
+                                                                            <td>{{$sale_detail->product->baguette}}</td>
+                                                                            <td>{{$sale_detail->product->princess}}</td>
+                                                                            <td>{{$sale_detail->product->marquis}}</td>
+                                                                            <td>{{$sale_detail->product->big_stone}}</td>
+                                                                            <td>{{$sale_detail->product->colored}}</td>
+                                                                            <td>{{$sale_detail->product->sale_price}}</td>
                                                                         </tr>
                                                                     @endforeach
                                                                     <tr>
@@ -521,10 +521,10 @@
                                                                         </td>
                                                                         <td>
                                                                             <p>
-                                                                                {{$secure_bond->sub_total}} @lang('site.riyal')<br> {{$secure_bond->discount_value}} @lang('site.riyal')
-                                                                                <br> {{$secure_bond->vat_value}} @lang('site.riyal') <br>
+                                                                                {{$sale->sub_total}} @lang('site.riyal')<br> {{$sale->discount_value}} @lang('site.riyal')
+                                                                                <br> {{$sale->vat_value}} @lang('site.riyal') <br>
                                                                             </p>
-                                                                            <h5 class="text-danger"><strong>{{$secure_bond->final_total}} @lang('site.riyal')</strong></h5>
+                                                                            <h5 class="text-danger"><strong>{{$sale->final_total}} @lang('site.riyal')</strong></h5>
                                                                         </td>
                                                                     </tr>
                                                                 </tbody>

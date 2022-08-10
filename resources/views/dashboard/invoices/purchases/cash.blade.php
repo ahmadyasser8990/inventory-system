@@ -398,7 +398,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                          
+
                                             @foreach($purchases as $purchase)
                                             <tr>
                                                 <td>{{$purchase->id}}</td>
@@ -407,7 +407,7 @@
                                                 <td>{{$purchase->purchase_type}}</td>
                                                 <td>{{$purchase->final_total}}</td>
                                                 <td>1</td>
-                                             
+
                                                 <td>
                                                     <div class="task-list">
                                                         <div class="task-block" style="justify-content: center; flex-direction: row; padding: 0; border-bottom: 0">

@@ -16,9 +16,6 @@ class ExpensesimportsTableSeeder extends Seeder
         foreach($taxes as $tax){
             \App\Expenseimport::create([
                 'name'=> $tax,
-                'amount'=> '1100',
-                'type'=> 'مصروف',
-                'note'=> 'مصروف',
             ]);
         }
     }

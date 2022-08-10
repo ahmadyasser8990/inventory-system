@@ -68,7 +68,7 @@
                                     <li>
                                         <a href="{{route('dashboard.purchase.index')}}">@lang('site.purchase_bill')</a>
                                     </li>
-                                    <li class="active">
+                                    <li>
                                         <a href="{{route('dashboard.return-purchase.index')}}"> @lang('site.return_purchase') </a>
                                     </li>
                                     <li>
@@ -216,8 +216,9 @@
             <!-- Sidebar content end -->
         </nav>
         <!-- Sidebar wrapper end -->
-        <!-- Page content start  -->
-        <div class="page-content">
+
+         <!-- Page content start  -->
+         <div class="page-content">
 
             <!-- Header start -->
             <header class="header">
@@ -359,91 +360,196 @@
                 </div>
             </header>
             <!-- Header end -->
+
             <!-- Page header start -->
             <div class="page-header">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}">@lang('site.dashboard')</a></li>
-                    <li class="breadcrumb-item active">@lang('site.return_purchase')</li>
+                    <li class="breadcrumb-item"><a href="{{route('dashboard.sales.index')}}">@lang('site.sale_invoices')</a></li>
+                    <li class="breadcrumb-item">@lang('site.sale_bill')</li>
                 </ol>
             </div>
             <!-- Page header end -->
+
             <!-- Main container start -->
             <div class="main-container fixed-height">
+
                 <!-- Setting vertical scroll start -->
                 <div class="fixedBodyScroll">
 
-                    <!-- Content wrapper start -->
-                    <div class="content-wrapper">
-                        <div class="row grutters">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <div class="text-left mb-3">
-                                    <!-- Button add new sale -->
-                                    <a href="{{route('dashboard.return-purchase.create')}}" class="btn btn-primary">@lang('site.new_returnPurchase')</a>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">@lang('site.invoice_info')</div>
+                                <div class="card-sub-title">@lang('site.invoice_date')</div>
+                            </div>
+                            <div class="card-body">
+
+                                <div class="row gutters">
+                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                        <div class="form-group">
+                                            <label for="">@lang('site.bill_no')</label>
+                                            <input class="form-control form-control-sm" type="text" readonly placeholder="120">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                        <div class="form-group">
+                                            <label for="">@lang('site.client_no')</label>
+                                            <input class="form-control form-control-sm" type="text" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg col-md-4 col-sm-4 col-12">
+                                        <div class="form-group">
+                                            <label for="">@lang('site.client_name')</label>
+                                            <input class="form-control form-control-sm" readonly type="text" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                        <div class="form-group">
+                                            <label for="">@lang('site.phone_no')</label>
+                                            <input class="form-control form-control-sm" type="text" readonly placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                        <div class="form-group">
+                                            <label for="">@lang('site.tax_no')</label>
+                                            <input class="form-control form-control-sm" type="text" readonly placeholder="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row gutters">
+                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                        <div class="form-group">
+                                            <label for="">@lang('site.item_no')</label>
+                                            <input class="form-control form-control-sm" type="text" placeholder="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row gutters">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-light table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th>@lang('site.item_no')</th>
+                                                    <th>@lang('site.extra_no')</th>
+                                                    <th>@lang('site.description')</th>
+                                                    <th>@lang('site.category_type')</th>
+                                                    <th>@lang('site.purity')</th>
+                                                    <th>@lang('site.color')</th>
+                                                    <th>@lang('site.gold')</th>
+                                                    <th>@lang('site.dimaond')</th>
+                                                    <th>@lang('site.baguette')</th>
+                                                    <th>@lang('site.princess')</th>
+                                                    <th>@lang('site.marquis')</th>
+                                                    <th>@lang('site.big_stone')</th>
+                                                    <!-- <th> الماس 4 </th> -->
+                                                    <th>@lang('site.sale_price')</th>
+                                                    <th>@lang('site.action')</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>100215</td>
+                                                    <td>1420011</td>
+                                                    <td>تعليقه ذهب الماس ....</td>
+                                                    <td> تعليقه </td>
+                                                    <td> - </td>
+                                                    <td> - </td>
+                                                    <td>1.51</td>
+                                                    <td> 0.29 </td>
+                                                    <td> 0.23 </td>
+                                                    <td>0.00</td>
+                                                    <td>0.00</td>
+                                                    <td>0.00</td>
+                                                    <td>788.25</td>
+                                                    <td class="text-center">
+                                                        <div class="task-list">
+                                                            <div class="task-block" style="
+                                                            flex-direction: row;
+                                                             padding: 0;
+                                                             border-bottom: 0">
+                                                                <ul class="task-actions">
+                                                                    <li class="dropdown">
+                                                                        <a href="#" id="task-actions" data-toggle="dropdown" aria-haspopup="true">
+                                                                            <i class="icon-more-horizontal"></i>
+                                                                        </a>
+                                                                        <div class="dropdown-menu" aria-labelledby="task-actions">
+                                                                            <a href="#">
+                                                                                <i class="icon-close"></i> @lang('site.delete')
+                                                                            </a>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-light table-sm">
-                                        <thead>
-                                            <tr>
-                                                <th>@lang('site.bill_no')</th>
-                                                <th>@lang('site.purchase_type')</th>
-                                                <th>@lang('site.supplier_name')</th>
-                                                <th>@lang('site.total_products')</th>
-                                                <th>@lang('site.final_total')</th>
-                                                <th>@lang('site.purchase_bill')</th>
-                                                <th class="text-center">@lang('site.action')</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>125</td>
-                                                <td>Order</td>
-                                                <td>Mohammed</td>
-                                                <td>25</td>
-                                                <td>125000</td>
-                                                <td>12</td>
-                                                <td>
-                                                    <div class="task-list">
-                                                        <div class="task-block" style="justify-content: center; flex-direction: row; padding: 0; border-bottom: 0">
-                                                            <ul class="task-actions">
-                                                                <li>
-                                                                    <a href="#" class="star" data-toggle="tooltip" data-placement="top" title="@lang('site.delete')">
-                                                                        <i class="icon-delete"></i>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="{{asset('dashboard.purchase.show',)}}" class="star" data-toggle="tooltip" data-placement="top" title="@lang('site.show')">
-                                                                        <i class="icon-eye"></i>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#" class="star" data-toggle="tooltip" data-placement="top"  title="@lang('site.edit')">
-                                                                        <i class="icon-edit"></i>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+
+
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="row gutters">
+                            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                                <div class="card h-100">
+                                    <div class="card-header">
+                                        <div class="card-title">@lang('site.summary_invoice')</div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-light table-sm">
+                                                <thead>
+                                                    <tr>
+                                                        <th>@lang('site.category_type')</th>
+                                                        <th> @lang('site.quantity')</th>
+                                                        <th>@lang('site.total_price')</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr style="color: red;">
+                                                        <td>@lang('site.total')</td>
+                                                        <td>7</td>
+                                                        <td>1300 @lang('site.riyal')</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>تعليقه</td>
+                                                        <td>4</td>
+                                                        <td>600 @lang('site.riyal')</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>عقد</td>
+                                                        <td>3</td>
+                                                        <td>700 @lang('site.riyal')</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="text-right">
+                                            <button type="button" id="submit" name="submit" class="btn btn-dark">الغاء</button>
+                                            <a href="sales.html" class="btn btn-danger">@lang('site.draft_invoice')</a>
+                                            <a href="invoice.html" class="btn btn-success">@lang('site.invoice')</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                     </div>
-                    <!-- Content wrapper end -->
-
                 </div>
-                <!-- Setting vertical scroll end -->
-
             </div>
             <!-- Main container end -->
+
+
         </div>
+        <!-- Page content end -->
     </div>
 
 @endsection

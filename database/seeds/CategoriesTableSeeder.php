@@ -11,12 +11,10 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        $names = ['Rings', 'Ncklce', 'Earings'];
-        foreach($names as $name){
             \App\Category::create([
-                'name'=> $name,
+                'name'=> 'Rings',
             ]);
-        }
+
 
     }
 }

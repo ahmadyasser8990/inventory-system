@@ -60,7 +60,7 @@
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="{{route('dashboard.sales.index')}}">@lang('site.sale_invoices')</a>
+                                        <a  href="{{route('dashboard.sales.index')}}">@lang('site.sale_invoices')</a>
                                     </li>
                                     <li>
                                         <a href="{{route('dashboard.return-sales.index')}}"> @lang('site.return_sale') </a>
@@ -71,8 +71,8 @@
                                     <li>
                                         <a href="{{route('dashboard.return-purchase.index')}}"> @lang('site.return_purchase') </a>
                                     </li>
-                                    <li class="active">
-                                        <a href="{{route('dashboard.secure-bonds.index')}}">@lang('site.security_bond') </a>
+                                    <li  class="active">
+                                        <a style="background: #8796af94;" href="{{route('dashboard.secure-bonds.index')}}">@lang('site.security_bond') </a>
                                     </li>
                                     <li>
                                         <a href="{{route('dashboard.return-secure-bonds.index')}}">@lang('site.return_security_bond')</a>
@@ -217,8 +217,8 @@
         </nav>
         <!-- Sidebar wrapper end -->
 
-         <!-- Page content start  -->
-         <div class="page-content">
+        <!-- Page content start  -->
+        <div class="page-content">
 
             <!-- Header start -->
             <header class="header">
@@ -365,7 +365,7 @@
             <div class="page-header">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}">@lang('site.dashboard')</a></li>
-                    <li class="breadcrumb-item active">@lang('site.security_bond')</li>
+                    <li class="breadcrumb-item active">@lang('site.secure_bond')</li>
                 </ol>
             </div>
             <!-- Page header end -->
@@ -381,7 +381,7 @@
                         <div class="row grutters">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="text-left mb-3">
-                                    <!-- Button add new sale -->
+                                    <!-- Button add new secure_bond -->
                                     <a href="{{route('dashboard.secure-bonds.create')}}" class="btn btn-primary">@lang('site.new_security_bond')</a>
                                 </div>
                             </div>
@@ -408,24 +408,35 @@
                                                 @foreach ($secure_bonds as $index=>$secure_bond)
                                                     <tr>
                                                         <td>{{ $index + 1 }}</td>
-                                                        <td>{{$secure_bond->client->name}}</td>
-                                                        <td>{{$secure_bond->client->phone}}</td>
+                                                        <td>{{$secure_bond->client_name}}</td>
+                                                        <td>{{$secure_bond->client_phone}}</td>
                                                         <td><span class="text-success">{{$secure_bond->sub_total}}</span> @lang('site.riyal')</td>
                                                         <td><span class="text-danger">{{$secure_bond->vat_value}}</span> @lang('site.riyal')</td>
                                                         <td>{{$secure_bond->final_total}} @lang('site.riyal')</td>
                                                         <td>{{$secure_bond->secure_bond_details->count()}}</td>
                                                         <td>
-                                                            <span class="badge badge-pill badge-info">@lang('site.secure_bond')</span>
+                                                            <span class="badge badge-pill badge-warning">@lang('site.secure_bond')</span>
                                                         </td>
                                                         <td class="">
                                                             <div class="task-list">
                                                                 <div class="task-block" style="justify-content: center; flex-direction: row; padding: 0; border-bottom: 0">
                                                                     <ul class="task-actions">
                                                                         <li>
+                                                                            <a href="#" class="star" data-toggle="tooltip" data-placement="top" title="@lang('site.delete')">
+                                                                                <i class="icon-delete"></i>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
                                                                             <a href="{{route('dashboard.secure-bonds.show', $secure_bond->id)}}" class="star" data-toggle="tooltip" data-placement="top" title="معاينه">
                                                                                 <i class="icon-eye"></i>
                                                                             </a>
                                                                         </li>
+                                                                        <li>
+                                                                            <a href="#" class="star" data-toggle="tooltip" data-placement="top"  title="@lang('site.edit')">
+                                                                                <i class="icon-edit"></i>
+                                                                            </a>
+                                                                        </li>
+
                                                                     </ul>
                                                                 </div>
                                                             </div>

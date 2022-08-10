@@ -414,8 +414,8 @@
                                                             <label for="">@lang('site.payment_method')</label>
                                                             <select name="payment_method" id="" class="form-control form-control-sm">
                                                                 <option value="">choose...</option>
-                                                                <option value="1">@lang('site.cash')</option>
-                                                                <option value="2">@lang('site.masterCard')</option>
+                                                                <option value="cash">@lang('site.cash')</option>
+                                                                <option value="masterCard">@lang('site.masterCard')</option>
                                                             </select>
                                                         </div>
                                                         @if($errors->has('payment_method'))
@@ -454,7 +454,7 @@
                                                             <input type="text" class="form-control form-control-sm " name="tax_no_manual">
                                                         </div>
                                                     </div>
-                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                    {{-- <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
                                                         <div class="form-group">
                                                             <label for="">@lang('site.client_name')</label>
                                                             <input class="form-control form-control-sm name" name="client_name"  type="text" value="" placeholder="">
@@ -471,7 +471,7 @@
                                                             <label for="">@lang('site.tax_no')</label>
                                                             <input class="form-control form-control-sm tax_no" name="tax_no" type="text"  placeholder="">
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -484,10 +484,10 @@
                                                         <input class="form-control form-control-sm" type="text" readonly value="{{$nextSaleId}}">
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12 sale-type-order">
                                                     <div class="form-group">
-                                                        <label for="">@lang('site.client_no')</label>
-                                                        <select name="client_no" type="text" id="client_no" class="form-control form-control-sm selectpicker client_no"  data-live-search="true">
+                                                        <label for="" class="">@lang('site.client_no')</label>
+                                                        <select name="client_no" type="text" id="client_no" class="form-control  form-control-sm selectpicker client_no"  data-live-search="true">
                                                             <option value="">choose...</option>
                                                             @foreach ($clients as $client)
                                                                 <option
