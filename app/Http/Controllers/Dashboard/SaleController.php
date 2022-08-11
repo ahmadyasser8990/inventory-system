@@ -11,6 +11,7 @@ use App\Product;
 use App\SaleDetails;
 use DB;
 use Auth;
+use Validator;
 
 class SaleController extends Controller
 {
@@ -138,13 +139,34 @@ class SaleController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $rules = [
             'invoice_date'=>'required',
             'payment_method'=>'required',
             'sale_type'=>'required',
-        ]);
+        ];
+        $validator = validator::make($request->all(),$rules,['added_product_id.required'=>'one product is required']);
+
+        if ($validator->fails()) {
+            return response()->json(['success'=>0,'errors' => $validator->errors(),400]);
+        }
+        if(!empty($request->purity)){
+          foreach ($request->purity as $key => $value) {
+              $product = Product::find($key);
+              $product->purity = $value;
+              $product->save();
+          }
+        }
+
+        if(!empty($request->color)){
+            foreach ($request->color as $key => $value) {
+                $product= Product::find($key);
+                $product->color = $value;
+                $product->save();
+            }
+        }
+
         $data['client_id'] = $request->client_no;
-        $data['user_id'] = Auth::id();
+        // $data['user_id'] = Auth::id();
         if($request->sale_type == 1) {
             $data['client_name'] = $request->client_name;
             $data['client_phone'] = $request->phone;
@@ -177,8 +199,7 @@ class SaleController extends Controller
 
         $sale_invoice->sale_details()->createMany($details_list);
 
-        session()->flash('success',__('site.added_successfully'));
-        return redirect()->route('dashboard.sales.index');
+        return response()->json(['success'=>1]);
     }
     public function show($id)
     {
