@@ -86,6 +86,11 @@ return [
     'document_date'=> 'تاريخ السند',
     'amount_as_string'=> 'المبلغ كتابتا',
     'total_spend'=> 'اجمالي الصرفيه',
+    'credit_card'=> 'تحويل',
+    'No_description'=> 'لا يوجد وصف',
+    'created_by'=> 'تم اظافت السند من قبل',
+
+
 
 
     //Customer Exchange

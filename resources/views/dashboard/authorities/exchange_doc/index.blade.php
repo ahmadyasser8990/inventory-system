@@ -387,7 +387,7 @@
                                         <i class="icon-archive"></i>
                                     </div>
                                     <div class="stats-detail">
-                                        <h3>14500 @lang('site.riyal')</h3>
+                                        <h3>{{$totalAmount}} @lang('site.riyal')</h3>
                                         <p>@lang('site.total_spend')</p>
                                     </div>
                                 </div>
@@ -402,7 +402,8 @@
                             </div>
                         </div>
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body"
+                            @if ($exchangeBonds->count() > 0)>
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-light table-sm">
                                         <thead>
@@ -416,44 +417,55 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>125</td>
-                                                <td>Mohammed</td>
-                                                <td>1500 @lang('site.riyal')</td>
-                                                <td>@lang('site.cash')</td>
-                                                <td>Spend it on fixing laptops</td>
-                                                <td class="text-center">
-                                                    <div class="task-list">
-                                                        <div class="task-block" style="flex-direction: row; padding: 0; border-bottom: 0">
-                                                            <ul class="task-actions">
-                                                                <li>
-                                                                    <a href="#" class="star" data-toggle="tooltip" data-placement="top" title="@lang('site.delete')">
-                                                                        <i class="icon-delete"></i>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#" class="star" data-toggle="modal" data-placement="top" data-target=".show" title="@lang('site.show')">
-                                                                        <i class="icon-eye"></i>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#" class="star" data-toggle="modal" data-placement="top" data-target=".edit" title="@lang('site.edit')">
-                                                                        <i class="icon-edit"></i>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#" class="star" data-toggle="tooltip" data-placement="top" title="@lang('site.print')">
-                                                                        <i class="icon-print"></i>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
+                                            @foreach ($exchangeBonds as $index=>$exchangeBond)
+                                                <tr>
+                                                    <td>{{$exchangeBond->id}}</td>
+                                                    <td>{{$exchangeBond->client_name}}</td>
+                                                    <td>{{$exchangeBond->amount}} @lang('site.riyal')</td>
+                                                    <td>
+                                                        @if ($exchangeBond->payment_method = "cash")
+                                                            @lang('site.cash')
+                                                        @else
+                                                            @lang('site.credit_card')
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($exchangeBond->description == null)
+                                                            @lang('site.No_description')
+                                                        @else
+                                                            {{$exchangeBond->description}}
+                                                        @endif
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div class="task-list">
+                                                            <div class="task-block" style="flex-direction: row; padding: 0; border-bottom: 0">
+                                                                <ul class="task-actions">
+                                                                    <li>
+                                                                        <form action="{{route('dashboard.exchange-doc.destroy',$exchangeBond->id)}}" method="post" style="display: inline-block">
+                                                                            {{csrf_field()}}
+                                                                            {{ method_field('delete')}}
+                                                                            <button type="submit" class="btn btn-danger delete btn-rounded " title="@lang('site.delete')"><span class="icon-delete"></span></span></button>
+                                                                        </form>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a  href="{{route('dashboard.exchange-doc.show', $exchangeBond->id)}}" class="star" data-toggle="tooltip" title="@lang('site.show')">
+                                                                            <i class="icon-eye"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#" class="star" data-toggle="tooltip" data-placement="top" title="@lang('site.print')">
+                                                                            <i class="icon-print"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
                                                         </div>
-                                                    </div>
 
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                             {{-- modal show product --}}
-                                            <div class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="showModalLabel" aria-hidden="true">
+                                            <div class="modal fade show{{$exchangeBond->id}}" tabindex="-1" role="dialog" aria-labelledby="showModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-xl">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -462,86 +474,80 @@
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                         </div>
-                                                        <form class="" action="" method="" enctype="">
-
-                                                            <div class="modal-body">
-                                                                <div class="row gutters">
-                                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
-                                                                        <div class="form-group">
-                                                                            <label class="col-form-label">@lang('site.exchange_no')</label>
-                                                                            <input type="number" class="form-control" readonly value="12">
-                                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="row gutters">
+                                                                <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                                    <div class="form-group">
+                                                                        <label class="col-form-label">@lang('site.exchange_no')</label>
+                                                                        <input type="number" value="{{$exchangeBond->id}}" class="form-control" readonly>
                                                                     </div>
                                                                 </div>
-                                                                <div class="row gutters">
-                                                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
-                                                                        <div class="form-group">
-                                                                            <label class="col-form-label">@lang('site.amount')</label>
-                                                                            <input type="number" class="form-control" placeholder="@lang('site.amount')">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-3 col-lg col-md-3 col-sm-3 col-12">
-                                                                        <div class="form-group">
-                                                                            <label  class="col-form-label">@lang('site.document_date')</label>
-                                                                            <input type="date" class="form-control"  placeholder="@lang('site.document_date')">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-3 col-lg col-md-3 col-sm-3 col-12">
-                                                                        <div class="form-group">
-                                                                            <label  class="col-form-label">@lang('site.recieve_date')</label>
-                                                                            <input type="date" class="form-control"  placeholder="@lang('site.recieve_date')">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-3 col-lg col-md-3 col-sm-3 col-12">
-                                                                        <div class="form-group">
-                                                                            <label class="col-form-label">@lang('site.payment_method')</label>
-                                                                            <select class="form-control" name="method_type" id="">
-                                                                                <option value="">@lang('site.payment_method')</option>
-                                                                                <option value="cash">@lang('site.cash')</option>
-                                                                                <option value="credit_card">@lang('site.credit_card')</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group row gutters">
-                                                                    <label class="col-sm-2 col-form-label text-right">@lang('site.customer_no')</label>
-                                                                    <div class="col-sm-2">
-                                                                        <input type="number" name="customer_id" class="form-control" placeholder="@lang('site.customer_no')">
-                                                                    </div>
-                                                                    <div class="col-sm-4">
-                                                                        <input type="text" name="customer_name" class="form-control" readonly placeholder="@lang('site.customer_name')">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group row gutters">
-                                                                    <label class="col-sm-2 col-form-label text-right">@lang('site.amount_as_string')</label>
-                                                                    <div class="col-sm-6">
-                                                                        <input type="text" name="amountString" class="form-control" readonly placeholder="@lang('site.amount_as_string')">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group row gutters">
-                                                                    <label class="col-sm-2 col-form-label text-right">@lang('site.description')</label>
-                                                                    <div class="col-sm-6">
-                                                                        <input type="text" name="description" class="form-control" placeholder="@lang('site.description')">
-                                                                    </div>
-                                                                </div>
-                                                                <!-- Row end -->
-
-                                                                <!-- Row start -->
-                                                                <div class="row gutters">
-                                                                    <div class="col-xl-12">
-                                                                        <button type="button" id="submit" name="submit" class="btn btn-danger float-right">@lang('site.close')</button>
-                                                                    </div>
-                                                                </div>
-                                                                <!-- Row end -->
-
                                                             </div>
-                                                        </form>
+                                                            <div class="row gutters">
+                                                                <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                                                    <div class="form-group">
+                                                                        <label class="col-form-label">@lang('site.amount')</label>
+                                                                        <input type="number" readonly class="form-control" value="{{$exchangeBond->amount}}">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3 col-lg col-md-3 col-sm-3 col-12">
+                                                                    <div class="form-group">
+                                                                        <label  class="col-form-label">@lang('site.document_date')</label>
+                                                                        <input type="date" readonly class="form-control" value="{{$exchangeBond->document_date}}">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3 col-lg col-md-3 col-sm-3 col-12">
+                                                                    <div class="form-group">
+                                                                        <label  class="col-form-label">@lang('site.recieve_date')</label>
+                                                                        <input type="date" readonly class="form-control" value="{{$exchangeBond->recieve_date}}"  >
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3 col-lg col-md-3 col-sm-3 col-12">
+                                                                    <div class="form-group">
+                                                                        <label class="col-form-label">@lang('site.payment_method')</label>
+                                                                        <input type="text" readonly class="form-control" value="{{$exchangeBond->payment_method}}">
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row gutters">
+                                                                <label class="col-sm-2 col-form-label text-right">@lang('site.customer_no')</label>
+                                                                <div class="col-sm-2">
+                                                                    <input type="number" readonly value="{{$exchangeBond->client_id}}" class="form-control">
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <input type="text" readonly value="{{$exchangeBond->client_name}}" class="form-control" readonly>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row gutters">
+                                                                <label class="col-sm-2 col-form-label text-right">@lang('site.amount_as_string')</label>
+                                                                <div class="col-sm-6">
+                                                                    <input type="text" class="form-control" readonly>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row gutters">
+                                                                <label class="col-sm-2 col-form-label text-right">@lang('site.description')</label>
+                                                                <div class="col-sm-6">
+                                                                    <input type="text" value="{{$exchangeBond->description}}" readonly class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <!-- Row end -->
+
+                                                            <!-- Row start -->
+                                                            <div class="row gutters">
+                                                                <div class="col-xl-12">
+                                                                    <button type="button" data-dismiss="modal" class="btn btn-dark">@lang('site.close')</button>
+                                                                </div>
+                                                            </div>
+                                                            <!-- Row end -->
+
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             {{-- modal edit product --}}
-                                            <div class="modal fade edit" tabindex="-1" role="dialog" aria-labelledby="showModalLabel" aria-hidden="true">
+                                            <div class="modal fade edit{{$exchangeBond->id}}" tabindex="-1" role="dialog" aria-labelledby="showModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-xl">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -631,6 +637,9 @@
                                         </tbody>
                                     </table>
                                 </div>
+                            @else
+                                <h2>@lang('site.no_data_found')</h2>
+                            @endif
                             </div>
                         </div>
 

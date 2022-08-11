@@ -379,7 +379,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">@lang('site.dashboard')</li>
                     <li class="breadcrumb-item">@lang('site.exchange_doc')</li>
-                    <li class="breadcrumb-item active">@lang('site.new')</li>
+                    <li class="breadcrumb-item active">@lang('site.show')</li>
                 </ol>
             </div>
             <!-- Page header end -->
@@ -390,111 +390,85 @@
                 <!-- Row start -->
                 <div class="row justify-content-center gutters">
                     <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12">
-                        <form action="{{route('dashboard.exchange-doc.store')}}" method="POST">
-                            {{ csrf_field() }}
-                            {{ method_field('post')}}
 
-                            <div class="card m-0">
-                                <div class="card-header">
-                                    <div class="card-title">@lang('site.exchange_doc')</div>
-                                </div>
-                                <div class="card-body">
-
-                                    <div class="row gutters">
-                                        <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
-                                            <div class="form-group">
-                                                <label class="col-form-label">@lang('site.exchange_no')</label>
-                                                <input type="number" class="form-control" readonly value="{{$nextExchangeBondId}}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Row start -->
-                                    <div class="row gutters">
-                                        <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
-                                            <div class="form-group">
-                                                <label class="col-form-label">@lang('site.amount')</label>
-                                                <input type="number" name="amount" class="form-control" placeholder="@lang('site.amount')">
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-lg col-md-3 col-sm-3 col-12">
-                                            <div class="form-group">
-                                                <label  class="col-form-label">@lang('site.document_date')</label>
-                                                <input type="date" class="form-control pickdate" name="document_date"  placeholder="@lang('site.document_date')">
-                                                @if($errors->has('document_date'))
-                                                    <div class="error">{{ $errors->first('document_date') }}</div>
-                                                @endif
-                                            </div>
-
-
-                                        </div>
-                                        <div class="col-xl-3 col-lg col-md-3 col-sm-3 col-12">
-                                            <div class="form-group">
-                                                <label  class="col-form-label">@lang('site.recieve_date')</label>
-                                                <input type="date" class="form-control pickdate1" name="recieve_date"  placeholder="@lang('site.recieve_date')">
-                                                @if($errors->has('recieve_date'))
-                                                    <div class="error">{{ $errors->first('recieve_date') }}</div>
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-lg col-md-3 col-sm-3 col-12">
-                                            <div class="form-group">
-                                                <label class="col-form-label">@lang('site.payment_method')</label>
-                                                <select class="form-control" name="payment_method" id="">
-                                                    <option value="">@lang('site.payment_method')</option>
-                                                    <option value="cash">@lang('site.cash')</option>
-                                                    <option value="credit_card">@lang('site.credit_card')</option>
-                                                </select>
-
-                                            </div>
-                                            @if($errors->has('payment_method'))
-                                                    <div class="error">{{ $errors->first('payment_method') }}</div>
-                                                @endif
-                                        </div>
-                                    </div>
-                                    <div class="form-group row gutters" id="getClient">
-                                        <label class="col-sm-2 col-form-label text-right">@lang('site.client_no')</label>
-                                        <div class="col-sm-2">
-                                            <select name="client_no" type="text" id="client_no" class="form-control  form-control-sm selectpicker client_no"  data-live-search="true">
-                                                <option value="">choose...</option>
-                                                @foreach ($clients as $client)
-                                                    <option
-                                                        data-name="{{ $client->name }}"
-                                                        value="{{ $client->id }}">
-                                                        {{$client->name}} -  {{$client->id}}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <input type="text" name="client_name" class="form-control form-control-sm name" readonly placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row gutters">
-                                        <label class="col-sm-2 col-form-label text-right">@lang('site.amount_as_string')</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" name="amountString" class="form-control" readonly placeholder="@lang('site.amount_as_string')">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row gutters">
-                                        <label class="col-sm-2 col-form-label text-right">@lang('site.description')</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" name="description" class="form-control" placeholder="@lang('site.description')">
-                                        </div>
-                                    </div>
-                                    <!-- Row end -->
-
-                                    <!-- Row start -->
-                                    <div class="row gutters">
-                                        <div class="col-xl-12">
-                                            <button type="submit" id="submit" name="submit" class="btn btn-primary float-right mr-3">@lang('site.save')</button>
-                                            <a href="{{route('dashboard.exchange-doc.index')}}" class="btn btn-danger float-right">@lang('site.close')</a>
-                                        </div>
-                                    </div>
-                                    <!-- Row end -->
-
-                                </div>
+                        <div class="card m-0">
+                            <div class="card-header">
+                                <div class="card-title">@lang('site.exchange_doc')</div>
+                                <span>@lang('site.created_by') {{$exchangeBond->user->first_name}} {{$exchangeBond->user->last_name}}</span>
                             </div>
-                        </form>
+                            <div class="card-body">
+
+                                <div class="row gutters">
+                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                        <div class="form-group">
+                                            <label class="col-form-label">@lang('site.exchange_no')</label>
+                                            <input type="number" class="form-control" readonly value="{{$exchangeBond->id}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Row start -->
+                                <div class="row gutters">
+                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                        <div class="form-group">
+                                            <label class="col-form-label">@lang('site.amount')</label>
+                                            <input type="number" readonly value="{{$exchangeBond->amount}}" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3 col-lg col-md-3 col-sm-3 col-12">
+                                        <div class="form-group">
+                                            <label  class="col-form-label">@lang('site.document_date')</label>
+                                            <input type="date" class="form-control " readonly value="{{$exchangeBond->document_date}}">
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col-xl-3 col-lg col-md-3 col-sm-3 col-12">
+                                        <div class="form-group">
+                                            <label  class="col-form-label">@lang('site.recieve_date')</label>
+                                            <input type="date" class="form-control" readonly value="{{$exchangeBond->recieve_date}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3 col-lg col-md-3 col-sm-3 col-12">
+                                        <div class="form-group">
+                                            <label class="col-form-label">@lang('site.payment_method')</label>
+                                            <input type="text" class="form-control form-control-sm" value="{{$exchangeBond->payment_method}}" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row gutters" id="getClient">
+                                    <label class="col-sm-2 col-form-label text-right">@lang('site.client_no')</label>
+                                    <div class="col-sm-2">
+                                        <input type="number" class="form-control" readonly value="{{$exchangeBond->client_id}}">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control form-control-sm" value="{{$exchangeBond->client_name}}" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row gutters">
+                                    <label class="col-sm-2 col-form-label text-right">@lang('site.amount_as_string')</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row gutters">
+                                    <label class="col-sm-2 col-form-label text-right">@lang('site.description')</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" value="{{$exchangeBond->description}}" readonly class="form-control">
+                                    </div>
+                                </div>
+                                <!-- Row end -->
+
+                                <!-- Row start -->
+                                <div class="row gutters">
+                                    <div class="col-xl-12">
+                                        <a href="{{route('dashboard.exchange-doc.index')}}" class="btn btn-danger float-right">@lang('site.close')</a>
+                                    </div>
+                                </div>
+                                <!-- Row end -->
+
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <!-- Row end -->
