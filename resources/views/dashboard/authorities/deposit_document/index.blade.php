@@ -389,7 +389,7 @@
                                         <i class="icon-archive"></i>
                                     </div>
                                     <div class="stats-detail">
-                                        <h3>14500 @lang('site.riyal')</h3>
+                                        <h3> @lang('site.riyal')</h3>
                                         <p>@lang('site.deposit_doc')</p>
                                     </div>
                                 </div>

@@ -200,6 +200,7 @@ class SaleController extends Controller
         $sale_invoice->sale_details()->createMany($details_list);
 
         return response()->json(['success'=>1]);
+
     }
     public function show($id)
     {

@@ -115,7 +115,7 @@
                             <div class="sidebar-submenu ">
                                 <ul>
                                     <li class="active">
-                                        <a href="{{route('dashboard.exchange-doc.index')}}">@lang('site.exchange_doc')</a>
+                                        <a style="background: #8796af94;" href="{{route('dashboard.exchange-doc.index')}}">@lang('site.exchange_doc')</a>
                                     </li>
                                     <li>
                                         <a href="{{route('dashboard.customer-exchange.index')}}">@lang('site.customer_exchange')</a>
