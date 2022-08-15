@@ -1,5 +1,17 @@
 @extends('layouts.dashboard.app')
 
+@section('links')
+
+    <!-- Bootstrap Select CSS -->
+	<link rel="stylesheet" href="{{asset('dashboard_files/vendor/bs-select/bs-select.css')}}" />
+
+    <link rel="stylesheet" href="{{ asset('dashboard_files/css/pickadate/classic.css') }}">
+    <link rel="stylesheet" href="{{ asset('dashboard_files/css/pickadate/classic.date.css') }}">
+    @if(config('app.locale') == 'ar')
+        <link rel="stylesheet" href="{{ asset('dashboard_files/css/pickadate/rtl.css') }}">
+    @endif
+
+@endsection
 
 @section('content')
 
@@ -26,7 +38,7 @@
                 <div class="sidebar-menu">
                     <ul>
                         <li class="header-menu">@lang('site.general')</li>
-                        <li class="sidebar-dropdown ">
+                        <li class="sidebar-dropdown">
                             <a href="#">
                                 <i class="icon-devices_other"></i>
                                 <span class="menu-text">@lang('site.dashboard')</span>
@@ -112,9 +124,9 @@
                                 <i class="icon-edit1"></i>
                                 <span class="menu-text">@lang('site.bond')</span>
                             </a>
-                            <div class="sidebar-submenu">
+                            <div class="sidebar-submenu ">
                                 <ul>
-                                    <li>
+                                    <li >
                                         <a href="{{route('dashboard.exchange-doc.index')}}">@lang('site.exchange_doc')</a>
                                     </li>
                                     <li>
@@ -367,118 +379,98 @@
             <div class="page-header">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">@lang('site.dashboard')</li>
-                    <li class="breadcrumb-item active">@lang('site.catch_receipt')</li>
+                    <li class="breadcrumb-item">@lang('site.catch_receipt')</li>
+                    <li class="breadcrumb-item active">@lang('site.show')</li>
                 </ol>
             </div>
             <!-- Page header end -->
 
             <!-- Main container start -->
-            <div class="main-container fixed-height">
+            <div class="main-container">
 
-                <!-- Setting vertical scroll start -->
-                <div class="fixedBodyScroll">
-
-                    <!-- Content wrapper start -->
-                    <div class="content-wrapper">
-
-                        <!-- Row start -->
-                        <div class="row gutters">
-                            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 col-6">
-                                <div class="info-tiles">
-                                    <div class="info-icon secondary">
-                                        <i class="icon-archive"></i>
-                                    </div>
-                                    <div class="stats-detail">
-                                        <h3>{{$totalAmount}} @lang('site.riyal')</h3>
-                                        <p>@lang('site.catch_receipt')</p>
-                                    </div>
-                                </div>
+                <!-- Row start -->
+                <div class="row justify-content-center gutters">
+                    <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12">
+                        <div class="card m-0">
+                            <div class="card-header">
+                                <div class="card-title">@lang('site.catch_receipt')</div>
+                                <span>@lang('site.created_by') {{$catchReceipt->user->first_name}} {{$catchReceipt->user->last_name}}</span>
                             </div>
-                        </div>
-                        <div class="row grutters">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <div class="text-left mb-3">
-                                    <!-- Button add new sale -->
-                                    <a href="{{route('dashboard.catch-receipt.create')}}" class="btn btn-primary">@lang('site.new_catch_receipt')</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
                             <div class="card-body">
-                                @if ($catchReceipts->count() > 0)>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-light table-sm">
-                                            <thead>
-                                                <tr>
-                                                    <th>@lang('site.exchange_no')</th>
-                                                    <th>@lang('site.client_name')</th>
-                                                    <th>@lang('site.amount')</th>
-                                                    <th>@lang('site.payment_method')</th>
-                                                    <th>@lang('site.description')</th>
-                                                    <th class="text-center">@lang('site.action')</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($catchReceipts as $index=>$catchReceipt)
-                                                    <tr>
-                                                        <td>{{$catchReceipt->id}}</td>
-                                                        <td>{{$catchReceipt->client_name}}</td>
-                                                        <td>{{$catchReceipt->amount}} @lang('site.riyal')</td>
-                                                        <td>
-                                                            @if ($catchReceipt->payment_method = "cash")
-                                                                @lang('site.cash')
-                                                            @else
-                                                                @lang('site.credit_card')
-                                                            @endif
-                                                        </td>
-                                                        <td>
-                                                            @if ($catchReceipt->description == null)
-                                                                @lang('site.No_description')
-                                                            @else
-                                                                {{$catchReceipt->description}}
-                                                            @endif
-                                                        </td>
-                                                        <td class="text-center">
-                                                            <div class="task-list">
-                                                                <div class="task-block" style="flex-direction: row; padding: 0; border-bottom: 0">
-                                                                    <ul class="task-actions">
-                                                                        <li>
-                                                                            <form action="{{route('dashboard.catch-receipt.destroy',$catchReceipt->id)}}" method="post" style="display: inline-block">
-                                                                                {{csrf_field()}}
-                                                                                {{ method_field('delete')}}
-                                                                                <button type="submit" class="btn btn-danger delete btn-rounded " title="@lang('site.delete')"><span class="icon-delete"></span></span></button>
-                                                                            </form>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a  href="{{route('dashboard.catch-receipt.show', $catchReceipt->id)}}" class="star" data-toggle="tooltip" title="@lang('site.show')">
-                                                                                <i class="icon-eye"></i>
-                                                                            </a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="#" class="star" data-toggle="tooltip" data-placement="top" title="@lang('site.print')">
-                                                                                <i class="icon-print"></i>
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
 
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
+                                <div class="row gutters">
+                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                        <div class="form-group">
+                                            <label class="col-form-label">@lang('site.expense_no')</label>
+                                            <input type="number" class="form-control" readonly value="{{$catchReceipt->id}}">
+                                        </div>
                                     </div>
-                                @else
-                                    <h2>@lang('site.no_data_found')</h2>
-                                @endif
+                                </div>
+                                <!-- Row start -->
+                                <div class="row gutters">
+                                    <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
+                                        <div class="form-group">
+                                            <label class="col-form-label">@lang('site.amount')</label>
+                                            <input type="number" readonly value="{{$catchReceipt->amount}}" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3 col-lg col-md-3 col-sm-3 col-12">
+                                        <div class="form-group">
+                                            <label  class="col-form-label">@lang('site.document_date')</label>
+                                            <input type="date" class="form-control " readonly value="{{$catchReceipt->document_date}}">
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col-xl-3 col-lg col-md-3 col-sm-3 col-12">
+                                        <div class="form-group">
+                                            <label  class="col-form-label">@lang('site.recieve_date')</label>
+                                            <input type="date" class="form-control" readonly value="{{$catchReceipt->recieve_date}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3 col-lg col-md-3 col-sm-3 col-12">
+                                        <div class="form-group">
+                                            <label class="col-form-label">@lang('site.payment_method')</label>
+                                            <input type="text" class="form-control form-control-sm" value="{{$catchReceipt->payment_method}}" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row gutters" id="getClient">
+                                    <label class="col-sm-2 col-form-label text-right">@lang('site.client_no')</label>
+                                    <div class="col-sm-2">
+                                        <input type="number" class="form-control" readonly value="{{$catchReceipt->client_id}}">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control form-control-sm" value="{{$catchReceipt->client_name}}" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row gutters">
+                                    <label class="col-sm-2 col-form-label text-right">@lang('site.amount_as_string')</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row gutters">
+                                    <label class="col-sm-2 col-form-label text-right">@lang('site.description')</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" value="{{$catchReceipt->description}}" readonly class="form-control">
+                                    </div>
+                                </div>
+                                <!-- Row end -->
+
+                                <!-- Row start -->
+                                <div class="row gutters">
+                                    <div class="col-xl-12">
+                                        <a href="{{route('dashboard.catch-receipt.index')}}" class="btn btn-danger float-right">@lang('site.close')</a>
+                                    </div>
+                                </div>
+                                <!-- Row end -->
+
                             </div>
                         </div>
                     </div>
-                    <!-- Content wrapper end -->
-
                 </div>
-                <!-- Setting vertical scroll end -->
+                <!-- Row end -->
 
             </div>
             <!-- Main container end -->
@@ -489,4 +481,47 @@
 
     </div>
 
+@endsection
+@section('scripts')
+<!-- Bootstrap Select JS -->
+<script src="{{ asset('dashboard_files/vendor/bs-select/bs-select.min.js')}}"></script>
+<script src="{{ asset('dashboard_files/js/pickadate/picker.js') }}"></script>
+<script src="{{ asset('dashboard_files/js/pickadate/picker.date.js') }}"></script>
+
+@if(config('app.locale') == 'ar')
+    <script src="{{ asset('dashboard_files/js/pickadate/ar.js') }}"></script>
+@endif
+
+<script>
+    $(document).ready(function(){
+
+        $('#getClient').delegate('.client_no','change', function() {
+
+            // e.preventDefault();
+            var id = $(this).val();
+            var name = $('#getClient').find('.client_no option:selected').attr('data-name');
+            // alert('id is ' + id + ' name is ' + name);
+            $('.name').val(name);
+        });
+
+        $('.pickdate').pickadate({
+                format: 'yyyy-mm-dd',
+                selectMonth: true,
+                selectYear: true,
+                clear: 'Clear',
+                close: 'Ok',
+                closeOnSelect: true
+            });
+
+        $('.pickdate1').pickadate({
+                format: 'yyyy-mm-dd',
+                selectMonth: true,
+                selectYear: true,
+                clear: 'Clear',
+                close: 'Ok',
+                closeOnSelect: true
+            });
+
+});
+    </script>
 @endsection

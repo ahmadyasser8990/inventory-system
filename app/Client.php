@@ -19,4 +19,8 @@ class Client extends Model
     {
         return $this->hasMany(Sale::class);
     }
+    public function exchnageBond()
+    {
+        return $this->hasMany(EchangeBond::class);
+    }
 }

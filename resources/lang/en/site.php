@@ -84,6 +84,10 @@ return [
     'document_date'=> 'Document Date',
     'amount_as_string'=> 'Amount as String',
     'total_spend'=> 'Total Spend',
+    'credit_card'=> 'Credit Card',
+    'No_description'=> 'No Description',
+    'created_by'=> 'Created by ',
+
 
     //Customer Exchange
     'new_customer_exchange' => 'New Customer Exchange',

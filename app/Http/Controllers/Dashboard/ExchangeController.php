@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Client;
+use Auth;
+use App\EchangeBond;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,29 +17,44 @@ class ExchangeController extends Controller
      */
     public function index()
     {
-        return view('dashboard.authorities.exchange_doc.index');
+        $totalAmount = EchangeBond::sum('amount');
+        $exchangeBonds = EchangeBond::all();
+        return view('dashboard.authorities.exchange_doc.index', compact('exchangeBonds', 'totalAmount'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        return view('dashboard.authorities.exchange_doc.create');
+        $clients = Client::all();
+        $exchangeBonds = EchangeBond::latest()->first();
+        $nextExchangeBondId = isset($exchangeBonds->id)?$exchangeBonds->id+1:1;
+        return view('dashboard.authorities.exchange_doc.create', compact('clients','nextExchangeBondId'));
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            'document_date'=>'required',
+            'recieve_date'=>'required',
+            'payment_method'=>'required',
+        ]);
+
+        $data['client_id'] = $request->client_no;
+        $data['client_name'] = $request->client_name;
+        $data['user_id'] = Auth::id();
+        $data['payment_method'] = $request->payment_method;
+        $data['amount'] = $request->amount;
+        $data['document_date'] = $request->document_date;
+        $data['recieve_date'] = $request->recieve_date;
+        $data['description'] = $request->description;
+
+        $exchangeBond = EchangeBond::create($data);
+
+        session()->flash('success',__('site.added_successfully'));
+        return redirect()->route('dashboard.exchange-doc.index');
+
     }
 
     /**
@@ -47,7 +65,8 @@ class ExchangeController extends Controller
      */
     public function show($id)
     {
-        //
+        $exchangeBond = EchangeBond::find($id);
+        return view('dashboard.authorities.exchange_doc.show', compact('exchangeBond'));
     }
 
     /**
@@ -58,7 +77,7 @@ class ExchangeController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -81,6 +100,8 @@ class ExchangeController extends Controller
      */
     public function destroy($id)
     {
-        //
+            EchangeBond::find($id)->delete();
+        session()->flash('success', __('site.deleted_successfully'));
+        return redirect()->route('dashboard.exchange-doc.index');
     }
 }

@@ -196,12 +196,14 @@ class SaleController extends Controller
             $details_list[$i]['product_id'] = $request->all_products[$i];
             $product = Product::find($request->all_products[$i]);
             $product->status = 'sold';
+            // $product->sale_price = 'sold';
             $product->save();
         }
 
         $sale_invoice->sale_details()->createMany($details_list);
 
         return response()->json(['success'=>1]);
+
     }
     public function show($id)
     {

@@ -596,7 +596,6 @@
                                                                 <th>@lang('site.marquis')</th>
                                                                 <th>@lang('site.big_stone')</th>
                                                                 <th>@lang('site.colored')</th>
-                                                                <!-- <th> الماس 4 </th> -->
                                                                 <th>@lang('site.sale_price')</th>
                                                                 <th>@lang('site.action')</th>
                                                             </tr>
@@ -2061,12 +2060,12 @@
                    var color = $('#color');
                    var purity = $('#purity');
                    colorPurityValidation(color,purity);
-                   
-              
+
+
                    $.each(ids,function(index,value){
                       var self = $('.row_product_'+value);
                       var id = self.data('id');
-                      
+
                       if(purity.val().length > 0){
                       self.find('.purity').html('<label for=""><input type="hidden" name="purity['+id+']" value='+purity.val()+'>' + purity.val() + '</label>');
                       }
@@ -2075,7 +2074,7 @@
                       self.find('.color').html('<label for=""><input type="hidden" name="color['+id+']" value='+color.val()+'>' + color.val() + '</label>');
                       }
                    });
-                 
+
 
                    notification.show();
                    clearPurity(color,purity);
@@ -2125,7 +2124,7 @@
                    notification.show();
                    clearPurity(color,purity);
 
-                   
+
                     // $.ajax({
                     //   url : "{{route('dashboard.update.color_purity')}}",
                     //   method : "POST",
@@ -2372,7 +2371,7 @@
 
         $('#make_invoice').click(function(){
             event.preventDefault();
-        
+
         $.ajax({
     url: "{{route('dashboard.sales.store')}}",
     type: "POST",
@@ -2405,7 +2404,7 @@
     }
 })
 });
-       
+
 
     </script>
 
