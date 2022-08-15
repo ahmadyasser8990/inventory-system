@@ -425,7 +425,7 @@
                                                     <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
                                                         <div class="form-group">
                                                             <label for="">@lang('site.sale_type')</label>
-                                                            <select name="sale_type" id="saleType" class="form-control form-control-sm">
+                                                            <select name="sale_type" id="sale_type_order" class="form-control form-control-sm">
                                                                 <option value="">choose...</option>
                                                                 <option value="1">Order</option>
                                                                 <option value="2">Cash</option>
@@ -1192,8 +1192,9 @@
                                         <label for="">@lang('site.user_name')</label>
                                         <select name="user_id" id="" class="form-control form-control-sm">
                                             <option value="">choose...</option>
-                                            <option value="1">Ahmed</option>
-                                            <option value="2">Yaser</option>
+                                            @foreach($users as $user)
+                                            <option value="{{$user->id}}">{{$user->first_name.' '.$user->last_name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
@@ -2353,8 +2354,8 @@
 
             }
 
-            $("#saleType").change(function(){
-                var saleType = $('#saleType').val();
+            $("#sale_type_order").change(function(){
+                var saleType = $(this).val();
                 if(saleType == '1') {
                     $(".sale-type-cash").hide();
                     $(".sale-type-order").show();
@@ -2386,7 +2387,7 @@
 
             });
             msg.show();
-            window.location.href = "/dashboard/sale";
+            window.location.href = "/dashboard/sales";
         } else if (response.success == 0) {
             $.each(response.errors, function(index, value) {
                 if (value.length !== 0) {

@@ -12,7 +12,7 @@ use App\SaleDetails;
 use DB;
 use Auth;
 use Validator;
-
+use App\User;
 class SaleController extends Controller
 {
 
@@ -34,7 +34,9 @@ class SaleController extends Controller
         $prices = Price::all();
         $sale = Sale::latest()->first();
         $nextSaleId = isset($sale->id)?$sale->id+1:1;
-        return view('dashboard.invoices.sales.create', compact('clients','products','prices','nextSaleId'));
+        $users = User::all();
+     
+        return view('dashboard.invoices.sales.create', compact('clients','users','products','prices','nextSaleId'));
     }
 
     public function updateSalePrice(Request $request)
@@ -143,6 +145,7 @@ class SaleController extends Controller
             'invoice_date'=>'required',
             'payment_method'=>'required',
             'sale_type'=>'required',
+            'user_id'=>'required'
         ];
         $validator = validator::make($request->all(),$rules,['added_product_id.required'=>'one product is required']);
 
@@ -165,8 +168,8 @@ class SaleController extends Controller
             }
         }
 
-        $data['client_id'] = $request->client_no;
-        // $data['user_id'] = Auth::id();
+        // $data['client_id'] = $request->client_no;
+        $data['user_id'] = $request->user_id;
         if($request->sale_type == 1) {
             $data['client_name'] = $request->client_name;
             $data['client_phone'] = $request->phone;

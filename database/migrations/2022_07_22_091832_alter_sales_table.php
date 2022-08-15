@@ -15,11 +15,11 @@ class AlterSalesTable extends Migration
     {
         Schema::table('sales', function(Blueprint $table)
         {
-            $table->unsignedBigInteger('client_id')->nullable()->change();
+            
             $table->unsignedBigInteger('user_id')->after('id');
             $table->string('payment_method',50)->after('client_tax_no');
             $table->string('sales_type',50)->after('client_tax_no');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

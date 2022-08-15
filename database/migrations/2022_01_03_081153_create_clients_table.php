@@ -18,7 +18,7 @@ class CreateClientsTable extends Migration
             $table->string('name');
             $table->string('phone');
             $table->string('tax_no');
-            $table->text('address');
+            $table->text('address')->nullable();
             $table->double('gold_price', 8, 2)->nullable();
             $table->double('dimaond1_price', 8, 2)->nullable();
             $table->double('dimaond2_price', 8, 2)->nullable();
