@@ -1185,20 +1185,6 @@
                                 </div>
                             </div> --}}
                             <div class="row gutters pt-2">
-                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12">
-
-                                    <div class="form-group">
-                                        <label for="">@lang('site.user_name')</label>
-                                        <select name="user_id" id="" class="form-control form-control-sm">
-                                            <option value="">choose...</option>
-                                            @foreach($users as $user)
-                                            <option value="{{$user->id}}">{{$user->first_name.' '.$user->last_name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                </div>
-                                {{-- important --}}
 
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
