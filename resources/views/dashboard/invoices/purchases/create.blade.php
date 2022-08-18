@@ -377,6 +377,7 @@
         <!-- Page header end -->
 
         <!-- Main container start -->
+        <form id="purchase_form">
         <div class="main-container fixed-height">
             <!-- Setting vertical scroll start -->
             <div class="fixedBodyScroll">
@@ -398,7 +399,7 @@
                                             <div class="col-xl-2 col-lg col-md-2 col-sm-2 col-12">
                                                 <div class="form-group">
                                                     <label for="">@lang('site.payment_method')</label>
-                                                    <select name="" id="" class="form-control form-control-sm">
+                                                    <select name="payment_method" id="" class="form-control form-control-sm">
                                                         <option value="">choose...</option>
                                                         <option value="1">@lang('site.cash')</option>
                                                         <option value="2">@lang('site.masterCard')</option>
@@ -756,6 +757,7 @@
                 </div>
             </div>
         </div>
+        </form>
     </div>
     <!-- Main container end -->
 </div>
@@ -773,10 +775,13 @@
 <script>
     function submitFormPurchase(event){
      event.preventDefault();
+     var data = $('#purchase_form').serialize();
+     console.log(data);
             $.ajax({
                    url:"/dashboard/purchase",
                    type:"POST",
-                   data:$('#purchase_form').serialize(),
+                   headers: {'X-CSRF-TOKEN':"{{ csrf_token() }}" },
+                   data:data,                   
                    success: function(response){
                     if(response.success == 1){
 
@@ -787,7 +792,7 @@
 
                        });
             msg.show();
-            window.location.href = "/dashboard/purchase?="+response.type;
+            window.location.href = "/dashboard/purchase";
        }else if(response.success == 0){
            $.each(response.errors, function(index, value)
                {

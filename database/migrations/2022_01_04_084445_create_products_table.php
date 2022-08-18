@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('extra_no');
             $table->string('design_no');
+            $table->bigInteger('purchase_id')->nullable();
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('supplier_id');
             $table->double('gold', 8, 2);
@@ -38,7 +39,7 @@ class CreateProductsTable extends Migration
             $table->string('purity')->nullable();
             $table->text('description')->nullable();
             $table->text('status')->default('available');
-            $table->string('image')->default('default.png');
+            $table->string('image')->nullable();
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');

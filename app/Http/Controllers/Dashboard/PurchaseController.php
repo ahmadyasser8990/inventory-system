@@ -26,8 +26,8 @@ class PurchaseController extends Controller
        
             $purchasesOrders = PurchaseOrder::with('supplier')->paginate(10);
          
-            $purchasesCashes = PurchaseCash::paginate(10);
-            return view('dashboard.invoices.purchases.order',compact('purchasesOrders','purchasesCashes'));
+            
+            return view('dashboard.invoices.purchases.order',compact('purchasesOrders'));
 ;
         
     }
@@ -89,6 +89,7 @@ class PurchaseController extends Controller
     public function store(Request $request)
     {
         
+        
       
         $rules = [
             'invoice_date' => 'required',
@@ -114,7 +115,7 @@ class PurchaseController extends Controller
         if ($validator->fails()) {
             return response()->json(['success'=>0,'errors' => $validator->errors(),400]);
         }
-        $request_data = $request->all();
+       
         // $image= null;
         // if ($request->image) {
 
@@ -128,8 +129,17 @@ class PurchaseController extends Controller
 
         // }//end of if
 
-        if($request->purchase_type == 'order')
-        {
+            $supplier_id = $request->supplier_id;
+            if($request->purchase_type == 'cash')
+            {
+              $supplier = new Supplier();
+              $supplier->name = $request->supplier_name;
+              $supplier->phone = $request->supplier_phone_no;
+              $supplier->tax_no = $request->supplier_tax_no;
+              $supplier->save();
+              $supplier_id = $supplier->id;
+            }
+      
             $total = 0;
             foreach($request->added_product_id as $product){
                 $product = Product::findorFail($product);
@@ -139,8 +149,9 @@ class PurchaseController extends Controller
             $purchaseOrder->date = $request->invoice_date;
             $purchaseOrder->purchase_type = $request->purchase_type;
             $purchaseOrder->payment_method = $request->payment_method;
-            $purchaseOrder->supplier_id = $request->supplier_id;
+            $purchaseOrder->supplier_id = $supplier_id;
             $purchaseOrder->final_total = $total;
+            $purchaseOrder->order_type = $request->purchase_type;
             $purchaseOrder->save();            
 
             foreach($request->added_product_id as $product){
@@ -154,37 +165,7 @@ class PurchaseController extends Controller
 
            
 
-        }else{
-            $total = 0;
-            foreach($request->added_product_id as $product){
-                $product = Product::findorFail($product);
-                $total += $product->purchase_price;
-            }
-
-            $purchaseCash =  new PurchaseCash;
-            $purchaseCash->date = $request->invoice_date;
-            $purchaseCash->purchase_type = $request->purchase_type;
-            $purchaseCash->payment_method = $request->payment_method;
-            $purchaseCash->final_total = $total;
-            $purchaseCash->supplier_name = $request->supplier_name;
-            $purchaseCash->supplier_phone = $request->supplier_phone_no;
-            $purchaseCash->supplier_tax_no = $request->supplier_tax_no;
-            $purchaseCash->save();
-
-            
-            foreach($request->added_product_id as $product){
-                $product = Product::findorFail($product);
-                $purchaseCashDetail = new PurchaseCashDetail;
-                $purchaseCashDetail->purchase_cash_id = $purchaseCash->id;
-                $purchaseCashDetail->product_id = $product->id;
-                $purchaseCashDetail->save();
-            }
-            
-
-           
-            
-
-        }
+       
         return response()->json(['success'=>1,'type'=>$request->purchase_type]);
 
        

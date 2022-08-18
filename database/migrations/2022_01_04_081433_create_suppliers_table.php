@@ -18,7 +18,7 @@ class CreateSuppliersTable extends Migration
             $table->string('name');
             $table->string('phone');
             $table->string('tax_no');
-            $table->string('commercial_register');
+            $table->string('commercial_register')->nullable();
             $table->timestamps();
         });
     }

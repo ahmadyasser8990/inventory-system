@@ -20,6 +20,7 @@ class CreatePurchaseOrdersTable extends Migration
             $table->string('payment_method');
             $table->bigInteger('supplier_id')->unsigned();
             $table->double('final_total',8,2);
+            $table->string('order_type');
             $table->timestamps();
         });
     }

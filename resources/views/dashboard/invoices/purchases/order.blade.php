@@ -443,65 +443,7 @@
                                        </tfoot>
                                     </table>
                                 </div>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-light table-sm">
-                                        <thead>
-                                            <tr>
-                                                <th>@lang('site.bill_no')</th>
-                                                <th>@lang('site.supplier_name')</th>
-                                                <th>@lang('site.payment_method')</th>
-                                                <th>@lang('site.purchase_type')</th>
-                                                <th>@lang('site.final_total')</th>
-                                                <th>@lang('site.total_products')</th>
-                                                <th class="text-center">@lang('site.action')</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                          
-                                            @foreach($purchasesCashes as $purchasesCash)
-                                            <tr>
-                                                <td>{{$purchasesCash->id}}</td>
-                                                <td>{{$purchasesCash->supplier_name}}</td>
-                                                <td>{{$purchasesCash->payment_method}}</td>
-                                                <td>{{$purchasesCash->purchase_type}}</td>
-                                                <td>{{$purchasesCash->final_total}}</td>
-                                                <td>1</td>
-                                             
-                                                <td>
-                                                    <div class="task-list">
-                                                        <div class="task-block" style="justify-content: center; flex-direction: row; padding: 0; border-bottom: 0">
-                                                            <ul class="task-actions">
-                                                                <li>
-                                                                    <a href="#" class="star" data-toggle="tooltip" data-placement="top" title="@lang('site.delete')">
-                                                                        <i class="icon-delete"></i>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#" class="star" data-toggle="tooltip" data-placement="top" title="@lang('site.show')">
-                                                                        <i class="icon-eye"></i>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="{{route('dashboard.purchase.edit',['purchase'=>$purchasesCash->id,'type'=>'cash'])}}" class="star" data-toggle="tooltip" data-placement="top"  title="@lang('site.edit')">
-                                                                        <i class="icon-edit"></i>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                            @endforeach
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td colspan="7"> {{ $purchasesCashes->appends(request()->query())->links() }}</td>
-                                            </tr>
-                                       
-                                       </tfoot>
-                                    </table>
-                                </div>
+                                
                             </div>
                         </div>
 
